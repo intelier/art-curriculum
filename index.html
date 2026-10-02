@@ -39,29 +39,26 @@ html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);line-height:1.6;
   font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;word-break:keep-all;overflow-wrap:anywhere}
 button,input,select{font:inherit;color:inherit}
-.wrap{max-width:920px;margin:0 auto;padding:0 16px}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
 [hidden]{display:none!important}
 
 /* header */
-.top{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
-.top .wrap{padding-top:14px}
-.top h1{margin:0;font-size:1.25rem;letter-spacing:-.02em}
-.top .sub{margin:2px 0 0;color:var(--muted);font-size:.9rem}
-.notice{margin:6px 0 0;color:var(--muted);font-size:.75rem}
+.top{background:var(--card);border-bottom:1px solid var(--line)}
+body.playing .top{display:none}
+.top .wrap{padding-top:10px}
+.top h1{margin:0;font-size:1.05rem;letter-spacing:-.01em}
+.top .sub{margin:1px 0 0;color:var(--muted);font-size:.8rem}
+.notice{margin:4px 0 0;color:var(--muted);font-size:.7rem}
 .top-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.home{font-size:.88rem;font-weight:700;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.home{font-size:.82rem;color:var(--muted);text-decoration:none}
 .home:hover{color:var(--ink)}
 body.at-landing .tabs{display:none}
-.land-q{font-size:1.2rem;margin:6px 0 14px}
-.land-grid{display:grid;gap:14px;margin-bottom:12px}
-@media (min-width:640px){.land-grid{grid-template-columns:1fr 1fr}}
-@media (min-width:900px){.land-grid{grid-template-columns:1fr 1fr 1fr}}
-.land-card{display:flex;flex-direction:column;gap:6px;padding:22px;border-radius:var(--radius);border:1.5px solid var(--c-soft);border-top:6px solid var(--c);background:var(--card);color:var(--ink);text-decoration:none;transition:transform .12s, box-shadow .12s}
-.land-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.08)}
-.land-card b{font-size:1.2rem}
-.land-card span{color:var(--muted);font-size:.92rem}
-.land-card .land-tag{align-self:flex-start;background:var(--c-bg);color:var(--c);font-weight:800;font-size:.8rem;padding:2px 10px;border-radius:999px}
-.land-card .land-go{margin-top:6px;color:var(--c);font-weight:800}
+.land-q{font-size:1.1rem;margin:4px 0 12px}
+.land-grid{display:grid;gap:10px;margin-bottom:12px}
+.land-card{display:block;padding:14px 16px;border-radius:10px;border:1px solid var(--line);border-left:5px solid var(--c);background:var(--card);color:var(--ink);text-decoration:none}
+.land-card:hover{border-color:var(--c)}
+.land-card b{display:block;font-size:1.05rem}
+.land-card span{display:block;color:var(--muted);font-size:.86rem;margin-top:2px}
 body.playing main > section{display:none!important}
 body.playing .tabs{visibility:hidden}
 
@@ -99,16 +96,18 @@ body.playing .tabs{visibility:hidden}
 .tabs{display:flex;gap:4px;margin-top:10px;overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 @media (max-width:560px){.tabs button{padding:10px 9px;font-size:.92rem}}
-.tabs button{border:0;background:none;padding:10px 14px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+.tabs button{border:0;background:none;padding:8px 10px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
 .tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
-main{padding-top:20px;padding-bottom:48px}
+main{padding-top:16px;padding-bottom:48px}
+body.playing main{padding-top:10px}
 
 /* generic */
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:16px}
-.card h2{margin:0 0 12px;font-size:1.1rem}
-.hint{color:var(--muted);font-size:.88rem;margin:6px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:14px}
+.card h2{margin:0 0 10px;font-size:1.02rem}
+.hint{color:var(--muted);font-size:.84rem;margin:6px 0}
 .error{color:var(--bad);font-weight:600;font-size:.9rem;min-height:1.2em;margin:8px 0}
-.btn{border:1px solid var(--line);background:var(--card);padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:600}
+.btn{border:1px solid var(--line);background:var(--card);padding:9px 14px;border-radius:8px;cursor:pointer;font-weight:600}
+.btn.sel{border-color:var(--ink)}
 .btn:hover{border-color:#bcb9b0}
 .btn.primary{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
 .btn.primary:hover{opacity:.88}
@@ -117,13 +116,11 @@ main{padding-top:20px;padding-bottom:48px}
 .btn:disabled{opacity:.45;cursor:default}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 fieldset{border:0;padding:0;margin:0 0 14px}
-legend{font-weight:700;font-size:.92rem;margin-bottom:6px;padding:0}
+legend{font-weight:600;font-size:.84rem;color:var(--muted);margin-bottom:5px;padding:0}
 .chk{display:inline-flex;align-items:center;cursor:pointer;user-select:none}
 .chk input{position:absolute;opacity:0;pointer-events:none}
-.chk span{display:inline-block;padding:7px 14px;border-radius:999px;border:1.5px solid var(--c-soft);background:var(--card);color:var(--muted);font-weight:600;font-size:.92rem;transition:.12s}
-.chk span::before{content:"";display:inline-block;width:.55em;height:.55em;border-radius:50%;border:1.5px solid currentColor;margin-right:6px;vertical-align:.08em}
-.chk input:checked + span{background:var(--c-bg);border-color:var(--c);color:var(--c)}
-.chk input:checked + span::before{background:currentColor}
+.chk span{display:inline-block;padding:5px 11px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--muted);font-weight:500;font-size:.9rem;transition:.1s}
+.chk input:checked + span{background:var(--c);border-color:var(--c);color:var(--on-ink);font-weight:600}
 .chk input:focus-visible + span{outline:2px solid var(--c);outline-offset:2px}
 select{padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card)}
 
@@ -133,9 +130,15 @@ select{padding:8px 10px;border-radius:8px;border:1px solid var(--line);backgroun
 .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:16px}
 .bar i{display:block;height:100%;background:var(--ink);transition:width .2s}
 .q-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.tag{background:var(--c-bg);color:var(--c);border:1px solid var(--c-soft);border-radius:999px;padding:2px 10px;font-size:.82rem;font-weight:700}
+.tag{color:var(--c);font-size:.82rem;font-weight:700}
+.tag+.tag::before{content:"· ";color:var(--muted);font-weight:400}
+.tag.hot{color:var(--bad);margin-left:4px}
+.hotmark{color:var(--bad);font-size:.7em;font-weight:800;margin-left:3px;vertical-align:super}
+.tip-card.exam{border-top-color:var(--bad)}
+.tip-card.exam h2{color:var(--bad)}
+.warn-t{color:var(--warn);font-weight:700}
 .qtype{color:var(--muted);font-size:.82rem;padding:3px 4px}
-.q-title{font-size:1.08rem;margin:0 0 4px;line-height:1.5}
+.q-title{font-size:1.1rem;margin:0 0 4px;line-height:1.5}
 .inputs{display:grid;gap:8px;margin:14px 0}
 .inp{display:flex;align-items:center;gap:8px}
 .inp .num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--c-bg);color:var(--c);display:grid;place-items:center;font-weight:700;font-size:.85rem}
@@ -144,18 +147,18 @@ select{padding:8px 10px;border-radius:8px;border:1px solid var(--line);backgroun
 .inp input.ok{border-color:var(--ok);background:var(--ok-bg)}
 .inp input.bad{border-color:var(--bad);background:var(--bad-bg)}
 .actions{display:flex;flex-wrap:wrap;gap:8px}
-.sentence{margin:14px 0;padding:16px;border-left:4px solid var(--c);background:var(--c-bg);border-radius:0 10px 10px 0;font-size:1.05rem;line-height:1.9}
+.sentence{margin:12px 0;padding:14px;border-left:3px solid var(--c);background:var(--c-bg);border-radius:0 8px 8px 0;font-size:1.05rem;line-height:1.85}
 .gap{display:inline-block;white-space:nowrap;color:var(--c);font-weight:700}
 .gap-line{display:inline-block;width:4.5em;border-bottom:2px solid var(--c);vertical-align:-.15em;margin-left:2px}
 mark.fill{background:var(--c-soft);color:var(--ink);font-weight:700;padding:0 3px;border-radius:4px}
 .options{display:grid;gap:8px;margin-top:8px}
-.opt{text-align:left;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--field);cursor:pointer;line-height:1.45}
+.opt{text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--field);cursor:pointer;line-height:1.45}
 .opt:hover:not(:disabled){border-color:var(--c)}
 .opt .n{color:var(--muted);margin-right:6px}
 .opt:disabled{cursor:default}
 .opt.ok{border-color:var(--ok);background:var(--ok-bg)}
 .opt.bad{border-color:var(--bad);background:var(--bad-bg)}
-.fb{margin:16px 0;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--soft)}
+.fb{margin:14px 0;padding:14px 16px;border-radius:8px;border:1px solid var(--line);background:var(--soft)}
 .fb-head{font-weight:800;margin:0 0 8px;font-size:1.02rem}
 .fb.good .fb-head{color:var(--ok)}
 .fb.nope .fb-head{color:var(--bad)}
@@ -317,24 +320,9 @@ mark.fill{background:var(--c-soft);color:var(--ink);font-weight:700;padding:0 3p
   <section id="landing" hidden>
     <h2 class="land-q">무엇을 외워 볼까요?</h2>
     <div class="land-grid">
-      <a class="land-card a-chong" href="#chong">
-        <span class="land-tag">총론</span>
-        <b>초⋅중등학교 교육과정 총론</b>
-        <span>초등학교 부분: 교육 목표, 편제와 시간 배당, 교육과정 편성⋅운영 기준</span>
-        <span class="land-go">시작하기 →</span>
-      </a>
-      <a class="land-card a-cha" href="#cha">
-        <span class="land-tag">창체</span>
-        <b>창의적 체험활동 교육과정</b>
-        <span>성격·목표, 3영역과 활동·예시 활동, 초등학교 시수와 운영 중점</span>
-        <span class="land-go">시작하기 →</span>
-      </a>
-      <a class="land-card a-exp" href="#art">
-        <span class="land-tag">미술과</span>
-        <b>미술과 내용체계표</b>
-        <span>미적 체험 · 표현 · 감상, 3~4학년 · 5~6학년 핵심 아이디어와 내용 요소</span>
-        <span class="land-go">시작하기 →</span>
-      </a>
+      <a class="land-card a-chong" href="#chong"><b>총론 (초등학교)</b><span>교육 목표 · 편제와 시간 배당 · 편성⋅운영 기준</span></a>
+      <a class="land-card a-cha" href="#cha"><b>창의적 체험활동</b><span>성격·목표 · 영역과 활동 · 설계와 운영 · 초등 운영 중점</span></a>
+      <a class="land-card a-exp" href="#art"><b>미술과 내용체계표</b><span>미적 체험 · 표현 · 감상 (3~4 · 5~6학년)</span></a>
     </div>
     <p class="hint">퀴즈 기록과 내가 적은 외우는 말은 이 브라우저에만 저장돼요.</p>
   </section>
@@ -355,14 +343,16 @@ mark.fill{background:var(--c-soft);color:var(--ink);font-weight:700;padding:0 3p
     <div class="card">
       <h2>어디까지 풀어 볼까요?</h2>
       <fieldset><legend>범위</legend><div class="row" data-group="c-sec"></div></fieldset>
+      <fieldset><legend>기출</legend><div class="row"><label class="chk"><input type="checkbox" id="c-hot"><span>기출 집중 — 2017~2026학년도 기출에 나온 부분만</span></label></div></fieldset>
       <fieldset><legend>문제 형식</legend>
         <div class="row">
           <label class="chk"><input type="checkbox" name="c-type" value="cmc" checked><span>빈칸 고르기</span></label>
           <label class="chk"><input type="checkbox" name="c-type" value="cfill" checked><span>빈칸 쓰기</span></label>
+          <label class="chk"><input type="checkbox" name="c-type" value="ox" checked><span>틀린 곳 찾기</span></label>
           <label class="chk"><input type="checkbox" name="c-type" value="hours" checked><span>시수 고르기</span></label>
           <label class="chk"><input type="checkbox" name="c-type" value="clist" checked><span>목록 쓰기</span></label>
         </div>
-        <p class="hint">빈칸 고르기(쉬움) → 빈칸 쓰기 → 목록 쓰기(어려움). 시수 고르기는 &lt;표 1&gt; 시간 배당 기준 숫자 문제예요.</p>
+        <p class="hint">빈칸 고르기(쉬움) → 빈칸 쓰기 → 틀린 곳 찾기(실제 시험 형식: 잘못된 진술 찾아 고치기) → 목록 쓰기(어려움).</p>
       </fieldset>
       <div class="row">
         <label for="c-count"><b>문제 수</b></label>
@@ -430,7 +420,8 @@ mark.fill{background:var(--c-soft);color:var(--ink);font-weight:700;padding:0 3p
             <label class="chk"><input type="checkbox" name="q-type" value="mc" checked><span>핵심 아이디어 빈칸 고르기</span></label>
             <label class="chk"><input type="checkbox" name="q-type" value="list"><span>내용 요소 통째로 쓰기 (어려움)</span></label>
           </div>
-          <p class="hint">추천 순서: ( ) 채우기 → 앞글자 보고 쓰기 → 통째로 쓰기. 쉬운 것부터 단계를 올려 보세요.</p>
+          <p class="hint">추천 순서: ( ) 채우기 → 앞글자 보고 쓰기 → 통째로 쓰기.</p>
+        <p class="hint">기출: 내용 요소 이름을 그대로 쓰는 1점 문제가 거의 매년 나와요(19·21·23·24·25학년도). 2025학년도는 3~4학년 미적 체험 ‘가치·태도’였어요. 문제 위 <span class="tag hot">기출</span> 표시를 눈여겨보세요.</p>
         </fieldset>
         <div class="row">
           <label for="q-count"><b>문제 수</b></label>
@@ -850,7 +841,8 @@ $("#start").addEventListener("click", () => {
 
 function metaHTML(q, typeLabel) {
   const tags = q.tags || (q.type !== "mc" ? [q.area, q.grade, CAT_LABEL[q.cat]] : [q.area, "핵심 아이디어"]);
-  return `<div class="q-meta">${tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}<span class="qtype">${typeLabel}</span></div>`;
+  const hot = q.hot || (!q.subj && q.type !== "mc" ? hotFor("art", `${q.area}|${q.grade}|${q.cat}`) : null);
+  return `<div class="q-meta">${tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}${hotBadge(hot)}<span class="qtype">${typeLabel}</span></div>`;
 }
 
 function renderQ() {
@@ -860,6 +852,7 @@ function renderQ() {
   const body = $("#q-body");
   body.className = AREA_CLS[q.area];
   if (q.type === "mc") renderMC(q, body);
+  else if (q.type === "ox") renderOX(q, body);
   else if (q.type === "fill") renderFill(q, body);
   else renderList(q, body);
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1364,7 +1357,7 @@ TS.cha = {
   short: "창체",
   title: "2022 개정 창의적 체험활동 교육과정 (초등학교) 빈칸 학습지",
   foot: "원문: 2022 개정 창의적 체험활동 교육과정(교육부 고시 제2022-33호 [별책 40]) 중 초등학교 관련 부분.",
-  secs: { char: "성격", goal: "목표", area: "영역과 활동", time: "시수", focus: "초등 운영 중점(<표 5>)", oper: "초등학교 운영" },
+  secs: { char: "성격", goal: "목표", area: "영역과 활동", time: "시수", design: "설계와 운영", focus: "초등 운영 중점(<표 5>)", oper: "초등학교 운영" },
   doc: [
     { h: "1. 성격 및 목표 — 가. 성격", sec: "char", lab: "성격" },
     { p: [T("창의적 체험활동은 교과와의 상호 보완적인 관계 속에서 학생의 전인적인 성장을 위하여 학교가 자율적으로 설계⋅운영할 수 있는 경험과 실천 중심의 교육과정 영역이다.", ["상호 보완적인", "전인적인 성장", "경험과 실천 중심"]),
@@ -1406,6 +1399,11 @@ TS.cha = {
       { mk: "진로 탐색 활동", t: [T("긍정적인 자아 개념을 형성하고 진로 및 직업 세계의 특성과 변화를 이해하여 자신의 진로와 관련된 건강한 직업 가치관을 확립한다.", ["긍정적인 자아 개념", "특성과 변화", "건강한 직업 가치관"])] },
       { mk: "진로 설계 및 실천 활동", t: [T("자신의 진로에 대한 이해를 바탕으로 희망하는 진로와 직업의 경로를 설계하고 실천한다.", ["진로와 직업의 경로", "설계하고 실천"])] }] },
 
+    { h: "3. 설계와 운영 — 가. 설계의 원칙", sec: "design", lab: "설계의 원칙" },
+    { p: [T("학교는 학생들의 자발적인 참여와 체험 중심의 창의적인 교육 활동이 가능하도록 학생의 발달 단계와 교육적 요구 등을 고려하여 시간, 장소, 영역별 활동 구성 등을 자율적으로 설계한다.", ["자발적인 참여", "체험 중심", "시간, 장소, 영역별 활동 구성"])] },
+    { h: "(1) 영역 및 활동 설계", lv: 4, lab: "영역 및 활동 설계" },
+    { p: [T("학교는 창의적 체험활동 교육과정 편성⋅운영 시 자율⋅자치활동, 동아리 활동, 진로 활동의 영역과 영역별 활동의 특성에 따라 각각 운영하거나 각 영역 및 활동을 연계⋅통합한 활동으로 설계할 수 있다.", ["각각 운영", "연계⋅통합한 활동"]),
+          T("학교급별, 학년(군)별, 학기별로 학생의 특성과 요구에 따라 일부 영역과 활동을 선택하여 집중적으로 편성⋅운영하는 등 영역 및 활동의 편성에 있어 다양한 운영 방식으로 설계할 수 있다.", ["일부 영역과 활동", "집중적으로", "다양한 운영 방식"])] },
     { h: "3. 설계와 운영 — 가. (2) 시수 편성 기준", sec: "time", lab: "시수 편성 기준" },
     { p: [T("창의적 체험활동 교육과정 운영을 위한 시수 편성은 총론의 학교급별 교육과정 편성⋅운영 기준에 제시된 시간 배당 기준 등에 따른다.", ["총론", "시간 배당 기준"]),
           T("초등학교와 중학교에서 학교는 자율적으로 교과(군)별 및 창의적 체험활동의 20% 범위 내에서 시수를 증감하여 편성⋅운영할 수 있다.", ["20%", "증감"])] },
@@ -1414,6 +1412,21 @@ TS.cha = {
     { p: [T("창의적 체험활동에 배당된 학교급별, 학년(군)별 시수를 특정 학년이나 학기에 편중하여 편성하지 않도록 한다.", ["편중"]),
           T("초등학교 1학년은 입학 초기 적응 활동으로 입학 후 3월 중 34시간을 배정한다.", ["입학 초기 적응 활동", "3월 중 34시간"]),
           T("초등학교 1학년 4월 이후에는 주당 평균 2시간, 초등학교 2~6학년 및 중학교, 고등학교에서는 주당 평균 3시간과 같이 매주 평균적인 시간을 배당하거나 특정일을 선택하여 블록 타임 운영 및 온종일 활동을 포함한 집중 운영 등 다양하고 탄력적인 방식으로 시간을 운영할 수 있다.", ["주당 평균 2시간", "주당 평균 3시간", "블록 타임", "온종일 활동"])] },
+
+    { h: "(3) 설계⋅운영 관련 자율성 확보", lv: 4, sec: "design", lab: "설계⋅운영 관련 자율성" },
+    { p: [T("학교는 초등학교, 중학교, 고등학교의 입학 초기 및 상급 학교(학년)로 진학하기 전 학기의 일부 시간을 활용하여 학교급 간 전환 시기의 연계와 생활 적응을 지원하기 위해 진로 연계 교육을 운영할 수 있다.", ["입학 초기", "전환 시기", "진로 연계 교육"]),
+          T("교육적 필요에 따라 교과와의 연계 및 통합이 원활하게 이루어지도록 설계하되 교과 진도와 관련된 심화 보충형 학습이 되지 않도록 한다.", ["교과 진도", "심화 보충형 학습"]),
+          T("범교과 학습 주제의 경우 관련 있는 교과 교육과정에서 우선하여 교육하고 필요시 창의적 체험활동에서 다루도록 한다.", ["범교과 학습 주제", "교과 교육과정에서 우선"]),
+          T("계기 교육을 창의적 체험활동을 통해 실시할 경우, 강의식이나 지식 전달 위주의 수업 방식이 아닌 학생 중심의 창의적 체험활동 교육과정 운영이 될 수 있도록 한다.", ["계기 교육", "강의식", "학생 중심"])] },
+    { h: "(6) 설계⋅운영 시 고려사항", lv: 4, lab: "설계⋅운영 시 고려사항" },
+    { p: [T("창의적 체험활동 교육과정 설계의 주체는 학교, 교사, 학생이다.", ["학교, 교사, 학생"]),
+          T("국가 및 지역 수준에서는 학교와 지역의 특색을 고려하여 전문성을 갖춘 인적⋅물적 자원을 충분히 제공할 수 있는 기반을 마련한다.", ["인적⋅물적 자원"]),
+          T("창의적 체험활동에서는 교사와 학생이 공동으로 또는 학생이 자기주도적으로 계획을 수립하고 역할을 분담하여 실천한다.", ["교사와 학생이 공동으로", "자기주도적으로", "역할을 분담"])] },
+    { p: [T("창의적 체험활동의 활동 장소는 교내 시설 및 학교 밖 지역 사회 시설 등을 이용할 수 있으며, 학부모를 포함한 외부 인적 자원을 활용할 수 있다.", ["학교 밖 지역 사회 시설", "학부모를 포함한"]),
+          T("이때, 학교는 창의적 체험활동의 운영에 필요한 인적⋅물적 자원의 활용 등과 관련하여 교육청의 지원을 받을 수 있다.", ["교육청의 지원"]),
+          T("또한, 학교의 상황과 교육적 필요 등을 종합적으로 고려하여 원격수업 방식으로 운영이 가능하다.", ["원격수업"])] },
+    { p: [T("의식행사, 발표회, 체육행사, 현장체험학습 등 각종 행사를 각 영역 또는 활동에 적합한 방식으로 설계한다.", ["각 영역 또는 활동에 적합한 방식"]),
+          T("행사 활동의 시수 배정은 각 행사의 특성에 따라 관련 교과 및 창의적 체험활동의 영역별 활동으로 편성한다.", ["행사 활동의 시수 배정", "영역별 활동"])] },
 
     { h: "3. 설계와 운영 — 나. 운영: <표 5> 영역별 운영 중점 (초등학교)", sec: "focus", lab: "<표 5>" },
     { wide: true, ol: [
@@ -1527,7 +1540,7 @@ function pickKw(t, n) {
 }
 
 /* ── 문제 만들기 ── */
-const TEXT_TYPE_LABEL = { cmc: "빈칸 고르기", cfill: "빈칸 쓰기", hours: "시수 고르기", clist: "목록 쓰기" };
+const TEXT_TYPE_LABEL = { cmc: "빈칸 고르기", cfill: "빈칸 쓰기", ox: "틀린 곳 찾기", hours: "시수 고르기", clist: "목록 쓰기" };
 /* 숫자 빈칸은 비슷한 모양의 틀린 숫자를 보기로 (학습용 오답 보기) */
 const ALT = {
   "40분": ["45분", "50분", "35분"], "34주": ["32주", "35주", "36주"], "2년간": ["1년간", "3년간", "4년간"],
@@ -1553,7 +1566,7 @@ function textBase(key, label, ttype) {
 }
 function makeTextMC(key, x) {
   const picked = pickKw(x.t, 1), ans = picked[0].w;
-  return { ...textBase(key, x.label, "cmc"), type: "mc", hint: x.label,
+  return { ...textBase(key, x.label, "cmc"), type: "mc", hint: x.label, hot: x.hot,
     cloze: { s: x.t.s, picked, answer: ans, options: shuffle([ans, ...textDistractors(TS[key], ans, x.t.s)]) } };
 }
 function makeTextFill(key, x) {
@@ -1561,24 +1574,26 @@ function makeTextFill(key, x) {
   let pos = 0;
   picked.forEach(p => { if (p.st > pos) parts.push({ t: s.slice(pos, p.st) }); parts.push({ b: p.w, suf: "" }); pos = p.en; });
   if (pos < s.length) parts.push({ t: s.slice(pos) });
-  return { ...textBase(key, x.label, "cfill"), type: "fill", fills: [parts], title: "빈칸에 알맞은 말을 쓰세요.", hint: x.label };
+  return { ...textBase(key, x.label, "cfill"), type: "fill", hot: x.hot, fills: [parts], title: "빈칸에 알맞은 말을 쓰세요.", hint: x.label };
 }
 function makeTextList(key, L) {
-  return { ...textBase(key, L.label, "clist"), type: "list", answers: L.answers, alias: L.alias, title: L.q, unit: L.unit, tip: L.tip, tipW: L.w };
+  return { ...textBase(key, L.label, "clist"), type: "list", hot: L.hot, answers: L.answers, alias: L.alias, title: L.q, unit: L.unit, tip: L.tip, tipW: L.w };
 }
 function makeHours(key, h) {
-  return { ...textBase(key, h.label, "hours"), type: "mc", title: "시간 배당 기준 수업 시수를 고르세요.", hint: h.label,
+  return { ...textBase(key, h.label, "hours"), type: "mc", hot: h.hot, title: "시간 배당 기준 수업 시수를 고르세요.", hint: h.label,
     cloze: { html: h.html, reveal: h.reveal, answer: h.answer, options: shuffle([h.answer, ...h.opts]) } };
 }
 
 function textPools(key) {
-  const sj = TS[key], secs = checked("c-sec"), types = checked("c-type");
-  const sents = sj.sents.filter(x => secs.includes(x.sec));
-  return { secs, types, pools: {
+  const sj = TS[key], secs = checked("c-sec"), types = checked("c-type"), hotOnly = $("#c-hot").checked;
+  const keep = x => secs.includes(x.sec) && (!hotOnly || x.hot);
+  const sents = sj.sents.filter(keep), hours = (sj.hours || []).filter(keep), lists = (sj.lists || []).filter(keep);
+  return { secs, types, hotOnly, pools: {
     cmc: types.includes("cmc") ? sents.map(x => () => makeTextMC(key, x)) : [],
     cfill: types.includes("cfill") ? sents.map(x => () => makeTextFill(key, x)) : [],
-    hours: types.includes("hours") ? (sj.hours || []).filter(h => secs.includes(h.sec)).map(h => () => makeHours(key, h)) : [],
-    clist: types.includes("clist") ? (sj.lists || []).filter(L => secs.includes(L.sec)).map(L => () => makeTextList(key, L)) : []
+    ox: types.includes("ox") ? sents.map(x => () => makeOX(key, x)) : [],
+    hours: types.includes("hours") ? hours.map(h => () => makeHours(key, h)) : [],
+    clist: types.includes("clist") ? lists.map(L => () => makeTextList(key, L)) : []
   } };
 }
 function updateTextPoolInfo() {
@@ -1592,11 +1607,11 @@ function buildText(key) {
   const p = textPools(key), err = $("#c-setup-err");
   if (!p.secs.length) { err.textContent = "범위를 하나 이상 골라 주세요."; return null; }
   const queues = Object.values(p.pools).filter(a => a.length).map(a => shuffle(a));
-  if (!queues.length) { err.textContent = "고른 범위와 형식에 맞는 문제가 없어요. 범위나 형식을 더 골라 보세요."; return null; }
+  if (!queues.length) { err.textContent = p.hotOnly ? "이 범위에는 기출에 나온 부분이 없어요. 범위를 넓히거나 ‘기출 집중’을 끄세요." : "고른 범위와 형식에 맞는 문제가 없어요. 범위나 형식을 더 골라 보세요."; return null; }
   const out = [];
   while (queues.some(q => q.length)) for (const q of shuffle(queues)) if (q.length) out.push(q.shift());
   const n = +$("#c-count").value;
-  return { qs: (n ? out.slice(0, n) : out).map(f => f()), scope: p.secs.map(s => TS[key].secs[s]).join("·") };
+  return { qs: (n ? out.slice(0, n) : out).map(f => f()), scope: (p.hotOnly ? "기출·" : "") + p.secs.map(s => TS[key].secs[s]).join("·") };
 }
 function setupText(key) {
   const sj = TS[key];
@@ -1609,12 +1624,189 @@ function setupText(key) {
 $("#tab-cquiz").addEventListener("change", updateTextPoolInfo);
 $("#c-start").addEventListener("click", () => { const b = buildText(CUR); if (b) startSession(b.qs, b.scope, false); });
 
+/* ── 기출 표시 (2017~2026학년도 초등 임용 1차 교육과정 A·B 분석) ──
+   key: 원문 문장에 들어 있는 부분 → 출제 학년도. 기출 문항 글은 넣지 않고, 어느 문장이 나왔는지만 표시한다. */
+const HOT = {
+  chong: {
+    "단, 체육, 예술(음악/미술) 교과는": ["2018", "2019"],
+    "20% 범위 내에서 시수를 증감": ["2019", "2025"],
+    "국어사용 능력과 수리 능력": ["2018"],
+    "최소 수업 시수": ["2019", "2021"],
+    "수업 시수를 학년별, 학기별로 자율적으로": ["2022"],
+    "교과 집중이수": ["2022"],
+    "교과(군)와 창의적 체험활동으로 편성": ["2022"],
+    "진로연계교육을 편성⋅운영": ["2024"],
+    "한글 해득 교육": ["2024"],
+    "중학교의 생활 및 학습 준비": ["2024"],
+    "안전교육은": ["2017", "2018", "2019"],
+    "<표 1>": ["2021", "2022"]
+  },
+  cha: {
+    "세 영역으로 구성한다": ["2017", "2019", "2020"],
+    "자율활동과 자치활동으로": ["2019", "2022"],
+    "학술⋅문화 및 여가 활동과 봉사활동으로": ["2025"],
+    "진로 탐색 활동과 진로 설계 및 실천 활동": ["2020"],
+    "주제 탐구 활동: 개인 연구": ["2022"],
+    "역량 함양을 위한 학습자 주도": ["2026"],
+    "설계 주체는 학교, 교사, 학생": ["2026"],
+    "교사와 학생이 공동으로 또는": ["2026"],
+    "초등학교와 중학교에서 학교는 자율적으로": ["2025"],
+    "집중 운영 등 다양하고 탄력적인": ["2023"],
+    "자율⋅자치 및 동아리 활동에 중점": ["2017"],
+    "집중적으로 편성⋅운영하는 등": ["2021", "2023"],
+    "심화 보충형 학습": ["2023"],
+    "강의식이나 지식 전달 위주": ["2025"],
+    "의식행사, 발표회": ["2021", "2023"],
+    "행사 활동의 시수 배정": ["2021", "2023"],
+    "성숙한 민주시민으로서": ["2019"],
+    "학생 자치 회의, 학급회의": ["2019"]
+  },
+  art: {
+    "미적 체험|3~4학년|가치태도": ["2025"],
+    "미적 체험|3~4학년|과정기능": ["2023"],
+    "미적 체험|5~6학년|지식이해": ["2019", "2024"],
+    "감상|3~4학년|지식이해": ["2021"]
+  }
+};
+function hotFor(key, s) {
+  const m = HOT[key] || {};
+  const ys = Object.keys(m).filter(k => s.includes(k)).flatMap(k => m[k]);
+  return ys.length ? [...new Set(ys)].sort() : null;
+}
+const hotBadge = ys => ys && ys.length ? `<span class="tag hot">기출 ${ys.map(y => y.slice(2)).join("·")}</span>` : "";
+
+/* ── 틀린 곳 찾기: 원문 한 곳을 바꿔서 낸다. 바꿀 짝은 시험에 나올 법한 헷갈리는 말로 골랐다. ── */
+const OX_SWAP = {
+  "단, 체육, 예술(음악/미술) 교과는": [["체육, 예술(음악/미술)", "체육, 음악"], ["감축하여 편성⋅운영할 수 없다", "증감하여 편성⋅운영할 수 있다"]],
+  "최소 수업 시수": [["최소", "최대"]],
+  "20% 범위 내에서 시수를 증감": [["20%", "30%"], ["증감", "감축"]],
+  "40분을 원칙": [["40분", "45분"], ["탄력적으로", "고정적으로"]],
+  "연간 34주를 기준으로 2년간": [["34주", "36주"], ["2년간", "1년간"]],
+  "34시간 이상": [["34시간", "17시간"], ["실과", "사회"]],
+  "학기별 1주": [["학기별 1주", "학기별 2주"]],
+  "3~6학년별로": [["3~6학년별", "1~6학년별"], ["학교자율시간", "창의적 체험활동"]],
+  "64시간": [["64시간", "34시간"]],
+  "학생과 학부모에게 안내": [["학생과 학부모", "교육청"]],
+  "국어사용 능력과 수리 능력": [["수리 능력", "탐구 능력"], ["기초 학습 능력", "심화 학습 능력"]],
+  "복식 학급": [["복식 학급", "특수 학급"]],
+  "5~6학년 과학/실과": [["5~6학년", "3~4학년"]],
+  "교과 집중이수": [["학년별, 학기별로", "학년군별로"]],
+  "한글 해득 교육": [["1학년", "2학년"]],
+  "중학교의 생활 및 학습 준비": [["진로 탐색", "진로 설계"], ["자율적으로", "의무적으로"]],
+  "실내⋅외 놀이": [["1~2학년", "3~4학년"]],
+  "기본 습관 및 기초 능력": [["바른 인성", "민주시민의 자질"]],
+  "자신의 꿈을 키운다": [["꿈", "진로"]],
+  "상상력을 키운다": [["상상력", "창의력"]],
+  "심성을 기른다": [["심성", "감성"]],
+  "규칙과 질서": [["규칙과 질서", "예절과 질서"]],
+  "교과(군)는 국어, 사회/도덕": [["과학/실과", "과학/기술⋅가정"]],
+  "다만, 1, 2학년의 교과는": [["슬기로운 생활", "안전한 생활"]],
+  "자율⋅자치 활동, 동아리 활동, 진로 활동으로 한다": [["진로 활동", "봉사 활동"]],
+  "세 영역으로 구성한다": [["세 영역", "네 영역"], ["진로 활동", "봉사활동"]],
+  "자율활동과 자치활동으로": [["자치활동으로", "봉사활동으로"]],
+  "학술⋅문화 및 여가 활동과 봉사활동으로": [["봉사활동", "진로 체험 활동"]],
+  "진로 탐색 활동과 진로 설계 및 실천 활동": [["진로 설계 및 실천 활동", "진로 계획 활동"]],
+  "역량 함양을 위한 학습자 주도": [["학습자 주도", "교사 주도"]],
+  "3개 영역으로 구성되며": [["3개", "4개"]],
+  "설계 주체는 학교, 교사, 학생": [["학교, 교사, 학생", "학교, 교사, 학부모"]],
+  "교사와 학생이 공동으로 또는": [["공동으로", "교사 주도로"]],
+  "초등학교와 중학교에서 학교는 자율적으로": [["20%", "15%"], ["증감", "감축"]],
+  "3월 중 34시간": [["34시간", "68시간"], ["3월", "4월"]],
+  "주당 평균 2시간, 초등학교 2~6학년": [["주당 평균 2시간", "주당 평균 3시간"], ["주당 평균 3시간", "주당 평균 4시간"]],
+  "자율⋅자치 및 동아리 활동에 중점": [["자율⋅자치 및 동아리 활동", "동아리 및 진로 활동"]],
+  "유치원과 6학년 2학기": [["유치원", "어린이집"], ["중학교", "고등학교"]],
+  "기본 생활 습관과 시민의식": [["시민의식", "진로 의식"]],
+  "심화 보충형 학습": [["되지 않도록 한다", "되도록 한다"]],
+  "강의식이나 지식 전달 위주": [["학생 중심", "교사 중심"]],
+  "행사 활동의 시수 배정": [["영역별 활동으로 편성한다", "자율⋅자치활동으로 편성한다"]],
+  "편중하여 편성하지 않도록": [["않도록 한다", "하도록 한다"]],
+  "질서와 예절을 익혀": [["기본 생활 습관", "시민의식"]],
+  "봉사의 의미를 깨닫는": [["봉사의 의미", "진로의 의미"]],
+  "범교과 학습 주제": [["교과 교육과정에서 우선하여", "창의적 체험활동에서 우선하여"]],
+  "원격수업 방식으로": [["가능하다", "불가능하다"]],
+  "학부모를 포함한 외부 인적 자원": [["학부모를 포함한", "학부모를 제외한"]],
+  "자기주도성을 함양한다": [["자기주도성", "민주시민성"]],
+  "성숙한 민주시민으로서": [["성숙한 민주시민", "자율적인 학습자"]],
+  "탐구력과 심미적 감성을 함양": [["탐구력과 심미적 감성", "포용성과 시민성"]],
+  "포용성과 시민성을 함양한다": [["포용성과 시민성", "탐구력과 심미적 감성"]],
+  "건강한 직업 가치관": [["건강한 직업 가치관", "진로 설계 능력"]],
+  "설계하고 실천한다": [["설계하고 실천한다", "탐색하고 이해한다"]],
+  "사춘기 적응": [["사춘기", "청소년기"]],
+  "창의⋅융합적 사고를 통한": [["창의⋅융합적", "비판적"]],
+  "진로 기초 소양 함양": [["진로 기초 소양", "진로 설계 능력"]],
+  "집중적으로 편성⋅운영하는 등": [["집중적으로", "균등하게"]],
+  "집중 운영 등 다양하고 탄력적인": [["블록 타임", "주당 고정"]]
+};
+function makeOX(key, x) {
+  const t = x.t;
+  let s = t.s, orig = null, fake = null;
+  if (Math.random() < 0.55) {
+    let cands = [];
+    const cur = Object.keys(OX_SWAP).find(k => t.s.includes(k));
+    if (cur) cands = OX_SWAP[cur].filter(([o]) => t.s.includes(o));
+    if (!cands.length) for (const k of t.kw) { const w = kwWord(k); if (ALT[w]) cands.push([w, shuffle(ALT[w])[0]]); }
+    if (!cands.length) { const w = kwWord(shuffle(t.kw)[0]); const d = textDistractors(TS[key], w, t.s)[0]; if (d) cands.push([w, d]); }
+    if (cands.length) {
+      [orig, fake] = shuffle(cands)[0];
+      const st = s.indexOf(orig);
+      s = s.slice(0, st) + fake + s.slice(st + orig.length);
+    }
+  }
+  return { ...textBase(key, x.label, "ox"), type: "ox", s, orig, fake, truth: orig == null, hint: x.label, hot: x.hot };
+}
+function renderOX(q, body) {
+  body.innerHTML = `${metaHTML(q, TEXT_TYPE_LABEL.ox)}
+    <h3 class="q-title">다음 진술이 원문과 같으면 ‘맞아요’, 다르면 ‘틀린 곳이 있어요’를 누르고 바르게 고쳐 쓰세요.</h3>
+    <p class="hint">${esc(q.hint)}</p>
+    <div class="sentence">${esc(q.s)}</div>
+    <div class="actions" id="ox-actions">
+      <button class="btn" id="ox-o">○ 맞아요 (원문 그대로)</button>
+      <button class="btn" id="ox-x">✕ 틀린 곳이 있어요</button>
+    </div>
+    <div id="ox-fix" hidden>
+      <p class="hint">틀린 부분을 <b>원문대로</b> 고쳐 쓰세요. (틀린 말 전체를 바꿔 쓰면 돼요)</p>
+      <div class="inp"><input type="text" id="ox-in" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="바르게 고친 말"></div>
+      <div class="actions" style="margin-top:8px"><button class="btn primary" id="ox-submit">제출하기</button><button class="btn ghost" id="ox-giveup">모르겠어요 (정답 보기)</button></div>
+    </div>
+    <div id="fb"></div>`;
+  $("#ox-o").addEventListener("click", () => gradeOX(q, "O", ""));
+  $("#ox-x").addEventListener("click", () => {
+    if (S.answered) return;
+    $("#ox-o").disabled = true; $("#ox-x").classList.add("sel"); $("#ox-x").disabled = true;
+    $("#ox-fix").hidden = false; $("#ox-in").focus({ preventScroll: true });
+  });
+  $("#ox-submit").addEventListener("click", () => gradeOX(q, "X", $("#ox-in").value));
+  $("#ox-giveup").addEventListener("click", () => gradeOX(q, "X", null));
+  $("#ox-in").addEventListener("keydown", e => { if (e.key === "Enter" && !e.isComposing) { e.preventDefault(); gradeOX(q, "X", $("#ox-in").value); } });
+}
+function gradeOX(q, pick, fix) {
+  if (S.answered) return;
+  if (pick === "X" && fix !== null && !fix.trim()) { $("#ox-in").focus(); return; }
+  S.answered = true;
+  const judgedRight = (pick === "O") === q.truth;
+  const fixRight = !q.truth && fix !== null && norm(fix) === norm(q.orig);
+  const ok = q.truth ? judgedRight : (judgedRight && fixRight);
+  $("#ox-actions").remove(); $("#ox-fix").remove();
+  let head, body;
+  if (q.truth) { head = ok ? "맞아요, 원문 그대로예요 🎉" : "원문 그대로인 문장이었어요"; body = `<div class="sentence" style="margin:6px 0 0">${esc(q.s)}</div>`; }
+  else {
+    head = ok ? "정확하게 고쳤어요! 🎉" : judgedRight ? (fix === null ? "정답을 확인해 보세요" : "틀린 건 찾았지만, 고친 말이 달라요") : "틀린 곳이 있는 문장이었어요";
+    const st = q.s.indexOf(q.fake), orig = q.s.slice(0, st) + q.orig + q.s.slice(st + q.fake.length);
+    body = `<p class="hint" style="margin:8px 0 2px">바뀐 부분: <s>${esc(q.fake)}</s> → <b>${esc(q.orig)}</b>${fix && !fixRight ? ` · 내가 쓴 답: ${esc(fix)}` : ""}</p>
+      <div class="sentence" style="margin:6px 0 0">${esc(orig.slice(0, st))}<mark class="fill">${esc(q.orig)}</mark>${esc(orig.slice(st + q.orig.length))}</div>`;
+  }
+  $("#fb").innerHTML = `<div class="fb ${ok ? "good" : "nope"}"><p class="fb-head">${head}</p>${body}</div>`;
+  S.log.push({ q, ok });
+  addNext();
+}
+
 /* ── 원문 빈칸 학습 ── */
 let textShown = false;
 function sentHTML(t, mode) {
-  if (mode === "none" || !t.kw.length) return esc(t.s);
+  const badge = t.hot ? `<sup class="hotmark" title="기출 ${t.hot.join(", ")}학년도">기출</sup>` : "";
+  if (mode === "none" || !t.kw.length) return esc(t.s) + badge;
   const picked = pickKw(t, mode === "all" ? 99 : 1);
-  return blankHTML(t.s, picked, p => `<span class="bl" tabindex="0">${esc(p.w)}</span>`);
+  return blankHTML(t.s, picked, p => `<span class="bl" tabindex="0">${esc(p.w)}</span>`) + badge;
 }
 function listHTML(items, mode, wide) {
   return `<ul class="ct-list${wide ? " wide" : ""}">${items.map(it => `<li><span class="mk">${esc(it.mk)}</span><div>${(it.t || []).map(t => sentHTML(t, mode)).join(" ")}${it.sub ? listHTML(it.sub, mode) : ""}</div></li>`).join("")}</ul>`;
@@ -1717,9 +1909,34 @@ TS.cha.tips = () => tipCard("구조 한눈에: 3영역 · 6활동", `<table clas
       <li>진로 연계 교육: 1학년 1학기 ↔ <b>유치원</b>, 6학년 2학기 ↔ <b>중학교</b></li>
       <li>&lt;표 5&gt; 동아리 활동 중점 4개: 창의⋅융합적 사고 · 문화, 예술, 체육 · 신체 활동 및 놀이 · 지속가능한 환경보호 → “<b>창·문·신·환</b>” (창문 신환: 창문을 새로 바꾸자)</li>
       <li>&lt;표 5&gt; 진로 활동 중점 4개: 긍정적인 자아 개념 · 일의 중요성 · 직업 세계 탐색 · 진로 기초 소양 → “<b>자·일·직·기</b>” (자일 직기: 자일(밧줄) 짜는 직기)</li></ul>`);
-function renderTips() { const sj = TS[CUR]; if (sj) $("#ctips").innerHTML = sj.tips(); }
+/* ── 기출 경향 (2017~2026학년도 초등 임용 1차 ‘교육과정 A·B’ 분석, 기출 문항 글은 싣지 않음) ── */
+const EXAM_NOTE = {
+  chong: `<div class="card tip-card exam"><h2>기출 경향 — 총론·창체 문항 (매년 1문항, 2~3점)</h2>
+    <ul>
+      <li><b>형식:</b> 대화문 속 ㉠~㉤ 중 <b>잘못된 것을 찾아 바르게 고쳐 쓰기</b>(2017·2019·2020·2021·2023·2025) + 괄호에 들어갈 말 쓰기(1점). → ‘틀린 곳 찾기’와 ‘빈칸 쓰기’로 연습하세요.</li>
+      <li><b>초등학교 편성⋅운영 기준에서 반복 출제:</b> 20% 범위 증감 · 체육/예술 감축 불가(18·19·25), 국어사용 능력·수리 능력(18), 총 수업 시간 수 = 최소 시수(19·21), 학년별·학기별 자율 편성·학년군 설정 이유(22), 진로연계교육의 이유(24).</li>
+      <li><b>시간 배당 기준표(&lt;표 1&gt;)</b>가 그대로 출제(21), 1~2학년군 국어 시수를 묻기도(22). 숫자는 ‘시수 고르기’로.</li>
+      <li><b>2022 개정 적용 후(24~26)</b>는 총론 공통 부분이 늘었어요: 기초소양(언어·수리·디지털)과 모든 교과를 통한 함양(24·26), ‘학교 교육과정 설계’라는 용어(25), 교과 교실 운영 이유(26). <span class="warn-t">이 앱에는 아직 초등학교 부분만 들어 있어요.</span></li>
+      <li><b>아직 안 나온 2022 개정 신설:</b> 학교자율시간(3~6학년, 학기별 1주), 1~2학년 안전교육 64시간, 정보교육 34시간 이상 → 출제 예상.</li>
+    </ul></div>`,
+  cha: `<div class="card tip-card exam"><h2>기출 경향 — 창의적 체험활동 (총론 문항 안에서 1~2점)</h2>
+    <ul>
+      <li><b>영역 구성</b>이 가장 자주: 영역 이름(17·19·20), 자율활동/자치활동(19·22), 진로 활동의 두 활동(20), 봉사활동이 동아리 활동 안에 있음(25). 자율활동 예시 ‘주제 탐구 활동’(22).</li>
+      <li><b>설계⋅운영</b>: 행사 활동 시수는 관련 교과·영역별 활동으로 편성(21·23), 창체 시간에 교과 진도 금지(23), 일부 영역 집중 편성 OK(21·23), 집중 운영·블록 타임(23), 계기 교육은 강의식 ✕ 학생 중심(25), 20% 증감(25).</li>
+      <li><b>성격</b>: 학습자 주도의 교육과정, 설계 주체는 학교·교사·학생, 교사와 학생이 공동으로 또는 학생이 자기주도적으로 계획(26).</li>
+      <li><b>초등 운영</b>: 1~2학년군은 자율⋅자치, 그 밖은 자율⋅자치 및 동아리 활동 중점(17형).</li>
+      <li>2015 개정 때 묻던 ‘안전한 생활’ 4영역(17~19)은 2022 개정에서 사라졌어요. 대신 1~2학년 안전교육 64시간(총론)을 보세요.</li>
+    </ul></div>`
+};
+function renderTips() { const sj = TS[CUR]; if (sj) $("#ctips").innerHTML = (EXAM_NOTE[CUR] || "") + sj.tips(); }
 
 /* ═════════ 시작 ═════════ */
+const HOT_LIST = { chong: { "감축하여": ["2018", "2019"] }, cha: { "세 영역을": ["2017", "2019", "2020"], "자율⋅자치활동 영역을": ["2019", "2022"], "동아리 활동 영역을": ["2025"], "진로 활동 영역을": ["2020"], "설계 주체": ["2026"], "역량 여섯": ["2017"] } };
+for (const k of Object.keys(TS)) {
+  TS[k].sents.forEach(x => { x.hot = hotFor(k, x.t.s); x.t.hot = x.hot; });
+  (TS[k].hours || []).forEach(h => { if (k === "chong") h.hot = HOT.chong["<표 1>"]; });
+  (TS[k].lists || []).forEach(L => { const m = Object.keys(HOT_LIST[k] || {}).find(t => L.q.includes(t)); if (m) L.hot = HOT_LIST[k][m]; });
+}
 // 총론·창체 빈칸 후보가 원문 문장에 실제로 있는지 점검
 for (const k of Object.keys(TS)) TS[k].sents.forEach(x => x.t.kw.forEach(w => { if (!findKw(x.t.s, w)) console.warn("빈칸 후보가 원문에 없음:", k, x.label, w); }));
 // 빈칸 후보 단어가 원문에 실제로 있는지 점검 (원문은 건드리지 않음)
