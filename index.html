@@ -3,13 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>미술과 내용체계표 암기장</title>
+<title>초등 교육과정 암기장</title>
 <style>
 :root{
   --bg:#f6f5f2; --card:#fff; --ink:#1d2129; --muted:#5d6470; --line:#e3e1db;
   --exp:#2563eb; --exp-bg:#eaf1ff; --exp-soft:#c7d8fb;
   --expr:#d9680b; --expr-bg:#fff2e5; --expr-soft:#f8d2ad;
   --app:#15803d; --app-bg:#e8f6ed; --app-soft:#bde3c9;
+  --chong:#6d3fd6; --chong-bg:#f2ecff; --chong-soft:#d9cbfa;
+  --cha:#be185d; --cha-bg:#fdedf4; --cha-soft:#f5c6da;
   --ok:#15803d; --ok-bg:#e7f6ec; --bad:#c62828; --bad-bg:#fdeded; --warn:#a85f00; --warn-bg:#fff4dc;
   --c:#3b3f46; --c-bg:#f0efeb; --c-soft:#dcdad3;
   --radius:14px; --field:#fff; --soft:#fbfaf8; --on-ink:#fff;
@@ -18,18 +20,20 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#16171a; --card:#202126; --ink:#e9e8e4; --muted:#a3a7ae; --line:#36383e; --field:#18191d; --soft:#1b1c20; --on-ink:#16171a;
   --exp:#79a5ff; --exp-bg:#1c2640; --exp-soft:#33497a; --expr:#f5a05a; --expr-bg:#372515; --expr-soft:#6b4626;
-  --app:#5ccf86; --app-bg:#15301f; --app-soft:#2c5c3c; --ok:#5ccf86; --ok-bg:#15301f; --bad:#ff7a7a; --bad-bg:#3b1d1d; --warn:#f2b85a; --warn-bg:#382a13;
+  --app:#5ccf86; --app-bg:#15301f; --app-soft:#2c5c3c; --chong:#b496ff; --chong-bg:#271f3d; --chong-soft:#4a3b78; --cha:#f47fb3; --cha-bg:#3a1a2b; --cha-soft:#6e3150; --ok:#5ccf86; --ok-bg:#15301f; --bad:#ff7a7a; --bad-bg:#3b1d1d; --warn:#f2b85a; --warn-bg:#382a13;
   --c:#d0d0cc; --c-bg:#2a2b30; --c-soft:#44464d; color-scheme:dark;
 }}
 :root[data-theme="dark"]{
   --bg:#16171a; --card:#202126; --ink:#e9e8e4; --muted:#a3a7ae; --line:#36383e; --field:#18191d; --soft:#1b1c20; --on-ink:#16171a;
   --exp:#79a5ff; --exp-bg:#1c2640; --exp-soft:#33497a; --expr:#f5a05a; --expr-bg:#372515; --expr-soft:#6b4626;
-  --app:#5ccf86; --app-bg:#15301f; --app-soft:#2c5c3c; --ok:#5ccf86; --ok-bg:#15301f; --bad:#ff7a7a; --bad-bg:#3b1d1d; --warn:#f2b85a; --warn-bg:#382a13;
+  --app:#5ccf86; --app-bg:#15301f; --app-soft:#2c5c3c; --chong:#b496ff; --chong-bg:#271f3d; --chong-soft:#4a3b78; --cha:#f47fb3; --cha-bg:#3a1a2b; --cha-soft:#6e3150; --ok:#5ccf86; --ok-bg:#15301f; --bad:#ff7a7a; --bad-bg:#3b1d1d; --warn:#f2b85a; --warn-bg:#382a13;
   --c:#d0d0cc; --c-bg:#2a2b30; --c-soft:#44464d; color-scheme:dark;
 }
 .a-exp{--c:var(--exp);--c-bg:var(--exp-bg);--c-soft:var(--exp-soft)}
 .a-expr{--c:var(--expr);--c-bg:var(--expr-bg);--c-soft:var(--expr-soft)}
 .a-app{--c:var(--app);--c-bg:var(--app-bg);--c-soft:var(--app-soft)}
+.a-chong{--c:var(--chong);--c-bg:var(--chong-bg);--c-soft:var(--chong-soft)}
+.a-cha{--c:var(--cha);--c-bg:var(--cha-bg);--c-soft:var(--cha-soft)}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);line-height:1.6;
@@ -44,7 +48,54 @@ button,input,select{font:inherit;color:inherit}
 .top h1{margin:0;font-size:1.25rem;letter-spacing:-.02em}
 .top .sub{margin:2px 0 0;color:var(--muted);font-size:.9rem}
 .notice{margin:6px 0 0;color:var(--muted);font-size:.75rem}
-.notice a{color:inherit}
+.top-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.home{font-size:.88rem;font-weight:700;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.home:hover{color:var(--ink)}
+body.at-landing .tabs{display:none}
+.land-q{font-size:1.2rem;margin:6px 0 14px}
+.land-grid{display:grid;gap:14px;margin-bottom:12px}
+@media (min-width:640px){.land-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:900px){.land-grid{grid-template-columns:1fr 1fr 1fr}}
+.land-card{display:flex;flex-direction:column;gap:6px;padding:22px;border-radius:var(--radius);border:1.5px solid var(--c-soft);border-top:6px solid var(--c);background:var(--card);color:var(--ink);text-decoration:none;transition:transform .12s, box-shadow .12s}
+.land-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.land-card b{font-size:1.2rem}
+.land-card span{color:var(--muted);font-size:.92rem}
+.land-card .land-tag{align-self:flex-start;background:var(--c-bg);color:var(--c);font-weight:800;font-size:.8rem;padding:2px 10px;border-radius:999px}
+.land-card .land-go{margin-top:6px;color:var(--c);font-weight:800}
+body.playing main > section{display:none!important}
+body.playing .tabs{visibility:hidden}
+
+/* 총론 원문 */
+.ct-sec{margin-bottom:22px}
+.ct-sec h3{margin:0 0 6px;font-size:1.05rem;color:var(--c)}
+.ct-sec h4{margin:12px 0 4px;font-size:.98rem}
+.ct-lead{margin:4px 0 8px;padding:8px 12px;background:var(--c-bg);border-radius:8px}
+.ct-list{list-style:none;margin:0;padding:0}
+.ct-list > li{display:flex;gap:6px;margin:5px 0;line-height:1.75}
+.ct-list .mk{flex:none;font-weight:700;color:var(--c);min-width:1.7em}
+.ct-list .ct-list{margin-top:2px}
+.ct-table{width:100%;border-collapse:collapse;font-size:.9rem;margin:6px 0 10px}
+.ct-table th,.ct-table td{border:1px solid var(--c-soft);padding:6px 8px;text-align:center;vertical-align:middle}
+.ct-table thead th,.ct-table th.side{background:var(--c-bg);color:var(--c)}
+.ct-table .g12{text-align:left;line-height:1.9;white-space:nowrap}
+.ct-table .hl{background:var(--c-soft);font-weight:800}
+.mini{width:auto;min-width:240px}
+.tip-card{border-top:4px solid var(--c)}
+.tip-card h2{color:var(--c)}
+.tip-big{font-size:1.5rem;font-weight:800;color:var(--c);letter-spacing:.06em;margin:4px 0}
+.tip-card ul{margin:6px 0;padding-left:20px}
+.tip-card li{margin:3px 0}
+.num-table{width:100%;border-collapse:collapse;font-size:.93rem}
+.num-table th,.num-table td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top}
+.num-table th{color:var(--c);white-space:nowrap;font-size:1.05rem}
+.ct-list.wide > li{display:block;margin:10px 0}
+.ct-list.wide > li > .mk{display:block;min-width:0;margin-bottom:2px}
+.ct-list.wide .ct-list > li{margin:3px 0}
+.tscroll{overflow-x:auto}
+.ct-table.t1 td.ex{text-align:left;line-height:1.7}
+.ct-table.t1 td.ex > div{margin:2px 0}
+.ct-table.t1 th.side{min-width:5em}
+#ctext p{margin:6px 0}
 .tabs{display:flex;gap:4px;margin-top:10px;overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 @media (max-width:560px){.tabs button{padding:10px 9px;font-size:.92rem}}
@@ -251,21 +302,121 @@ mark.fill{background:var(--c-soft);color:var(--ink);font-weight:700;padding:0 3p
 <body>
 <header class="top">
   <div class="wrap">
-    <h1>초등 미술과 내용체계표 암기장</h1>
-    <p class="sub">2022 개정 교육과정 · 3~4학년, 5~6학년 · 임용시험 대비</p>
-    <p class="notice">내용체계표 원문은 2022 개정 미술과 교육과정(교육부 고시)을 그대로 사용했습니다. · 문의: <a href="mailto:sinkita@naver.com">sinkita@naver.com</a></p>
-    <nav class="tabs" role="tablist">
-      <button role="tab" data-tab="quiz">퀴즈</button>
-      <button role="tab" data-tab="sheet">빈칸 학습지</button>
-      <button role="tab" data-tab="acro">앞글자 암기</button>
-      <button role="tab" data-tab="tree">전체 구조 보기</button>
-    </nav>
+    <div class="top-row">
+      <a class="home" href="#" id="home-link" hidden>← 과목 고르기</a>
+      <h1 id="app-title">초등 교육과정 암기장</h1>
+    </div>
+    <p class="sub" id="app-sub">2022 개정 교육과정 · 임용시험 대비</p>
+    <p class="notice" id="app-notice">원문은 2022 개정 교육과정(교육부 고시)을 그대로 사용했습니다.</p>
+    <nav class="tabs" role="tablist" id="tabs"></nav>
   </div>
 </header>
 
 <main class="wrap">
+  <!-- ───────── 처음 화면 ───────── -->
+  <section id="landing" hidden>
+    <h2 class="land-q">무엇을 외워 볼까요?</h2>
+    <div class="land-grid">
+      <a class="land-card a-chong" href="#chong">
+        <span class="land-tag">총론</span>
+        <b>초⋅중등학교 교육과정 총론</b>
+        <span>초등학교 부분: 교육 목표, 편제와 시간 배당, 교육과정 편성⋅운영 기준</span>
+        <span class="land-go">시작하기 →</span>
+      </a>
+      <a class="land-card a-cha" href="#cha">
+        <span class="land-tag">창체</span>
+        <b>창의적 체험활동 교육과정</b>
+        <span>성격·목표, 3영역과 활동·예시 활동, 초등학교 시수와 운영 중점</span>
+        <span class="land-go">시작하기 →</span>
+      </a>
+      <a class="land-card a-exp" href="#art">
+        <span class="land-tag">미술과</span>
+        <b>미술과 내용체계표</b>
+        <span>미적 체험 · 표현 · 감상, 3~4학년 · 5~6학년 핵심 아이디어와 내용 요소</span>
+        <span class="land-go">시작하기 →</span>
+      </a>
+    </div>
+    <p class="hint">퀴즈 기록과 내가 적은 외우는 말은 이 브라우저에만 저장돼요.</p>
+  </section>
+
+  <!-- 퀴즈 풀이·결과 (총론·미술과 같이 씀) -->
+  <div class="card" id="quiz-play" hidden>
+    <div class="q-top">
+      <span class="q-progress" id="q-progress"></span>
+      <button class="btn ghost" id="quit">그만하고 결과 보기</button>
+    </div>
+    <div class="bar"><i id="q-bar"></i></div>
+    <div id="q-body"></div>
+  </div>
+  <div class="card" id="quiz-result" hidden></div>
+
+  <!-- ───────── 원문 과목(총론·창체): 퀴즈 ───────── -->
+  <section id="tab-cquiz" hidden>
+    <div class="card">
+      <h2>어디까지 풀어 볼까요?</h2>
+      <fieldset><legend>범위</legend><div class="row" data-group="c-sec"></div></fieldset>
+      <fieldset><legend>문제 형식</legend>
+        <div class="row">
+          <label class="chk"><input type="checkbox" name="c-type" value="cmc" checked><span>빈칸 고르기</span></label>
+          <label class="chk"><input type="checkbox" name="c-type" value="cfill" checked><span>빈칸 쓰기</span></label>
+          <label class="chk"><input type="checkbox" name="c-type" value="hours" checked><span>시수 고르기</span></label>
+          <label class="chk"><input type="checkbox" name="c-type" value="clist" checked><span>목록 쓰기</span></label>
+        </div>
+        <p class="hint">빈칸 고르기(쉬움) → 빈칸 쓰기 → 목록 쓰기(어려움). 시수 고르기는 &lt;표 1&gt; 시간 배당 기준 숫자 문제예요.</p>
+      </fieldset>
+      <div class="row">
+        <label for="c-count"><b>문제 수</b></label>
+        <select id="c-count">
+          <option value="5">5문제</option>
+          <option value="10" selected>10문제</option>
+          <option value="20">20문제</option>
+          <option value="0">나올 수 있는 문제 전부</option>
+        </select>
+      </div>
+      <p class="hint" id="c-pool-info"></p>
+      <p class="error" id="c-setup-err"></p>
+      <button class="btn primary big" id="c-start">퀴즈 시작하기</button>
+    </div>
+    <div class="card" id="c-history"></div>
+  </section>
+
+  <!-- ───────── 총론: 원문 빈칸 학습 ───────── -->
+  <section id="tab-ctext" hidden>
+    <div class="card no-print">
+      <h2>원문 빈칸 학습</h2>
+      <fieldset><legend>빈칸 설정</legend>
+        <div class="row">
+          <select id="ct-mode" aria-label="빈칸 양">
+            <option value="one">문장마다 빈칸 1개 (무작위)</option>
+            <option value="all">핵심 낱말 모두 빈칸</option>
+            <option value="none">빈칸 없이 원문 읽기</option>
+          </select>
+          <label class="chk"><input type="checkbox" id="ct-table" checked><span>&lt;표 1&gt; 숫자도 빈칸</span></label>
+        </div>
+      </fieldset>
+      <div class="row">
+        <button class="btn primary" id="ct-toggle">정답 보이기</button>
+        <button class="btn" id="ct-shuffle">빈칸 다시 섞기</button>
+        <button class="btn" id="ct-print">인쇄하기</button>
+      </div>
+      <p class="hint">빈칸을 하나씩 눌러도 정답을 볼 수 있어요. 인쇄하면 빈칸 학습지로 나와요.</p>
+    </div>
+    <div class="card">
+      <div class="sheet-head">
+        <h2 id="ct-title"></h2>
+        <span class="namebox">학번 ________ 이름 ____________</span>
+      </div>
+      <div id="ctext"></div>
+      <p class="print-only print-foot" id="ct-foot"></p>
+    </div>
+  </section>
+
+  <!-- ───────── 총론: 외우기 팁 ───────── -->
+  <section id="tab-ctips" hidden>
+    <div id="ctips"></div>
+  </section>
   <!-- ───────── 퀴즈 ───────── -->
-  <section id="tab-quiz">
+  <section id="tab-quiz" hidden>
     <div id="quiz-setup">
       <div class="card">
         <h2>어디까지 풀어 볼까요?</h2>
@@ -298,17 +449,6 @@ mark.fill{background:var(--c-soft);color:var(--ink);font-weight:700;padding:0 3p
 
       <div class="card" id="history"></div>
     </div>
-
-    <div class="card" id="quiz-play" hidden>
-      <div class="q-top">
-        <span class="q-progress" id="q-progress"></span>
-        <button class="btn ghost" id="quit">그만하고 결과 보기</button>
-      </div>
-      <div class="bar"><i id="q-bar"></i></div>
-      <div id="q-body"></div>
-    </div>
-
-    <div class="card" id="quiz-result" hidden></div>
   </section>
 
   <!-- ───────── 빈칸 학습지 ───────── -->
@@ -453,7 +593,7 @@ const AREAS = ["미적 체험", "표현", "감상"];
 const GRADES = ["3~4학년", "5~6학년"];
 const CATS = ["지식이해", "과정기능", "가치태도"];
 const CAT_LABEL = { "지식이해": "지식·이해", "과정기능": "과정·기능", "가치태도": "가치·태도" };
-const AREA_CLS = { "미적 체험": "a-exp", "표현": "a-expr", "감상": "a-app" };
+const AREA_CLS = { "미적 체험": "a-exp", "표현": "a-expr", "감상": "a-app", "총론": "a-chong", "창체": "a-cha" };
 const ALL_KW = [...new Set(Object.values(KEYWORDS).flat(2))];
 const HIST_KEY = "acc-history-v1";
 
@@ -467,7 +607,7 @@ const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } }
 };
-const norm = s => s.replace(/[\s·.,，、~\-()'"「」]/g, "").toLowerCase();
+const norm = s => s.replace(/[\s·⋅∙.,，、~\-()'"「」/]/g, "").toLowerCase();
 function lev(a, b) {
   const d = Array.from({ length: a.length + 1 }, (_, i) => [i]);
   for (let j = 1; j <= b.length; j++) d[0][j] = j;
@@ -566,16 +706,67 @@ function markEl(el, sts) {
 const fillText = parts => parts.map(p => p.b != null ? p.b : p.t).join("");
 const initials = arr => arr.map(e => e[0]);
 
-/* ═════════ 탭 ═════════ */
+/* ═════════ 과목 고르기 · 탭 ═════════ */
+const SUBJECTS = {
+  chong: { name: "총론 (초등학교)", sub: "2022 개정 초⋅중등학교 교육과정 총론 · 초등학교 부분", cls: "a-chong",
+    notice: "원문은 2022 개정 초⋅중등학교 교육과정 총론(교육부 고시 제2022-33호) 중 초등학교 관련 부분을 그대로 사용했습니다.",
+    tabs: [["cquiz", "퀴즈"], ["ctext", "원문 빈칸 학습"], ["ctips", "외우기 팁"]] },
+  cha: { name: "창의적 체험활동", sub: "2022 개정 창의적 체험활동 교육과정 · 초등학교 관련 부분", cls: "a-cha",
+    notice: "원문은 2022 개정 창의적 체험활동 교육과정(교육부 고시 제2022-33호 [별책 40]) 중 초등학교 관련 부분을 그대로 사용했습니다.",
+    tabs: [["cquiz", "퀴즈"], ["ctext", "원문 빈칸 학습"], ["ctips", "외우기 팁"]] },
+  art: { name: "미술과 내용체계표", sub: "2022 개정 미술과 교육과정 · 3~4학년, 5~6학년", cls: "",
+    notice: "내용체계표 원문은 2022 개정 미술과 교육과정(교육부 고시)을 그대로 사용했습니다.",
+    tabs: [["quiz", "퀴즈"], ["sheet", "빈칸 학습지"], ["acro", "앞글자 암기"], ["tree", "전체 구조 보기"]] }
+};
+let CUR = null; // 지금 고른 과목 (chong | cha | art | null=처음 화면)
+
+function route(k) {
+  const key = k !== undefined ? k : location.hash.slice(1);
+  endSession();
+  CUR = SUBJECTS[key] ? key : null;
+  document.body.classList.toggle("at-landing", !CUR);
+  $("#home-link").hidden = !CUR;
+  if (!CUR) {
+    $("#app-title").textContent = "초등 교육과정 암기장";
+    $("#app-sub").textContent = "2022 개정 교육과정 · 임용시험 대비";
+    $("#app-notice").textContent = "원문은 2022 개정 교육과정(교육부 고시)을 그대로 사용했습니다.";
+    $$("main > section").forEach(s => s.hidden = s.id !== "landing");
+    window.scrollTo(0, 0);
+    return;
+  }
+  const sj = SUBJECTS[CUR];
+  $("#app-title").textContent = sj.name;
+  $("#app-sub").textContent = sj.sub;
+  $("#app-notice").textContent = sj.notice;
+  $("#tabs").innerHTML = sj.tabs.map(([t, l]) => `<button role="tab" data-tab="${t}">${l}</button>`).join("");
+  ["tab-cquiz", "tab-ctext", "tab-ctips"].forEach(id => { $("#" + id).className = sj.cls; });
+  if (TS[CUR]) setupText(CUR);
+  const saved = store.get("acc-tab-" + CUR, sj.tabs[0][0]);
+  showTab(sj.tabs.some(([t]) => t === saved) ? saved : sj.tabs[0][0]);
+  window.scrollTo(0, 0);
+}
 function showTab(t) {
   $$(".tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === t));
   $$("main > section").forEach(s => s.hidden = s.id !== "tab-" + t);
-  store.set("acc-tab", t);
+  if (CUR) store.set("acc-tab-" + CUR, t);
+  if (t === "quiz") renderHistory();
   if (t === "sheet") renderSheet();
   if (t === "tree") renderTree();
   if (t === "acro") renderAcro();
+  if (t === "cquiz") renderHistory();
+  if (t === "ctext") renderText();
+  if (t === "ctips") renderTips();
 }
-$$(".tabs button").forEach(b => b.addEventListener("click", () => showTab(b.dataset.tab)));
+$("#tabs").addEventListener("click", e => { const b = e.target.closest("button[data-tab]"); if (b) showTab(b.dataset.tab); });
+/* 과목 이동: 주소 # 은 되는 곳에서만 바꾸고(뒤로 가기 지원), 화면 전환은 직접 한다 */
+function goTo(key) {
+  try { history.pushState(null, "", key ? "#" + key : location.pathname + location.search); } catch (e) {}
+  route(key || "");
+}
+$("#home-link").addEventListener("click", e => { e.preventDefault(); goTo(""); });
+$("#landing").addEventListener("click", e => { const a = e.target.closest("a.land-card"); if (a) { e.preventDefault(); goTo(a.getAttribute("href").slice(1)); } });
+window.addEventListener("hashchange", () => route());
+window.addEventListener("popstate", () => route());
 
 /* ═════════ 퀴즈 ═════════ */
 makeChecks("q-area", AREAS, null, v => AREA_CLS[v]);
@@ -639,11 +830,18 @@ function buildQuestions() {
   const n = +$("#q-count").value;
   return { qs: n ? out.slice(0, n) : out, scope: p.areas.join("·") };
 }
+const BUILDERS = { art: buildQuestions, chong: () => buildText("chong"), cha: () => buildText("cha") };
 
 function startSession(qs, scope, retry) {
-  S = { qs, i: 0, log: [], scope, retry };
-  $("#quiz-setup").hidden = true; $("#quiz-result").hidden = true; $("#quiz-play").hidden = false;
+  S = { qs, i: 0, log: [], scope, retry, subj: CUR };
+  document.body.classList.add("playing");
+  $("#quiz-result").hidden = true; $("#quiz-play").hidden = false;
   renderQ();
+}
+function endSession() {
+  S = null;
+  document.body.classList.remove("playing");
+  $("#quiz-play").hidden = true; $("#quiz-result").hidden = true;
 }
 $("#start").addEventListener("click", () => {
   const b = buildQuestions();
@@ -651,7 +849,7 @@ $("#start").addEventListener("click", () => {
 });
 
 function metaHTML(q, typeLabel) {
-  const tags = q.type !== "mc" ? [q.area, q.grade, CAT_LABEL[q.cat]] : [q.area, "핵심 아이디어"];
+  const tags = q.tags || (q.type !== "mc" ? [q.area, q.grade, CAT_LABEL[q.cat]] : [q.area, "핵심 아이디어"]);
   return `<div class="q-meta">${tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}<span class="qtype">${typeLabel}</span></div>`;
 }
 
@@ -669,26 +867,26 @@ function renderQ() {
 
 /* (a) 통째로 쓰기 / 앞글자 보고 쓰기 */
 function renderList(q, body) {
-  const n = q.answers.length, acro = q.type === "acro", m = mnemo(q.area, q.grade, q.cat);
-  const ini = m.order.map(m.sylOf);
+  const n = q.answers.length, acro = q.type === "acro", m = q.subj ? null : mnemo(q.area, q.grade, q.cat);
+  const ini = m ? m.order.map(m.sylOf) : initials(q.answers);
   body.innerHTML = `${metaHTML(q, TYPE_LABEL[q.type])}
-    <h3 class="q-title">[${esc(q.area)}] [${esc(q.grade)}] [${CAT_LABEL[q.cat]}]에 해당하는 내용 요소를 ${acro ? "외우는 말을 보고 " : ""}모두 입력하세요.</h3>
+    <h3 class="q-title">${q.title ? esc(q.title) : `[${esc(q.area)}] [${esc(q.grade)}] [${CAT_LABEL[q.cat]}]에 해당하는 내용 요소를 ${acro ? "외우는 말을 보고 " : ""}모두 입력하세요.`}</h3>
     ${acro ? `<p class="acro-line">${esc(m.w)}</p>` : ""}
     <p class="hint">모두 ${n}개예요. 칸 하나에 하나씩 쓰세요. ${acro ? "칸 옆 글자가 들어간 내용 요소를 쓰면 돼요." : "순서는 상관없어요."} 띄어쓰기·쉼표가 달라도 맞게 처리해요.</p>
     <div class="inputs">${q.answers.map((_, k) => acro
-      ? `<label class="inp"><span class="num ini">${esc(ini[k])}</span><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="‘${esc(ini[k])}’이(가) 들어간 내용 요소"></label>`
+      ? `<label class="inp"><span class="num ini">${esc(ini[k])}</span><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="‘${esc(ini[k])}’이(가) 들어간 ${esc(q.unit || "내용 요소")}"></label>`
       : `<label class="inp"><span class="num">${k + 1}</span><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${k + 1}번째 내용 요소"></label>`).join("")}</div>
     <p class="error" id="list-err"></p>
     <div class="actions" id="list-actions">
       <button class="btn primary" id="submit">제출하기</button>
-      ${acro ? "" : `<button class="btn ghost" id="hint">외우는 말 힌트</button>`}
+      ${acro ? "" : `<button class="btn ghost" id="hint">${m ? "외우는 말 힌트" : "앞글자 힌트"}</button>`}
       <button class="btn ghost" id="giveup">모르겠어요 (정답 보기)</button>
     </div>
     <div id="fb"></div>`;
   const inputs = $$(".inputs input", body);
   if (!acro) $("#hint").addEventListener("click", e => {
-    inputs.forEach((inp, k) => { inp.placeholder = `‘${ini[k]}’이(가) 들어간 내용 요소`; $(".num", inp.parentNode).textContent = ini[k]; $(".num", inp.parentNode).classList.add("ini"); });
-    $(".hint", body).insertAdjacentHTML("beforebegin", `<p class="acro-line">${esc(m.w)}</p>`);
+    inputs.forEach((inp, k) => { inp.placeholder = `‘${ini[k]}’이(가) 들어간 ${esc(q.unit || "내용 요소")}`; $(".num", inp.parentNode).textContent = ini[k]; $(".num", inp.parentNode).classList.add("ini"); });
+    if (m) $(".hint", body).insertAdjacentHTML("beforebegin", `<p class="acro-line">${esc(m.w)}</p>`);
     e.target.remove();
   });
   inputs.forEach((inp, k) => inp.addEventListener("keydown", e => {
@@ -701,12 +899,12 @@ function renderList(q, body) {
   setTimeout(() => inputs[0].focus({ preventScroll: true }), 50);
 }
 
-function gradeList(vals, answers) {
-  const rem = answers.map(a => ({ a, n: norm(a), used: false }));
+function gradeList(vals, answers, alias = {}) {
+  const rem = answers.map(a => ({ a, n: [norm(a), ...(alias[a] || []).map(norm)], used: false }));
   const status = [], correct = [], wrong = [];
   vals.forEach(v => {
     if (!v.trim()) { status.push("empty"); return; }
-    const r = rem.find(r => !r.used && r.n === norm(v));
+    const r = rem.find(r => !r.used && r.n.includes(norm(v)));
     if (r) { r.used = true; correct.push(r.a); status.push("ok"); }
     else { wrong.push(v.trim()); status.push("bad"); }
   });
@@ -728,7 +926,7 @@ function submitList(q, giveup) {
     return;
   }
   S.answered = true;
-  const r = gradeList(giveup ? [] : vals, q.answers);
+  const r = gradeList(giveup ? [] : vals, q.answers, q.alias);
   inputs.forEach((inp, k) => { inp.disabled = true; if (r.status[k] && r.status[k] !== "empty") inp.classList.add(r.status[k]); });
   $("#list-actions").remove(); $("#list-err").remove();
   const li = arr => arr.map(x => `<li>${esc(x)}</li>`).join("");
@@ -749,8 +947,8 @@ function renderFill(q, body) {
   let bi = 0;
   const blanks = q.fills.flat().filter(p => p.b != null);
   body.innerHTML = `${metaHTML(q, TYPE_LABEL.fill)}
-    <h3 class="q-title">[${esc(q.area)}] [${esc(q.grade)}] [${CAT_LABEL[q.cat]}] 내용 요소의 ( ) 안을 채우세요.</h3>
-    <p class="hint">빈칸 ${blanks.length}개. 괄호 뒤에 붙은 ‘을/를/하기’ 같은 꼬리는 빼고 써도 되고, 붙여 써도 맞게 처리해요.</p>
+    <h3 class="q-title">${q.title ? esc(q.title) : `[${esc(q.area)}] [${esc(q.grade)}] [${CAT_LABEL[q.cat]}] 내용 요소의 ( ) 안을 채우세요.`}</h3>
+    <p class="hint">${q.hint ? esc(q.hint) + " · " : ""}빈칸 ${blanks.length}개. ${q.subj ? "띄어쓰기·가운뎃점은 달라도 맞게 처리해요." : "괄호 뒤에 붙은 ‘을/를/하기’ 같은 꼬리는 빼고 써도 되고, 붙여 써도 맞게 처리해요."}</p>
     <ol class="fill-list">${q.fills.map(parts => `<li>${parts.map(p => p.b != null
       ? `<span class="fill-in">(<input type="text" data-b="${bi++}" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="빈칸" style="width:${Math.max(3.5, p.b.length * 1.15 + 1.2)}em">)</span>`
       : esc(p.t)).join("")}</li>`).join("")}</ol>
@@ -795,7 +993,7 @@ function submitFill(q, giveup) {
   const perfect = okN === blanks.length;
   $("#fb").innerHTML = `<div class="fb ${perfect ? "good" : "nope"}">
       <p class="fb-head">${perfect ? "모두 맞았어요! 🎉" : giveup ? "정답을 확인해 보세요" : `빈칸 ${blanks.length}개 중 ${okN}개 맞혔어요`}</p>
-      <div class="fb-answer"><b>내용 요소 전체</b><ol>${q.fills.map(parts => `<li>${parts.map(p => p.b != null ? `<mark class="fill">${esc(p.b)}</mark>` : esc(p.t)).join("")}</li>`).join("")}</ol></div>
+      <div class="fb-answer"><b>${q.subj ? "원문" : "내용 요소 전체"}</b><ol>${q.fills.map(parts => `<li>${parts.map(p => p.b != null ? `<mark class="fill">${esc(p.b)}</mark>` : esc(p.t)).join("")}</li>`).join("")}</ol></div>
       ${mnemoTip(q)}
     </div>`;
   S.log.push({ q, ok: perfect });
@@ -803,17 +1001,18 @@ function submitFill(q, giveup) {
 }
 
 function mnemoTip(q) {
+  if (q.subj) return q.tip ? `<div class="fb-tip"><b>💡 외우는 말${q.tipW ? `: <span class="tip-w">${esc(q.tipW)}</span>` : ""}</b><br>${esc(q.tip)}</div>` : "";
   const m = mnemo(q.area, q.grade, q.cat);
   return `<div class="fb-tip"><b>💡 외우는 말: <span class="tip-w">${esc(m.w)}</span></b><br>${esc(m.idea)}</div>`;
 }
 
 /* (b) 빈칸 고르기 */
 function renderMC(q, body) {
-  const c = q.cloze, two = c.picked.length > 1;
+  const c = q.cloze, two = !c.html && c.picked.length > 1;
   body.innerHTML = `${metaHTML(q, "빈칸 고르기")}
-    <h3 class="q-title">빈칸에 들어갈 말로 알맞은 것을 고르세요.</h3>
-    <p class="hint">${esc(q.area)} 영역의 핵심 아이디어 ${q.idx + 1}번 문장이에요.${two ? " 빈칸이 두 개예요." : ""}</p>
-    <div class="sentence">${blankHTML(c.s, c.picked, (p, k) => `<span class="gap">${two ? `(${"가나"[k]})` : ""}<span class="gap-line"></span></span>`)}</div>
+    <h3 class="q-title">${esc(q.title || "빈칸에 들어갈 말로 알맞은 것을 고르세요.")}</h3>
+    <p class="hint">${q.hint ? esc(q.hint) : `${esc(q.area)} 영역의 핵심 아이디어 ${q.idx + 1}번 문장이에요.`}${two ? " 빈칸이 두 개예요." : ""}</p>
+    <div class="sentence">${c.html || blankHTML(c.s, c.picked, (p, k) => `<span class="gap">${two ? `(${"가나"[k]})` : ""}<span class="gap-line"></span></span>`)}</div>
     <div class="options">${c.options.map((o, k) => `<button class="opt" data-k="${k}"><span class="n">${"①②③④"[k]}</span>${esc(o)}</button>`).join("")}</div>
     <div id="fb"></div>`;
   $$(".opt", body).forEach(b => b.addEventListener("click", () => {
@@ -824,7 +1023,8 @@ function renderMC(q, body) {
     if (!ok) b.classList.add("bad");
     $("#fb").innerHTML = `<div class="fb ${ok ? "good" : "nope"}">
         <p class="fb-head">${ok ? "정답이에요! 🎉" : "아쉬워요, 정답을 확인해 보세요"}</p>
-        <div class="sentence" style="margin:6px 0 0">${blankHTML(c.s, c.picked, p => `<mark class="fill">${esc(p.w)}</mark>`)}</div>
+        <div class="sentence" style="margin:6px 0 0">${c.reveal || blankHTML(c.s, c.picked, p => `<mark class="fill">${esc(p.w)}</mark>`)}</div>
+        ${q.subj ? mnemoTip(q) : ""}
       </div>`;
     S.log.push({ q, ok });
     addNext();
@@ -845,13 +1045,14 @@ $("#quit").addEventListener("click", () => {
 });
 
 function qLabel(q) {
+  if (q.subj) return `[${q.area}] ${q.label} — ${TEXT_TYPE_LABEL[q.ttype]}`;
   return q.type !== "mc" ? `[${q.area}] ${q.grade} ${CAT_LABEL[q.cat]} — ${TYPE_LABEL[q.type]}` : `[${q.area}] 핵심 아이디어 ${q.idx + 1}번 — 빈칸 고르기`;
 }
 
 function finish() {
   const ok = S.log.filter(l => l.ok).length, ng = S.log.length - ok;
   const hist = store.get(HIST_KEY, []);
-  hist.push({ t: Date.now(), ok, ng, total: S.log.length, retry: S.retry, scope: S.scope });
+  hist.push({ t: Date.now(), ok, ng, total: S.log.length, retry: S.retry, scope: S.scope, subj: S.subj });
   const saved = store.set(HIST_KEY, hist.slice(-200));
   const wrongQs = S.log.filter(l => !l.ok).map(l => l.q);
   $("#quiz-play").hidden = true;
@@ -866,23 +1067,24 @@ function finish() {
       <button class="btn ghost" id="setup">범위 다시 고르기</button>
     </div>`;
   if (wrongQs.length) $("#retry").addEventListener("click", () => {
-    const qs = shuffle(wrongQs).map(q => q.type === "mc" ? { ...q, cloze: { ...q.cloze, options: shuffle(q.cloze.options) } } : q);
+    const qs = shuffle(wrongQs).map(q => q.type === "mc" && !q.cloze.html ? { ...q, cloze: { ...q.cloze, options: shuffle(q.cloze.options) } } : q);
     startSession(qs, S.scope, true);
   });
-  $("#again").addEventListener("click", () => { const b = buildQuestions(); if (b) startSession(b.qs, b.scope, false); else backToSetup(); });
+  $("#again").addEventListener("click", () => { const b = BUILDERS[S.subj](); if (b) startSession(b.qs, b.scope, false); else backToSetup(); });
   $("#setup").addEventListener("click", backToSetup);
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function backToSetup() {
-  S = null;
-  $("#quiz-play").hidden = true; $("#quiz-result").hidden = true; $("#quiz-setup").hidden = false;
-  renderHistory();
+  endSession();
+  showTab(SUBJECTS[CUR].tabs[0][0]);
 }
 
 function renderHistory() {
-  const hist = store.get(HIST_KEY, []);
-  const box = $("#history");
+  if (!CUR) return;
+  const all = store.get(HIST_KEY, []), mine = h => (h.subj || "art") === CUR;
+  const hist = all.filter(mine);
+  const box = CUR === "art" ? $("#history") : $("#c-history");
   if (!hist.length) {
     box.innerHTML = `<h2>내 기록</h2><p class="hint">아직 기록이 없어요. 퀴즈를 풀면 여기에 차곡차곡 쌓여요. (이 브라우저에만 저장돼요)</p>`;
     return;
@@ -901,7 +1103,7 @@ function renderHistory() {
     <p class="hint">기록은 이 브라우저에만 저장돼요. 최근 8번만 보여 줘요.</p>
     <button class="btn ghost" id="clear-hist">기록 지우기</button>`;
   $("#clear-hist").addEventListener("click", () => {
-    if (confirm("지금까지의 퀴즈 기록을 모두 지울까요?")) { store.set(HIST_KEY, []); renderHistory(); }
+    if (confirm(`${SUBJECTS[CUR].name} 퀴즈 기록을 모두 지울까요?`)) { store.set(HIST_KEY, all.filter(h => !mine(h))); renderHistory(); }
   });
 }
 
@@ -1019,7 +1221,507 @@ $("#acro").addEventListener("input", e => {
 $("#acro").addEventListener("click", e => { const li = e.target.closest(".amask li"); if (li) li.classList.toggle("peek"); });
 $("#acro").addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches(".amask li")) { e.preventDefault(); e.target.click(); } });
 
+/* ═════════ 원문 과목 (총론 · 창체) ═════════
+   T(문장, 빈칸 후보): 문장은 고시문 원문 그대로(줄바꿈으로 갈라진 낱말만 이어 붙임).
+   빈칸 후보는 문장 안에 그대로 있는 부분. "낱말@2"는 그 문장에서 두 번째로 나오는 것. */
+const T = (s, kw = []) => ({ s, kw });
+
+/* ── 총론 (초등학교) ── */
+const CHONG_TIME = {
+  rows: ["국어", "사회/도덕", "수학", "과학/실과", "체육", "예술(음악/미술)", "영어"],
+  g12: [["국어", "482"], ["수학", "256"], ["바른 생활", "144"], ["슬기로운 생활", "224"], ["즐거운 생활", "400"]],
+  g34: ["408", "272", "272", "204", "204", "272", "136"],
+  g56: ["408", "272", "272", "340", "204", "272", "204"],
+  sub: ["1,506", "1,768", "1,972"], cha: ["238", "204", "204"], tot: ["1,744", "1,972", "2,176"]
+};
+const TS = {};
+TS.chong = {
+  short: "총론",
+  title: "2022 개정 초⋅중등학교 교육과정 총론 (초등학교) 빈칸 학습지",
+  foot: "원문: 2022 개정 초⋅중등학교 교육과정 총론(교육부 고시 제2022-33호) 중 초등학교 관련 부분.",
+  secs: { goal: "교육 목표", pyeon: "편제", time: "시간 배당 기준", oper: "편성⋅운영 기준" },
+  doc: [
+    { h: "Ⅰ. 3. 가. 초등학교 교육 목표", sec: "goal", lab: "초등학교 교육 목표" },
+    { cls: "ct-lead", p: [T("초등학교 교육은 학생의 일상생활과 학습에 필요한 기본 습관 및 기초 능력을 기르고 바른 인성을 함양하는 데 중점을 둔다.", ["기본 습관", "기초 능력", "바른 인성", "일상생활과 학습"])] },
+    { ol: [
+      { mk: "1)", t: [T("자신의 소중함을 알고 건강한 생활 습관을 기르며, 풍부한 학습 경험을 통해 자신의 꿈을 키운다.", ["소중함", "건강한 생활 습관", "풍부한 학습 경험", "꿈"])] },
+      { mk: "2)", t: [T("학습과 생활에서 문제를 발견하고 해결하는 기초 능력을 기르고, 이를 새롭게 경험할 수 있는 상상력을 키운다.", ["문제를 발견하고 해결하는", "기초 능력", "상상력"])] },
+      { mk: "3)", t: [T("다양한 문화 활동을 즐기며 자연과 생활 속에서 아름다움과 행복을 느낄 수 있는 심성을 기른다.", ["문화 활동", "아름다움과 행복", "심성"])] },
+      { mk: "4)", t: [T("일상생활과 학습에 필요한 규칙과 질서를 지키고 서로 돕고 배려하는 태도를 기른다.", ["규칙과 질서", "서로 돕고 배려하는", "태도"])] }] },
+
+    { h: "Ⅲ. 2. 초등학교 — 가. 편제와 시간 배당 기준" },
+    { h: "1) 편제", lv: 4, sec: "pyeon", lab: "편제" },
+    { ol: [
+      { mk: "가)", t: [T("초등학교 교육과정은 교과(군)와 창의적 체험활동으로 편성한다.", ["교과(군)", "창의적 체험활동"])] },
+      { mk: "나)", t: [T("교과(군)는 국어, 사회/도덕, 수학, 과학/실과, 체육, 예술(음악/미술), 영어로 한다.", ["사회/도덕", "과학/실과", "예술(음악/미술)", "영어"]),
+                       T("다만, 1, 2학년의 교과는 국어, 수학, 바른 생활, 슬기로운 생활, 즐거운 생활로 한다.", ["바른 생활", "슬기로운 생활", "즐거운 생활"])] },
+      { mk: "다)", t: [T("창의적 체험활동은 자율⋅자치 활동, 동아리 활동, 진로 활동으로 한다.", ["자율⋅자치 활동", "동아리 활동", "진로 활동"])] }] },
+    { h: "2) 시간 배당 기준", lv: 4, sec: "time", lab: "시간 배당 기준" },
+    { table: "chongTime" },
+    { ol: [
+      { mk: "①", t: [T("1시간의 수업은 40분을 원칙으로 하되, 기후 및 계절, 학생의 발달 정도, 학습 내용의 성격, 학교 실정 등을 고려하여 탄력적으로 편성⋅운영할 수 있다.", ["40분", "탄력적으로", "기후 및 계절"])] },
+      { mk: "②", t: [T("학년군의 교과(군)별 및 창의적 체험활동 시간 배당은 연간 34주를 기준으로 2년간의 기준 수업 시수를 나타낸 것이다.", ["34주", "2년간", "기준 수업 시수"])] },
+      { mk: "③", t: [T("학년군별 총 수업 시간 수는 최소 수업 시수를 나타낸 것이다.", ["최소 수업 시수"])] },
+      { mk: "④", t: [T("실과의 수업 시간은 5~6학년 과학/실과의 수업 시수에만 포함된다.", ["5~6학년"])] },
+      { mk: "⑤", t: [T("정보교육은 실과의 정보영역 시수와 학교자율시간 등을 활용하여 34시간 이상 편성⋅운영한다.", ["정보영역", "학교자율시간", "34시간 이상"])] }] },
+
+    { h: "Ⅲ. 2. 초등학교 — 나. 교육과정 편성⋅운영 기준", sec: "oper", lab: "편성⋅운영 기준" },
+    { ol: [
+      { mk: "1)", t: [T("학교는 학년(군)별 교과(군)와 창의적 체험활동의 수업 시수를 학년별, 학기별로 자율적으로 편성할 수 있다.", ["학년별, 학기별", "자율적으로"])], sub: [
+        { mk: "가)", t: [T("학교는 학생이 학년(군)별로 이수해야 할 교과를 학년별, 학기별로 편성하여 학생과 학부모에게 안내한다.", ["학생과 학부모", "안내"])] },
+        { mk: "나)", t: [T("학교는 모든 교육 활동을 통해 학생이 기본 생활 습관, 기초 학습 능력, 바른 인성을 함양할 수 있도록 교육과정을 편성⋅운영한다.", ["기본 생활 습관", "기초 학습 능력", "바른 인성"])] },
+        { mk: "다)", t: [T("학교는 학교의 특성, 학생⋅교사⋅학부모의 요구 및 필요에 따라 자율적으로 교과(군)별 및 창의적 체험활동의 20% 범위 내에서 시수를 증감하여 편성⋅운영할 수 있다.", ["20%", "증감", "학생⋅교사⋅학부모"]),
+                         T("단, 체육, 예술(음악/미술) 교과는 기준 수업 시수를 감축하여 편성⋅운영할 수 없다.", ["체육, 예술(음악/미술)", "감축"])] },
+        { mk: "라)", t: [T("학교는 교육의 효과를 높이기 위하여 필요한 경우 학년별, 학기별로 교과 집중이수를 실시할 수 있다.", ["집중이수"])] },
+        { mk: "마)", t: [T("학교는 창의적 체험활동의 영역을 학생들의 발달 수준, 학교의 여건 등을 고려하여 학년(군)별로 자율적으로 편성⋅운영한다.", ["발달 수준", "학교의 여건", "학년(군)별로"])] }] },
+      { mk: "2)", t: [T("학교는 모든 학생의 학습 기회를 보장할 수 있도록 학교 교육과정을 편성⋅운영한다.", ["학습 기회", "보장"])], sub: [
+        { mk: "가)", t: [T("학교는 각 교과의 기초적, 기본적 요소들이 체계적으로 학습되도록 교육과정을 편성⋅운영한다.", ["기초적, 기본적 요소", "체계적으로"]),
+                         T("특히 국어사용 능력과 수리 능력의 기초가 부족한 학생들을 대상으로 기초 학습 능력 향상을 위한 별도의 프로그램을 편성⋅운영할 수 있다.", ["국어사용 능력", "수리 능력", "별도의 프로그램"])] },
+        { mk: "나)", t: [T("전입 학생이 특정 교과를 이수하지 못할 경우, 시⋅도 교육청과 학교에서는 보충 학습 과정 등을 통해 학습 결손이 발생하지 않도록 한다.", ["전입 학생", "보충 학습 과정", "학습 결손"])] },
+        { mk: "다)", t: [T("학년을 달리하는 학생을 대상으로 복식 학급을 편성⋅운영하는 경우에는 교육 내용의 학년별 순서를 조정하거나 공통 주제를 중심으로 교재를 재구성하여 활용할 수 있다.", ["복식 학급", "학년별 순서", "공통 주제", "재구성"])] }] },
+      { mk: "3)", t: [T("학교는 3~6학년별로 지역과 연계하거나 다양하고 특색 있는 교육과정 운영을 위해 학교자율시간을 편성⋅운영한다.", ["3~6학년별", "지역과 연계", "학교자율시간"])], sub: [
+        { mk: "가)", t: [T("학교자율시간을 활용하여 이 교육과정에 제시되어 있는 교과 외에 새로운 과목이나 활동을 개설할 수 있으며, 이 경우 시⋅도 교육감이 정하는 지침에 따라 사전에 필요한 절차를 거쳐야 한다.", ["새로운 과목이나 활동", "시⋅도 교육감", "지침"])] },
+        { mk: "나)", t: [T("학교자율시간에 운영하는 과목과 활동의 내용은 지역과 학교의 여건 및 학생의 필요에 따라 학교가 결정하되, 다양한 과목과 활동으로 개설하여 운영한다.", ["학교가 결정", "다양한 과목과 활동"])] },
+        { mk: "다)", t: [T("학교자율시간은 학교 여건에 따라 연간 34주를 기준으로 한 교과별 및 창의적 체험활동 수업 시간의 학기별 1주의 수업 시간을 확보하여 운영한다.", ["34주", "학기별 1주"])] }] },
+      { mk: "4)", t: [T("학교는 입학 초기 및 상급 학교(학년)으로 진학하기 전 학기의 일부 시간을 활용하여 학교급 간 연계 및 진로 교육을 강화하는 진로연계교육을 편성⋅운영한다.", ["입학 초기", "학교급 간 연계", "진로연계교육"])], sub: [
+        { mk: "가)", t: [T("학교는 1학년 학생의 학교생활 적응 및 한글 해득 교육 등의 입학 초기 적응 프로그램을 교과와 창의적 체험활동 시간을 활용하여 진로연계교육으로 운영한다.", ["한글 해득 교육", "입학 초기 적응 프로그램"])] },
+        { mk: "나)", t: [T("학교는 중학교의 생활 및 학습 준비, 진로 탐색 등의 프로그램을 교과와 창의적 체험활동 시간을 활용하여 진로연계교육을 자율적으로 운영한다.", ["진로 탐색", "자율적으로"])] },
+        { mk: "다)", t: [T("학교는 진로연계교육의 중점을 학생의 역량 함양 및 자기주도적 학습 능력 향상에 두고, 교과별 학습 내용 및 학습 방법의 학교급 간 연계, 교과와 연계한 진로 활동 등을 통해 학생의 학습과 성장을 지원한다.", ["역량 함양", "자기주도적 학습 능력", "학습과 성장"])] }] },
+      { mk: "5)", t: [T("학교는 학생의 발달 특성을 고려하여 학교 교육과정을 편성⋅운영한다.", ["발달 특성"])], sub: [
+        { mk: "가)", t: [T("학교는 1~2학년 학생에게 실내⋅외 놀이 및 신체 활동의 기회를 충분히 제공한다.", ["실내⋅외 놀이", "신체 활동"])] },
+        { mk: "나)", t: [T("1~2학년의 안전교육은 바른 생활⋅슬기로운 생활⋅즐거운 생활 교과의 64시간을 포함하여 교과 및 창의적 체험활동을 활용하여 편성⋅운영한다.", ["안전교육", "64시간"])] },
+        { mk: "다)", t: [T("정보통신 활용 교육, 보건 교육, 한자 교육 등은 관련 교과와 창의적 체험활동 시간을 활용하여 체계적인 지도가 이루어질 수 있도록 한다.", ["정보통신 활용 교육", "보건 교육", "한자 교육"])] }] }] }
+  ],
+  lists: [
+    { sec: "pyeon", label: "편제 나)", q: "초등학교 3~6학년의 교과(군)를 모두 쓰세요.", unit: "교과(군)",
+      answers: ["국어", "사회/도덕", "수학", "과학/실과", "체육", "예술(음악/미술)", "영어"], alias: { "예술(음악/미술)": ["예술"] },
+      w: "국사 수과 체예영", tip: "국·사·수·과·체·예·영 — “국사 / 수과 / 체예영” 하고 끊어 읽어요. 사회/도덕, 과학/실과, 예술(음악/미술)은 한 묶음!" },
+    { sec: "pyeon", label: "편제 나)", q: "1, 2학년의 교과를 모두 쓰세요.", unit: "교과",
+      answers: ["국어", "수학", "바른 생활", "슬기로운 생활", "즐거운 생활"],
+      w: "국수 바슬즐", tip: "“국수 바로 슬슬 즐겨!” — 국어, 수학, 바른 생활, 슬기로운 생활, 즐거운 생활." },
+    { sec: "pyeon", label: "편제 다)", q: "초등학교 창의적 체험활동의 영역을 모두 쓰세요.", unit: "영역",
+      answers: ["자율⋅자치 활동", "동아리 활동", "진로 활동"],
+      w: "자동진", tip: "“자동진(자동으로 진행)” — 자율⋅자치 활동, 동아리 활동, 진로 활동." },
+    { sec: "oper", label: "편성⋅운영 기준 1) 다)", q: "기준 수업 시수를 감축하여 편성⋅운영할 수 없는 교과를 모두 쓰세요.", unit: "교과",
+      answers: ["체육", "예술(음악/미술)"], alias: { "예술(음악/미술)": ["예술"] },
+      w: "체예", tip: "“체예(體藝)는 못 깎아!” — 20% 범위 안에서 늘리고 줄일 수 있지만, 체육과 예술(음악/미술)은 줄일 수 없어요." },
+    { sec: "oper", label: "편성⋅운영 기준 5) 다)", q: "관련 교과와 창의적 체험활동 시간을 활용하여 체계적으로 지도하도록 한 교육 세 가지를 쓰세요.", unit: "교육",
+      answers: ["정보통신 활용 교육", "보건 교육", "한자 교육"],
+      w: "정보한", tip: "“정·보·한” — 정보통신 활용 교육, 보건 교육, 한자 교육." }
+  ]
+};
+TS.chong.hours = (() => {
+  const T_ = CHONG_TIME, G = ["1~2학년", "3~4학년", "5~6학년"], out = [];
+  const big = [...new Set([...T_.sub, ...T_.tot])];
+  const small = [...new Set([...T_.g12.map(x => x[1]), ...T_.g34, ...T_.g56, ...T_.cha])];
+  const col = gi => gi === 0 ? T_.g12 : T_.rows.map((r, i) => [r, (gi === 1 ? T_.g34 : T_.g56)[i]]);
+  G.forEach((g, gi) => {
+    const rows = [...col(gi), ["소계", T_.sub[gi]], ["창의적 체험활동", T_.cha[gi]], ["학년군별 총 수업 시간 수", T_.tot[gi]]];
+    rows.forEach(([name, val], ri) => {
+      const pool = (big.includes(val) ? big : small).filter(v => v !== val);
+      out.push({ sec: "time", label: `<표 1> ${g} ${name}`, answer: val, opts: shuffle(pool).slice(0, 3),
+        html: `<b>${g}</b> · ${esc(name)}의 기준 수업 시수 → <span class="gap">( <span class="gap-line"></span> )</span>`,
+        reveal: `<table class="ct-table mini"><thead><tr><th>${g}</th><th>시수</th></tr></thead><tbody>${rows.map(([n, v], k) => `<tr class="${k === ri ? "hl" : ""}"><th class="side">${esc(n)}</th><td>${v}</td></tr>`).join("")}</tbody></table>` });
+    });
+  });
+  return out;
+})();
+
+/* ── 창의적 체험활동 (초등학교 관련 부분) ── */
+const CHA_T1 = [
+  { area: "자율⋅자치활동", acts: [
+    { name: "자율활동", ex: [
+      T("주제 탐구 활동: 개인 연구, 소집단 공동 연구, 프로젝트 등", ["주제 탐구 활동", "소집단 공동 연구"]),
+      T("적응 및 개척 활동: 입학 초기 적응, 학교 이해, 정서 지원, 관계 형성 등", ["적응 및 개척 활동", "입학 초기 적응"]),
+      T("프로젝트형 봉사활동: 개인 프로젝트형 봉사활동, 공동 프로젝트형 봉사활동 등", ["프로젝트형 봉사활동"])] },
+    { name: "자치활동", ex: [
+      T("기본생활습관 형성 활동: 자기 관리 활동, 환경⋅생태의식 함양 활동, 생명존중 의식 함양 활동, 민주시민 의식 함양 활동 등", ["기본생활습관 형성 활동", "생명존중 의식"]),
+      T("관계 형성 및 소통 활동: 사제동행, 토의⋅토론, 협력적 놀이 등", ["관계 형성 및 소통 활동", "사제동행", "협력적 놀이"]),
+      T("공동체 자치활동: 학급⋅학년⋅학교 등 공동체 중심의 자치활동, 지역 사회 연계 자치활동 등", ["공동체 자치활동", "지역 사회 연계 자치활동"])] }] },
+  { area: "동아리 활동", acts: [
+    { name: "학술⋅문화 및 여가 활동", ex: [
+      T("학술 동아리: 교과목 연계 및 학술 탐구 활동 등", ["학술 동아리", "교과목 연계"]),
+      T("예술 동아리: 음악 관련 활동, 미술 관련 활동, 공연 및 전시 활동 등", ["예술 동아리", "공연 및 전시 활동"]),
+      T("스포츠 동아리: 구기 운동, 도구 운동, 계절 운동, 무술, 무용 등", ["스포츠 동아리", "계절 운동"]),
+      T("놀이 동아리: 개인 놀이, 단체 놀이 등", ["놀이 동아리", "단체 놀이"])] },
+    { name: "봉사활동", ex: [
+      T("교내 봉사활동: 또래 상담, 지속가능한 환경 보호 등", ["교내 봉사활동", "또래 상담"]),
+      T("지역 사회 봉사활동: 지역 사회참여, 캠페인, 재능 기부 등", ["지역 사회 봉사활동", "재능 기부"]),
+      T("청소년 단체 활동: 각종 청소년 단체 활동 등", ["청소년 단체 활동"])] }] },
+  { area: "진로 활동", acts: [
+    { name: "진로 탐색 활동", ex: [
+      T("자아탐색 활동: 자기이해, 생애 탐색, 가치관 확립 등", ["자아탐색 활동", "생애 탐색"]),
+      T("진로 이해 활동: 직업 흥미 및 적성 탐색, 진로 검사, 진로 성숙도 탐색 등", ["진로 이해 활동", "진로 성숙도 탐색"]),
+      T("직업 이해 활동: 직업관 확립, 일과 직업의 역할 이해, 직업 세계의 변화 탐구 등", ["직업 이해 활동", "직업관 확립"]),
+      T("정보 탐색 활동: 학업 및 진학 정보 탐색, 직업 정보 및 자격(면허) 제도 탐색, 진로진학 및 취업 유관기관 탐방 등", ["정보 탐색 활동", "유관기관 탐방"])] },
+    { name: "진로 설계 및 실천 활동", ex: [
+      T("진로 준비 활동: 진로 목표 설정, 진로 실천 계획 수립 등", ["진로 준비 활동", "진로 목표 설정"]),
+      T("진로계획 활동: 진로 상담, 진로 의사 결정, 진로 설계 등", ["진로계획 활동", "진로 의사 결정"]),
+      T("진로체험 활동: 지역 사회⋅대학⋅산업체 연계 체험활동 등", ["진로체험 활동", "지역 사회⋅대학⋅산업체"])] }] }
+];
+const CHA_TIME = [["초등학교 1~2학년", "238"], ["초등학교 3~4학년", "204"], ["초등학교 5~6학년", "204"]];
+TS.cha = {
+  short: "창체",
+  title: "2022 개정 창의적 체험활동 교육과정 (초등학교) 빈칸 학습지",
+  foot: "원문: 2022 개정 창의적 체험활동 교육과정(교육부 고시 제2022-33호 [별책 40]) 중 초등학교 관련 부분.",
+  secs: { char: "성격", goal: "목표", area: "영역과 활동", time: "시수", focus: "초등 운영 중점(<표 5>)", oper: "초등학교 운영" },
+  doc: [
+    { h: "1. 성격 및 목표 — 가. 성격", sec: "char", lab: "성격" },
+    { p: [T("창의적 체험활동은 교과와의 상호 보완적인 관계 속에서 학생의 전인적인 성장을 위하여 학교가 자율적으로 설계⋅운영할 수 있는 경험과 실천 중심의 교육과정 영역이다.", ["상호 보완적인", "전인적인 성장", "경험과 실천 중심"]),
+          T("창의적 체험활동은 초⋅중등학교 학생들이 자신의 삶과 연계된 다양한 활동에 참여함으로써 개인의 소질과 잠재력을 계발할 뿐만 아니라 창의성과 포용성을 지닌 민주시민으로서의 삶의 태도를 기르는 것을 목표로 한다.", ["소질과 잠재력", "창의성과 포용성", "민주시민"])] },
+    { p: [T("창의적 체험활동은 다음의 성격을 가지고 있다.")] },
+    { ol: [
+      { mk: "첫째,", t: [T("창의적 체험활동은 역량 함양을 위한 학습자 주도의 교육과정이다.", ["역량 함양", "학습자 주도"]),
+                         T("창의적 체험활동은 자율⋅자치활동, 동아리 활동, 진로 활동의 3개 영역으로 구성되며, 각 영역의 활동은 학생의 자기관리 역량, 지식정보처리 역량, 창의적 사고 역량, 심미적 감성 역량, 협력적 소통 역량, 공동체 역량의 증진을 도모한다.", ["3개 영역", "자기관리 역량", "지식정보처리 역량", "심미적 감성 역량", "협력적 소통 역량"])] },
+      { mk: "둘째,", t: [T("창의적 체험활동은 교과와의 연계, 학교급 간 및 학년 간, 그리고 영역 및 활동 간의 연계와 통합을 추구한다.", ["연계와 통합", "학교급 간 및 학년 간"]),
+                         T("학교는 학생의 발달 단계와 교육적 요구 등을 고려하여 학생 개인별 또는 집단별로 영역 및 활동을 선택하여 집중적으로 운영할 수 있다.", ["개인별 또는 집단별", "집중적으로"])] },
+      { mk: "셋째,", t: [T("창의적 체험활동은 학교급별 특성을 반영하여 설계한다.", ["학교급별 특성"]),
+                         T("학교는 학생의 흥미와 관심, 교육적 필요와 요구, 지역 사회의 특성 등을 고려하여 특정 영역과 활동에 중점을 두고 융통성 있게 설계할 수 있다.", ["특정 영역과 활동", "융통성 있게"]),
+                         T("학교는 학교급별 목표와 운영의 중점을 고려하고 학교의 자율성과 특수성을 반영하여 창의적 체험활동을 설계⋅운영한다.", ["운영의 중점", "자율성과 특수성"])] },
+      { mk: "넷째,", t: [T("학교는 창의적 체험활동 교육과정을 설계하고 운영함에 있어 자율성을 발휘한다.", ["자율성"]),
+                         T("창의적 체험활동의 설계 주체는 학교, 교사, 학생이다.", ["학교, 교사, 학생"]),
+                         T("창의적 체험활동에서는 교사와 학생이, 학생과 학생이 공동으로 계획을 수립하고 역할을 분담하여 실천한다.", ["공동으로", "역할을 분담"]),
+                         T("이를 위해 국가 및 지역 수준에서는 학교와 지역의 특색을 고려하여 전문성을 갖춘 인적⋅물적 자원을 충분히 제공할 수 있는 기반을 마련한다.", ["인적⋅물적 자원", "전문성"])] }] },
+
+    { h: "1. 성격 및 목표 — 나. 목표", sec: "goal", lab: "목표" },
+    { cls: "ct-lead", p: [T("창의적 체험활동은 학생들이 창의적인 다양한 활동에 주도적으로 참여함으로써 개인의 소질과 잠재력을 계발⋅신장하여 창의적인 삶의 태도를 기르고 공동체 의식을 함양하도록 하는 데 목표가 있다.", ["주도적으로", "계발⋅신장", "창의적인 삶의 태도", "공동체 의식"])] },
+    { ol: [{ mk: "(1)", t: [T("초등학교에서는 자신의 개성과 소질을 탐색하고 발견하여 공동체 생활에 필요한 기본 생활 습관과 시민의식을 기른다.", ["개성과 소질", "기본 생활 습관", "시민의식"])] }] },
+
+    { h: "2. 영역과 활동 — 가. 영역", sec: "area", lab: "영역" },
+    { p: [T("창의적 체험활동은 자율⋅자치활동, 동아리 활동, 진로 활동의 세 영역으로 구성한다.", ["자율⋅자치활동", "동아리 활동", "진로 활동", "세 영역"])] },
+    { ol: [
+      { mk: "(1)", t: [T("자율⋅자치활동 영역은 자율활동과 자치활동으로 구성한다.", ["자율활동", "자치활동@2"])] },
+      { mk: "(2)", t: [T("동아리 활동 영역은 학술⋅문화 및 여가 활동과 봉사활동으로 구성한다.", ["학술⋅문화 및 여가 활동", "봉사활동"])] },
+      { mk: "(3)", t: [T("진로 활동 영역은 진로 탐색 활동과 진로 설계 및 실천 활동으로 구성한다.", ["진로 탐색 활동", "진로 설계 및 실천 활동"])] }] },
+    { h: "2. 영역과 활동 — 나. 활동", lab: "활동" },
+    { p: [T("학교는 영역별 활동과 내용을 토대로, 학교급과 학년(군) 및 학생 개개인의 특성에 따른 교육적 요구를 고려하여 활동을 영역별로 제시하거나 영역 통합적인 활동, 교과와 연계한 활동 등을 창의적으로 편성⋅운영할 수 있다.", ["영역 통합적인 활동", "교과와 연계한 활동"])] },
+    { h: "<표 1> 창의적 체험활동의 영역, 활동 및 예시 활동", lv: 4, lab: "<표 1>" },
+    { table: "cha1" },
+    { h: "활동 목표 (<표 2>~<표 4>)", lv: 4, lab: "활동 목표" },
+    { wide: true, ol: [
+      { mk: "자율활동", t: [T("학생이 주제를 스스로 선택하여 활동함으로써, 신체적⋅정신적⋅환경적 변화에 적응하고 자신의 삶을 개척해 나가는 자기주도성을 함양한다.", ["스스로 선택", "신체적⋅정신적⋅환경적", "자기주도성"])] },
+      { mk: "자치활동", t: [T("성숙한 민주시민으로서 타인과 원활하게 소통하고 공동체의 문제를 상호 연대하여 해결할 수 있는 역량을 함양한다.", ["성숙한 민주시민", "상호 연대"])] },
+      { mk: "학술⋅문화 및 여가 활동", t: [T("동아리 활동을 통해 다양한 학술 분야와 문화에 대해 관심을 가지고 탐구력과 심미적 감성을 함양한다.", ["탐구력과 심미적 감성", "학술 분야와 문화"])] },
+      { mk: "봉사활동", t: [T("학교 안팎에서 나눔과 봉사를 실천함으로써 포용성과 시민성을 함양한다.", ["나눔과 봉사", "포용성과 시민성"])] },
+      { mk: "진로 탐색 활동", t: [T("긍정적인 자아 개념을 형성하고 진로 및 직업 세계의 특성과 변화를 이해하여 자신의 진로와 관련된 건강한 직업 가치관을 확립한다.", ["긍정적인 자아 개념", "특성과 변화", "건강한 직업 가치관"])] },
+      { mk: "진로 설계 및 실천 활동", t: [T("자신의 진로에 대한 이해를 바탕으로 희망하는 진로와 직업의 경로를 설계하고 실천한다.", ["진로와 직업의 경로", "설계하고 실천"])] }] },
+
+    { h: "3. 설계와 운영 — 가. (2) 시수 편성 기준", sec: "time", lab: "시수 편성 기준" },
+    { p: [T("창의적 체험활동 교육과정 운영을 위한 시수 편성은 총론의 학교급별 교육과정 편성⋅운영 기준에 제시된 시간 배당 기준 등에 따른다.", ["총론", "시간 배당 기준"]),
+          T("초등학교와 중학교에서 학교는 자율적으로 교과(군)별 및 창의적 체험활동의 20% 범위 내에서 시수를 증감하여 편성⋅운영할 수 있다.", ["20%", "증감"])] },
+    { table: "chaTime" },
+    { ol: [{ mk: "비고 ①", t: [T("학년군의 창의적 체험활동 시간 배당은 연간 34주를 기준으로 2년간의 기준 수업 시수를 나타낸 것이다.", ["34주", "2년간"])] }] },
+    { p: [T("창의적 체험활동에 배당된 학교급별, 학년(군)별 시수를 특정 학년이나 학기에 편중하여 편성하지 않도록 한다.", ["편중"]),
+          T("초등학교 1학년은 입학 초기 적응 활동으로 입학 후 3월 중 34시간을 배정한다.", ["입학 초기 적응 활동", "3월 중 34시간"]),
+          T("초등학교 1학년 4월 이후에는 주당 평균 2시간, 초등학교 2~6학년 및 중학교, 고등학교에서는 주당 평균 3시간과 같이 매주 평균적인 시간을 배당하거나 특정일을 선택하여 블록 타임 운영 및 온종일 활동을 포함한 집중 운영 등 다양하고 탄력적인 방식으로 시간을 운영할 수 있다.", ["주당 평균 2시간", "주당 평균 3시간", "블록 타임", "온종일 활동"])] },
+
+    { h: "3. 설계와 운영 — 나. 운영: <표 5> 영역별 운영 중점 (초등학교)", sec: "focus", lab: "<표 5>" },
+    { wide: true, ol: [
+      { mk: "<자율⋅자치활동>", sub: [
+        { mk: "∙", t: [T("생활 속 여러 문제를 해결하는 능력 함양", ["생활 속 여러 문제"])] },
+        { mk: "∙", t: [T("정서적⋅심리적 안정과 입학 초기 및 사춘기 적응", ["정서적⋅심리적 안정", "사춘기 적응"])] },
+        { mk: "∙", t: [T("즐거운 학교생활 및 다양한 주제 활동 경험", ["즐거운 학교생활", "주제 활동"])] },
+        { mk: "∙", t: [T("학생 자치 회의, 학급회의 등 공동체를 통한 의사소통 경험", ["학급회의", "의사소통 경험"])] },
+        { mk: "∙", t: [T("민주적 의사 결정의 기본 원리 이해와 실천", ["민주적 의사 결정", "기본 원리"])] }] },
+      { mk: "<동아리 활동>", sub: [
+        { mk: "∙", t: [T("창의⋅융합적 사고를 통한 현재와 미래의 문제 해결", ["창의⋅융합적 사고", "현재와 미래"])] },
+        { mk: "∙", t: [T("다양한 경험과 문화, 예술, 체육 프로그램 체험", ["문화, 예술, 체육"])] },
+        { mk: "∙", t: [T("삶을 풍요롭게 하는 신체 활동 및 놀이", ["신체 활동 및 놀이", "풍요롭게"])] },
+        { mk: "∙", t: [T("인간과 환경의 공존을 위한 지속가능한 환경보호", ["인간과 환경의 공존", "지속가능한 환경보호"])] }] },
+      { mk: "<진로 활동>", sub: [
+        { mk: "∙", t: [T("긍정적인 자아 개념 형성", ["긍정적인 자아 개념"])] },
+        { mk: "∙", t: [T("일의 중요성을 이해하기 위한 진로 체험", ["일의 중요성", "진로 체험"])] },
+        { mk: "∙", t: [T("다양한 직업 세계 탐색", ["직업 세계 탐색"])] },
+        { mk: "∙", t: [T("진로 기초 소양 함양", ["진로 기초 소양"])] }] }] },
+
+    { h: "3. 설계와 운영 — 나. 운영: (1) 초등학교", sec: "oper", lab: "초등학교 운영" },
+    { p: [T("초등학교의 창의적 체험활동은 학생들의 발달 수준, 학교의 여건 등을 종합적으로 고려하여 영역을 선택적으로 편성⋅운영할 수 있다.", ["발달 수준", "학교의 여건", "선택적으로"]),
+          T("예컨대, 1~2학년군에서는 학생들의 발달 수준을 고려하여 자율⋅자치, 그 밖의 학년군은 자율⋅자치 및 동아리 활동에 중점을 두어 운영할 수 있다.", ["1~2학년군", "자율⋅자치", "자율⋅자치 및 동아리 활동"]),
+          T("초등학교 1학년 1학기는 유치원과 6학년 2학기는 중학교와 교육과정이 연계될 수 있도록 진로 연계 교육 프로그램을 운영한다.", ["유치원", "중학교", "진로 연계 교육"])] },
+    { wide: true, ol: [
+      { mk: "(가) 자율⋅자치활동", t: [
+        T("초등학교 자율⋅자치활동은 일상생활에 필요한 질서와 예절을 익혀 기본 생활 습관을 형성할 수 있도록 운영한다.", ["질서와 예절", "기본 생활 습관"]),
+        T("초등학교에서는 학생의 입학 초기 학교생활 적응과 학습 격차 해소 등을 위하여 지역 특색과 학생의 교육적 요구 등을 반영하여 입학 초기 적응 활동의 적용 시기와 시수 및 활동 내용을 결정한다.", ["학습 격차 해소", "적용 시기와 시수 및 활동 내용"]),
+        T("학교는 삶의 여러 문제를 해결하는 능력의 함양, 정서⋅심리적 안정과 입학 초기 및 사춘기 적응, 즐거운 학교생활 및 다양한 주제 활동의 경험, 공동체를 통한 의사소통과 민주적인 의사 결정을 위한 기본 원리의 이해와 실천 등에 중점을 두고 운영할 수 있다.", ["정서⋅심리적 안정", "민주적인 의사 결정"])] },
+      { mk: "(나) 동아리 활동", t: [
+        T("초등학교에서는 학생들이 동아리를 선택하고 동아리에 참여하여 활동의 즐거움을 느끼고, 학생의 발달 단계를 고려하여 봉사의 의미를 깨닫는 학습 활동에 중점을 둔다.", ["활동의 즐거움", "봉사의 의미"]),
+        T("이에 따라 초등학교 동아리 활동은 창의적이고 융합적인 사고를 통해 현재와 미래의 여러 문제를 해결하고, 다양한 문화, 예술, 체육 프로그램을 경험하며, 삶을 풍요롭게 하는 신체 활동 및 놀이 등을 계획하여 운영한다.", ["창의적이고 융합적인 사고", "신체 활동 및 놀이"]),
+        T("또한, 인간과 환경의 공존을 위해 지속가능한 환경보호 등의 봉사활동을 계획하여 운영할 수 있다.", ["지속가능한 환경보호"]),
+        T("각 동아리 활동 내용은 교과를 통해 배운 지식과 기능을 다양한 방법으로 적용하고 체험할 수 있는 기회를 제공한다.", ["지식과 기능"]),
+        T("학생의 흥미와 적성에 맞는 취미 생활이나 특기를 기를 수 있도록 체험 중심으로 운영하되, 학생의 개별적 활동보다는 친구와 협력하여 공동으로 문제를 해결하는 경험을 제공한다.", ["체험 중심", "친구와 협력"]),
+        T("학생의 흥미, 특기, 적성과 관련된 활동을 탐색하여 선택하는 기회를 제공하고 적극적인 참여를 도모한다.", ["탐색하여 선택", "적극적인 참여"])] },
+      { mk: "(다) 진로 활동", t: [
+        T("초등학교 진로 활동은 긍정적 자아 개념 형성, 일의 중요성 이해를 위한 진로 체험, 다양한 직업 세계의 탐색, 진로 기초 소양 함양 등을 위한 활동을 계획하여 운영할 수 있다.", ["긍정적 자아 개념", "진로 기초 소양"]),
+        T("학생들이 자신에 대해 이해할 수 있는 기회와 자신에게 맞는 진로를 찾아가는 과정을 제공하는 데 중점을 두어 지도한다.", ["찾아가는 과정"]),
+        T("초등학교에서는 학생들이 개성과 소질을 인식하고, 일과 직업에 대해 편견 없는 마음과 태도를 갖도록 지도한다.", ["개성과 소질", "편견 없는 마음"]),
+        T("학교 및 지역 사회의 시설과 인적 자원 등을 활용하여 직업 세계의 이해와 탐색 및 체험의 기회를 제공한다.", ["시설과 인적 자원"])] }] }
+  ],
+  lists: [
+    { sec: "area", label: "영역", q: "창의적 체험활동의 세 영역을 모두 쓰세요.", unit: "영역",
+      answers: ["자율⋅자치활동", "동아리 활동", "진로 활동"],
+      w: "자동진", tip: "“자동진(자동으로 진행)” — 자율⋅자치활동, 동아리 활동, 진로 활동. 2015 개정의 4영역(자율·동아리·봉사·진로)에서 봉사활동이 동아리 활동 안으로 들어가 3영역이 됐어요." },
+    { sec: "area", label: "영역 (1)", q: "자율⋅자치활동 영역을 구성하는 활동 두 가지를 쓰세요.", unit: "활동", answers: ["자율활동", "자치활동"] },
+    { sec: "area", label: "영역 (2)", q: "동아리 활동 영역을 구성하는 활동 두 가지를 쓰세요.", unit: "활동", answers: ["학술⋅문화 및 여가 활동", "봉사활동"],
+      tip: "봉사활동은 따로 떨어진 영역이 아니라 동아리 활동 안에 있어요!" },
+    { sec: "area", label: "영역 (3)", q: "진로 활동 영역을 구성하는 활동 두 가지를 쓰세요.", unit: "활동", answers: ["진로 탐색 활동", "진로 설계 및 실천 활동"] },
+    { sec: "area", label: "<표 1> 자율활동", q: "자율활동의 예시 활동(이름) 세 가지를 쓰세요.", unit: "예시 활동",
+      answers: ["주제 탐구 활동", "적응 및 개척 활동", "프로젝트형 봉사활동"], w: "주적프", tip: "“주적은 프로젝트!” — 주제 탐구 활동, 적응 및 개척 활동, 프로젝트형 봉사활동." },
+    { sec: "area", label: "<표 1> 자치활동", q: "자치활동의 예시 활동(이름) 세 가지를 쓰세요.", unit: "예시 활동",
+      answers: ["기본생활습관 형성 활동", "관계 형성 및 소통 활동", "공동체 자치활동"], w: "공기관", tip: "“공기관(公機關)” — 공동체 자치활동, 기본생활습관 형성 활동, 관계 형성 및 소통 활동. 자치는 공기관처럼!" },
+    { sec: "area", label: "<표 1> 학술⋅문화 및 여가 활동", q: "학술⋅문화 및 여가 활동의 예시 활동(이름) 네 가지를 쓰세요.", unit: "동아리",
+      answers: ["학술 동아리", "예술 동아리", "스포츠 동아리", "놀이 동아리"], w: "학예 스놀", tip: "“학예회 끝나고 스(포츠)·놀(이)!” — 학술, 예술, 스포츠, 놀이 동아리." },
+    { sec: "area", label: "<표 1> 봉사활동", q: "봉사활동의 예시 활동(이름) 세 가지를 쓰세요.", unit: "예시 활동",
+      answers: ["교내 봉사활동", "지역 사회 봉사활동", "청소년 단체 활동"], w: "교지청", tip: "“교지청 → 교육지원청” — 교내 봉사활동, 지역 사회 봉사활동, 청소년 단체 활동." },
+    { sec: "area", label: "<표 1> 진로 탐색 활동", q: "진로 탐색 활동의 예시 활동(이름) 네 가지를 쓰세요.", unit: "예시 활동",
+      answers: ["자아탐색 활동", "진로 이해 활동", "직업 이해 활동", "정보 탐색 활동"], w: "정직 자진", tip: "“정직하게 자진해서” — 정보 탐색, 직업 이해, 자아탐색, 진로 이해 활동." },
+    { sec: "area", label: "<표 1> 진로 설계 및 실천 활동", q: "진로 설계 및 실천 활동의 예시 활동(이름) 세 가지를 쓰세요.", unit: "예시 활동",
+      answers: ["진로 준비 활동", "진로계획 활동", "진로체험 활동"], w: "준·계·체", tip: "준비 → 계획 → 체험, 순서대로 — 진로 준비 활동, 진로계획 활동, 진로체험 활동." },
+    { sec: "char", label: "성격 첫째", q: "창의적 체험활동 각 영역의 활동이 증진을 도모하는 역량 여섯 가지를 쓰세요.", unit: "역량",
+      answers: ["자기관리 역량", "지식정보처리 역량", "창의적 사고 역량", "심미적 감성 역량", "협력적 소통 역량", "공동체 역량"],
+      w: "자지창 심협공", tip: "“자지창 심협공” — 자기관리, 지식정보처리, 창의적 사고, 심미적 감성, 협력적 소통, 공동체 역량." },
+    { sec: "char", label: "성격 넷째", q: "창의적 체험활동의 설계 주체를 모두 쓰세요.", unit: "주체", answers: ["학교", "교사", "학생"] }
+  ],
+  hours: CHA_TIME.map(([g, v], gi) => ({
+    sec: "time", label: `시수 ${g}`, answer: v, opts: { 0: ["204", "272", "306"], 1: ["238", "272", "136"], 2: ["238", "272", "340"] }[gi],
+    html: `<b>${g}</b> 창의적 체험활동 시간 배당 기준 → <span class="gap">( <span class="gap-line"></span> )</span>`,
+    reveal: `<table class="ct-table mini"><tbody>${CHA_TIME.map(([n, x], k) => `<tr class="${k === gi ? "hl" : ""}"><th class="side">${n}</th><td>${x}</td></tr>`).join("")}</tbody></table>`
+  }))
+};
+
+/* 원문 문장 모으기 (퀴즈용): 제목에서 범위(sec)와 이름표(lab)를 이어받는다 */
+function collectSents(sj) {
+  const out = []; let sec = null, lab = "";
+  const add = (t, label) => { if (t.kw.length) out.push({ t, sec, label }); };
+  const walk = (items, base) => items.forEach(it => {
+    const lb = it.mk === "∙" ? base : `${base} ${it.mk}`;
+    (it.t || []).forEach(t => add(t, lb));
+    if (it.sub) walk(it.sub, lb);
+  });
+  for (const b of sj.doc) {
+    if (b.h) { if (b.sec) sec = b.sec; if (b.lab) lab = b.lab; }
+    if (b.p) b.p.forEach(t => add(t, lab));
+    if (b.ol) walk(b.ol, lab);
+    if (b.table === "cha1") CHA_T1.forEach(a => a.acts.forEach(act => act.ex.forEach(t => add(t, `<표 1> ${act.name}`))));
+  }
+  return out;
+}
+TS.chong.sents = collectSents(TS.chong);
+TS.cha.sents = collectSents(TS.cha);
+
+function findKw(s, k) {
+  const m = k.match(/^(.*)@(\d+)$/), w = m ? m[1] : k, nth = m ? +m[2] : 1;
+  let st = -1;
+  for (let i = 0; i < nth; i++) { st = s.indexOf(w, st + 1); if (st < 0) return null; }
+  return { w, st, en: st + w.length };
+}
+const kwWord = k => k.replace(/@\d+$/, "");
+function pickKw(t, n) {
+  const picked = [];
+  for (const k of shuffle(t.kw)) {
+    const f = findKw(t.s, k);
+    if (!f || !picked.every(p => f.en <= p.st || f.st >= p.en)) continue;
+    picked.push(f);
+    if (picked.length === n) break;
+  }
+  return picked.sort((a, b) => a.st - b.st);
+}
+
+/* ── 문제 만들기 ── */
+const TEXT_TYPE_LABEL = { cmc: "빈칸 고르기", cfill: "빈칸 쓰기", hours: "시수 고르기", clist: "목록 쓰기" };
+/* 숫자 빈칸은 비슷한 모양의 틀린 숫자를 보기로 (학습용 오답 보기) */
+const ALT = {
+  "40분": ["45분", "50분", "35분"], "34주": ["32주", "35주", "36주"], "2년간": ["1년간", "3년간", "4년간"],
+  "20%": ["10%", "15%", "30%"], "64시간": ["32시간", "68시간", "34시간"], "34시간 이상": ["17시간 이상", "51시간 이상", "68시간 이상"],
+  "5~6학년": ["3~4학년", "3~6학년", "1~2학년"], "3~6학년별": ["1~6학년별", "5~6학년별", "3~4학년별"],
+  "학기별 1주": ["학기별 2주", "연간 1주", "월별 1주"], "3월 중 34시간": ["3월 중 68시간", "3월 중 17시간", "1학기 중 34시간"],
+  "주당 평균 2시간": ["주당 평균 1시간", "주당 평균 4시간", "주당 평균 5시간", "주당 평균 3시간"],
+  "주당 평균 3시간": ["주당 평균 4시간", "주당 평균 5시간", "주당 평균 6시간", "주당 평균 2시간"],
+  "1~2학년군": ["3~4학년군", "5~6학년군", "1학년"], "3개 영역": ["2개 영역", "4개 영역", "5개 영역"], "세 영역": ["두 영역", "네 영역", "다섯 영역"]
+};
+const hasDigit = w => /\d/.test(w);
+function textDistractors(sj, ans, s) {
+  if (ALT[ans]) return shuffle(ALT[ans].filter(v => !s.includes(v))).slice(0, 3);
+  const pool = [...new Set(sj.sents.flatMap(x => x.t.kw.map(kwWord)))]
+    .filter(w => w !== ans && !s.includes(w) && !w.includes(ans) && !ans.includes(w) && hasDigit(w) === hasDigit(ans));
+  // 길이가 비슷한 것 위주로 섞어서 3개
+  const near = pool.sort((a, b) => Math.abs(a.length - ans.length) - Math.abs(b.length - ans.length)).slice(0, 10);
+  return shuffle(near).slice(0, 3);
+}
+function textBase(key, label, ttype) {
+  const sj = TS[key];
+  return { subj: key, area: sj.short, label, tags: [sj.short, label], ttype };
+}
+function makeTextMC(key, x) {
+  const picked = pickKw(x.t, 1), ans = picked[0].w;
+  return { ...textBase(key, x.label, "cmc"), type: "mc", hint: x.label,
+    cloze: { s: x.t.s, picked, answer: ans, options: shuffle([ans, ...textDistractors(TS[key], ans, x.t.s)]) } };
+}
+function makeTextFill(key, x) {
+  const picked = pickKw(x.t, x.t.kw.length >= 3 && Math.random() < 0.35 ? 2 : 1), s = x.t.s, parts = [];
+  let pos = 0;
+  picked.forEach(p => { if (p.st > pos) parts.push({ t: s.slice(pos, p.st) }); parts.push({ b: p.w, suf: "" }); pos = p.en; });
+  if (pos < s.length) parts.push({ t: s.slice(pos) });
+  return { ...textBase(key, x.label, "cfill"), type: "fill", fills: [parts], title: "빈칸에 알맞은 말을 쓰세요.", hint: x.label };
+}
+function makeTextList(key, L) {
+  return { ...textBase(key, L.label, "clist"), type: "list", answers: L.answers, alias: L.alias, title: L.q, unit: L.unit, tip: L.tip, tipW: L.w };
+}
+function makeHours(key, h) {
+  return { ...textBase(key, h.label, "hours"), type: "mc", title: "시간 배당 기준 수업 시수를 고르세요.", hint: h.label,
+    cloze: { html: h.html, reveal: h.reveal, answer: h.answer, options: shuffle([h.answer, ...h.opts]) } };
+}
+
+function textPools(key) {
+  const sj = TS[key], secs = checked("c-sec"), types = checked("c-type");
+  const sents = sj.sents.filter(x => secs.includes(x.sec));
+  return { secs, types, pools: {
+    cmc: types.includes("cmc") ? sents.map(x => () => makeTextMC(key, x)) : [],
+    cfill: types.includes("cfill") ? sents.map(x => () => makeTextFill(key, x)) : [],
+    hours: types.includes("hours") ? (sj.hours || []).filter(h => secs.includes(h.sec)).map(h => () => makeHours(key, h)) : [],
+    clist: types.includes("clist") ? (sj.lists || []).filter(L => secs.includes(L.sec)).map(L => () => makeTextList(key, L)) : []
+  } };
+}
+function updateTextPoolInfo() {
+  if (!TS[CUR]) return;
+  const p = textPools(CUR);
+  const parts = Object.keys(TEXT_TYPE_LABEL).filter(t => p.types.includes(t) && p.pools[t].length).map(t => `${TEXT_TYPE_LABEL[t]} ${p.pools[t].length}개`);
+  $("#c-pool-info").textContent = `지금 범위에서 나올 수 있는 문제: ${parts.join(" + ") || "없음"}`;
+  $("#c-setup-err").textContent = "";
+}
+function buildText(key) {
+  const p = textPools(key), err = $("#c-setup-err");
+  if (!p.secs.length) { err.textContent = "범위를 하나 이상 골라 주세요."; return null; }
+  const queues = Object.values(p.pools).filter(a => a.length).map(a => shuffle(a));
+  if (!queues.length) { err.textContent = "고른 범위와 형식에 맞는 문제가 없어요. 범위나 형식을 더 골라 보세요."; return null; }
+  const out = [];
+  while (queues.some(q => q.length)) for (const q of shuffle(queues)) if (q.length) out.push(q.shift());
+  const n = +$("#c-count").value;
+  return { qs: (n ? out.slice(0, n) : out).map(f => f()), scope: p.secs.map(s => TS[key].secs[s]).join("·") };
+}
+function setupText(key) {
+  const sj = TS[key];
+  makeChecks("c-sec", Object.keys(sj.secs), v => sj.secs[v]);
+  $("#ct-title").textContent = sj.title;
+  $("#ct-foot").textContent = sj.foot;
+  $('input[name="c-type"][value="hours"]').closest("label").hidden = !(sj.hours && sj.hours.length);
+  updateTextPoolInfo();
+}
+$("#tab-cquiz").addEventListener("change", updateTextPoolInfo);
+$("#c-start").addEventListener("click", () => { const b = buildText(CUR); if (b) startSession(b.qs, b.scope, false); });
+
+/* ── 원문 빈칸 학습 ── */
+let textShown = false;
+function sentHTML(t, mode) {
+  if (mode === "none" || !t.kw.length) return esc(t.s);
+  const picked = pickKw(t, mode === "all" ? 99 : 1);
+  return blankHTML(t.s, picked, p => `<span class="bl" tabindex="0">${esc(p.w)}</span>`);
+}
+function listHTML(items, mode, wide) {
+  return `<ul class="ct-list${wide ? " wide" : ""}">${items.map(it => `<li><span class="mk">${esc(it.mk)}</span><div>${(it.t || []).map(t => sentHTML(t, mode)).join(" ")}${it.sub ? listHTML(it.sub, mode) : ""}</div></li>`).join("")}</ul>`;
+}
+const TABLES = {
+  chongTime(mode, tb) {
+    const C = CHONG_TIME, n = v => tb ? `<span class="bl" tabindex="0">${v}</span>` : v;
+    let rows = C.rows.map((r, i) => `<tr>${i === 0 ? `<th class="side" rowspan="8">교과<br>(군)</th>` : ""}<th class="side">${esc(r)}</th>${i === 0 ? `<td class="g12" rowspan="7">${C.g12.map(([k, v]) => `${esc(k)} ${n(v)}`).join("<br>")}</td>` : ""}<td>${n(C.g34[i])}</td><td>${n(C.g56[i])}</td></tr>`).join("");
+    rows += `<tr><th class="side">소계</th>${C.sub.map(v => `<td>${n(v)}</td>`).join("")}</tr>`;
+    rows += `<tr><th class="side" colspan="2">창의적 체험활동</th>${C.cha.map(v => `<td>${n(v)}</td>`).join("")}</tr>`;
+    rows += `<tr><th class="side" colspan="2">학년군별 총 수업 시간 수</th>${C.tot.map(v => `<td>${n(v)}</td>`).join("")}</tr>`;
+    return `<p class="hint" style="margin:4px 0">&lt;표 1&gt;</p><div class="tscroll"><table class="ct-table"><thead><tr><th colspan="2">구 분</th><th>1~2학년</th><th>3~4학년</th><th>5~6학년</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  },
+  chaTime(mode, tb) {
+    const n = v => tb ? `<span class="bl" tabindex="0">${v}</span>` : v;
+    return `<table class="ct-table mini"><thead><tr><th>구분</th><th>시간 배당 기준</th></tr></thead><tbody>${CHA_TIME.map(([g, v]) => `<tr><th class="side">${g}</th><td>${n(v)}</td></tr>`).join("")}</tbody></table>`;
+  },
+  cha1(mode) {
+    const nm = v => mode === "all" ? `<span class="bl" tabindex="0">${esc(v)}</span>` : esc(v);
+    return `<div class="tscroll"><table class="ct-table t1"><thead><tr><th>영역</th><th>활동</th><th>예시 활동</th></tr></thead><tbody>${CHA_T1.map(a => a.acts.map((act, i) =>
+      `<tr>${i === 0 ? `<th class="side" rowspan="${a.acts.length}">${esc(a.area)}</th>` : ""}<th class="side">${nm(act.name)}</th><td class="ex">${act.ex.map(t => `<div>∙ ${sentHTML(t, mode)}</div>`).join("")}</td></tr>`).join("")).join("")}</tbody></table></div>`;
+  }
+};
+function renderText() {
+  const sj = TS[CUR]; if (!sj) return;
+  const mode = $("#ct-mode").value, tb = $("#ct-table").checked && mode !== "none";
+  const box = $("#ctext");
+  box.className = textShown ? "" : "hide-ans";
+  box.innerHTML = sj.doc.map(b => {
+    if (b.h) return b.lv === 4 ? `<h4>${esc(b.h)}</h4>` : `<h3>${esc(b.h)}</h3>`;
+    if (b.p) return `<p class="${b.cls || ""}">${b.p.map(t => sentHTML(t, mode)).join(" ")}</p>`;
+    if (b.ol) return listHTML(b.ol, mode, b.wide);
+    if (b.table) return TABLES[b.table](mode, tb);
+    return "";
+  }).join("");
+}
+["ct-mode", "ct-table"].forEach(id => $("#" + id).addEventListener("change", renderText));
+$("#ct-shuffle").addEventListener("click", renderText);
+$("#ct-toggle").addEventListener("click", () => {
+  textShown = !textShown;
+  $("#ctext").classList.toggle("hide-ans", !textShown);
+  $$("#ctext .bl.peek").forEach(b => b.classList.remove("peek"));
+  $("#ct-toggle").textContent = textShown ? "정답 숨기기" : "정답 보이기";
+});
+$("#ctext").addEventListener("click", e => { const b = e.target.closest(".bl"); if (b && $("#ctext").classList.contains("hide-ans")) b.classList.toggle("peek"); });
+$("#ctext").addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches(".bl")) { e.preventDefault(); e.target.click(); } });
+$("#ct-print").addEventListener("click", () => window.print());
+
+/* ── 외우기 팁 (학습 보조 자료 — 원문과 별개로 만든 연상법) ── */
+const tipCard = (title, body) => `<div class="card tip-card"><h2>${title}</h2>${body}</div>`;
+const listTipsHTML = sj => `<ul>${sj.lists.filter(L => L.w).map(L => `<li><b class="tip-w">${esc(L.w)}</b> — ${esc(L.tip.replace(/^“[^”]*”\s*—\s*/, ""))}</li>`).join("")}</ul>`;
+TS.chong.tips = () => {
+  const C = CHONG_TIME;
+  return tipCard("초등학교 교육 목표", `
+      <p>중점: <b>기본 습관</b> · <b>기초 능력</b> · <b>바른 인성</b> → <span class="tip-big">습·능·인</span></p>
+      <p>목표 1)~4)의 끝말 → <span class="tip-big">꿈·상·심·태</span> “<b>꿈</b>을 <b>상</b>상하는 <b>심태</b>(마음가짐)”</p>
+      <ul><li>1) 자신의 <b>꿈</b>을 키운다 &nbsp;2) <b>상</b>상력을 키운다 &nbsp;3) <b>심</b>성을 기른다 &nbsp;4) <b>태</b>도를 기른다</li>
+      <li>끝 동사도 시험에 잘 나와요: 1)·2)는 <b>키운다</b>, 3)·4)는 <b>기른다</b> → “키키기기”</li></ul>`)
+    + tipCard("편제 · 감축 불가 · 5) 다)", listTipsHTML(TS.chong))
+    + tipCard("&lt;표 1&gt; 시간 배당 — 이것만은!", `<ul>
+      <li>국어: 1~2학년 <b>482</b> → 3~4·5~6학년 <b>408</b></li>
+      <li>3~4 → 5~6학년에서 바뀌는 것은 두 개뿐: 과학/실과 <b>204 → 340</b> (실과가 5~6학년에만 들어가서), 영어 <b>136 → 204</b></li>
+      <li>사회/도덕·수학·예술은 <b>272</b>, 체육은 <b>204</b>로 3~6학년 같음</li>
+      <li>창의적 체험활동: 1~2학년 <b>238</b>, 3~6학년 <b>204</b></li>
+      <li>총 수업 시간 수(최소): <b>${C.tot.join(" → ")}</b> · 3~4학년 총 시수(1,972) = 5~6학년 소계(1,972)!</li></ul>`)
+    + tipCard("숫자 모음", `<table class="num-table"><tbody>
+      <tr><th>40분</th><td>1시간의 수업 원칙 (탄력적 편성⋅운영 가능)</td></tr>
+      <tr><th>34주 · 2년간</th><td>학년군 시간 배당의 기준 (연간 34주 × 2년)</td></tr>
+      <tr><th>최소</th><td>학년군별 총 수업 시간 수는 ‘최소 수업 시수’</td></tr>
+      <tr><th>20%</th><td>교과(군)별·창체 시수 증감 범위 (체육·예술은 감축 불가)</td></tr>
+      <tr><th>34시간 이상</th><td>정보교육 (실과 정보영역 + 학교자율시간 등)</td></tr>
+      <tr><th>학기별 1주</th><td>학교자율시간 확보 (연간 34주 기준)</td></tr>
+      <tr><th>64시간</th><td>1~2학년 안전교육 (바른 생활⋅슬기로운 생활⋅즐거운 생활 교과 포함)</td></tr>
+      <tr><th>3~6학년별</th><td>학교자율시간 편성⋅운영</td></tr></tbody></table>`)
+    + tipCard("편성⋅운영 기준 1)~5) 큰 줄기", `<p class="tip-big">자·기·자·진·발</p><p>“<b>자기</b>가 <b>자진</b>해서 <b>발</b>표!”</p><ul>
+      <li>1) <b>자</b>율적 편성 (학년별·학기별, 20% 증감, 집중이수)</li>
+      <li>2) 학습 <b>기</b>회 보장 (기초 학습, 전입 학생, 복식 학급)</li>
+      <li>3) 학교<b>자</b>율시간 (3~6학년, 학기별 1주)</li>
+      <li>4) <b>진</b>로연계교육 (입학 초기, 중학교 진학 전)</li>
+      <li>5) <b>발</b>달 특성 (1~2학년 놀이·신체 활동, 안전교육 64시간)</li></ul>`);
+};
+TS.cha.tips = () => tipCard("구조 한눈에: 3영역 · 6활동", `<table class="num-table"><tbody>${CHA_T1.map(a => `<tr><th>${esc(a.area)}</th><td>${a.acts.map(x => esc(x.name)).join(" · ")}</td></tr>`).join("")}</tbody></table>
+      <p class="hint">2015 개정은 4영역(자율·동아리·봉사·진로) → 2022 개정은 3영역. 봉사활동은 동아리 활동 안으로!</p>`)
+    + tipCard("예시 활동 · 역량 외우는 말", listTipsHTML(TS.cha))
+    + tipCard("성격 첫째~넷째", `<p class="tip-big">역·연·학·자</p><p>“<b>역</b>사 <b>연</b>구하는 <b>학자</b>”</p><ul>
+      <li>첫째 <b>역</b>량 함양을 위한 학습자 주도의 교육과정</li>
+      <li>둘째 <b>연</b>계와 통합 추구</li>
+      <li>셋째 <b>학</b>교급별 특성 반영</li>
+      <li>넷째 학교의 <b>자</b>율성 발휘 (설계 주체: 학교, 교사, 학생)</li></ul>`)
+    + tipCard("숫자 모음", `<table class="num-table"><tbody>
+      <tr><th>238 · 204 · 204</th><td>초등학교 1~2 · 3~4 · 5~6학년 창체 시간 배당 (총론 &lt;표 1&gt;과 같음)</td></tr>
+      <tr><th>34주 · 2년간</th><td>학년군 창체 시간 배당의 기준</td></tr>
+      <tr><th>20%</th><td>초·중학교에서 교과(군)별·창체 시수 증감 범위</td></tr>
+      <tr><th>3월 중 34시간</th><td>초등학교 1학년 입학 초기 적응 활동</td></tr>
+      <tr><th>주당 평균 2시간</th><td>초등학교 1학년 4월 이후</td></tr>
+      <tr><th>주당 평균 3시간</th><td>초등학교 2~6학년 (및 중학교, 고등학교)</td></tr></tbody></table>`)
+    + tipCard("초등학교 목표와 운영 포인트", `<ul>
+      <li>목표: 개성과 소질을 탐색·발견 → <b>기본 생활 습관</b>과 <b>시민의식</b></li>
+      <li>1~2학년군은 <b>자율⋅자치</b>, 그 밖의 학년군은 <b>자율⋅자치 및 동아리 활동</b>에 중점 (예컨대)</li>
+      <li>진로 연계 교육: 1학년 1학기 ↔ <b>유치원</b>, 6학년 2학기 ↔ <b>중학교</b></li>
+      <li>&lt;표 5&gt; 동아리 활동 중점 4개: 창의⋅융합적 사고 · 문화, 예술, 체육 · 신체 활동 및 놀이 · 지속가능한 환경보호 → “<b>창·문·신·환</b>” (창문 신환: 창문을 새로 바꾸자)</li>
+      <li>&lt;표 5&gt; 진로 활동 중점 4개: 긍정적인 자아 개념 · 일의 중요성 · 직업 세계 탐색 · 진로 기초 소양 → “<b>자·일·직·기</b>” (자일 직기: 자일(밧줄) 짜는 직기)</li></ul>`);
+function renderTips() { const sj = TS[CUR]; if (sj) $("#ctips").innerHTML = sj.tips(); }
+
 /* ═════════ 시작 ═════════ */
+// 총론·창체 빈칸 후보가 원문 문장에 실제로 있는지 점검
+for (const k of Object.keys(TS)) TS[k].sents.forEach(x => x.t.kw.forEach(w => { if (!findKw(x.t.s, w)) console.warn("빈칸 후보가 원문에 없음:", k, x.label, w); }));
 // 빈칸 후보 단어가 원문에 실제로 있는지 점검 (원문은 건드리지 않음)
 for (const a of AREAS) KEYWORDS[a].forEach((ks, i) => ks.forEach(k => { if (!DATA[a]["핵심아이디어"][i].includes(k)) console.warn("빈칸 후보가 원문에 없음:", a, i, k); }));
 // 연상 단어 글자가 실제 원문 낱말에서 나왔는지, 모든 내용 요소를 덮는지 점검
@@ -1029,9 +1731,7 @@ for (const a of AREAS) for (const g of GRADES) for (const c of CATS) {
     console.warn("연상 단어 점검 실패:", a, g, c, m.w, m.keys.map(k => k.ch).join(""));
 }
 updatePoolInfo();
-renderHistory();
-const savedTab = store.get("acc-tab", "quiz");
-showTab(["quiz", "sheet", "acro", "tree"].includes(savedTab) ? savedTab : "quiz");
+route();
 </script>
 </body>
 </html>
