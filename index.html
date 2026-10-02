@@ -1,0 +1,1037 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>미술과 내용체계표 암기장</title>
+<style>
+:root{
+  --bg:#f6f5f2; --card:#fff; --ink:#1d2129; --muted:#5d6470; --line:#e3e1db;
+  --exp:#2563eb; --exp-bg:#eaf1ff; --exp-soft:#c7d8fb;
+  --expr:#d9680b; --expr-bg:#fff2e5; --expr-soft:#f8d2ad;
+  --app:#15803d; --app-bg:#e8f6ed; --app-soft:#bde3c9;
+  --ok:#15803d; --ok-bg:#e7f6ec; --bad:#c62828; --bad-bg:#fdeded; --warn:#a85f00; --warn-bg:#fff4dc;
+  --c:#3b3f46; --c-bg:#f0efeb; --c-soft:#dcdad3;
+  --radius:14px; --field:#fff; --soft:#fbfaf8; --on-ink:#fff;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#16171a; --card:#202126; --ink:#e9e8e4; --muted:#a3a7ae; --line:#36383e; --field:#18191d; --soft:#1b1c20; --on-ink:#16171a;
+  --exp:#79a5ff; --exp-bg:#1c2640; --exp-soft:#33497a; --expr:#f5a05a; --expr-bg:#372515; --expr-soft:#6b4626;
+  --app:#5ccf86; --app-bg:#15301f; --app-soft:#2c5c3c; --ok:#5ccf86; --ok-bg:#15301f; --bad:#ff7a7a; --bad-bg:#3b1d1d; --warn:#f2b85a; --warn-bg:#382a13;
+  --c:#d0d0cc; --c-bg:#2a2b30; --c-soft:#44464d; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#16171a; --card:#202126; --ink:#e9e8e4; --muted:#a3a7ae; --line:#36383e; --field:#18191d; --soft:#1b1c20; --on-ink:#16171a;
+  --exp:#79a5ff; --exp-bg:#1c2640; --exp-soft:#33497a; --expr:#f5a05a; --expr-bg:#372515; --expr-soft:#6b4626;
+  --app:#5ccf86; --app-bg:#15301f; --app-soft:#2c5c3c; --ok:#5ccf86; --ok-bg:#15301f; --bad:#ff7a7a; --bad-bg:#3b1d1d; --warn:#f2b85a; --warn-bg:#382a13;
+  --c:#d0d0cc; --c-bg:#2a2b30; --c-soft:#44464d; color-scheme:dark;
+}
+.a-exp{--c:var(--exp);--c-bg:var(--exp-bg);--c-soft:var(--exp-soft)}
+.a-expr{--c:var(--expr);--c-bg:var(--expr-bg);--c-soft:var(--expr-soft)}
+.a-app{--c:var(--app);--c-bg:var(--app-bg);--c-soft:var(--app-soft)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.6;
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;word-break:keep-all;overflow-wrap:anywhere}
+button,input,select{font:inherit;color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 16px}
+[hidden]{display:none!important}
+
+/* header */
+.top{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.top .wrap{padding-top:14px}
+.top h1{margin:0;font-size:1.25rem;letter-spacing:-.02em}
+.top .sub{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+.notice{margin:6px 0 0;color:var(--muted);font-size:.75rem}
+.notice a{color:inherit}
+.tabs{display:flex;gap:4px;margin-top:10px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+@media (max-width:560px){.tabs button{padding:10px 9px;font-size:.92rem}}
+.tabs button{border:0;background:none;padding:10px 14px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+main{padding-top:20px;padding-bottom:48px}
+
+/* generic */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:16px}
+.card h2{margin:0 0 12px;font-size:1.1rem}
+.hint{color:var(--muted);font-size:.88rem;margin:6px 0}
+.error{color:var(--bad);font-weight:600;font-size:.9rem;min-height:1.2em;margin:8px 0}
+.btn{border:1px solid var(--line);background:var(--card);padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:600}
+.btn:hover{border-color:#bcb9b0}
+.btn.primary{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.btn.primary:hover{opacity:.88}
+.btn.ghost{background:none}
+.btn.big{width:100%;padding:14px;font-size:1.05rem}
+.btn:disabled{opacity:.45;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+fieldset{border:0;padding:0;margin:0 0 14px}
+legend{font-weight:700;font-size:.92rem;margin-bottom:6px;padding:0}
+.chk{display:inline-flex;align-items:center;cursor:pointer;user-select:none}
+.chk input{position:absolute;opacity:0;pointer-events:none}
+.chk span{display:inline-block;padding:7px 14px;border-radius:999px;border:1.5px solid var(--c-soft);background:var(--card);color:var(--muted);font-weight:600;font-size:.92rem;transition:.12s}
+.chk span::before{content:"";display:inline-block;width:.55em;height:.55em;border-radius:50%;border:1.5px solid currentColor;margin-right:6px;vertical-align:.08em}
+.chk input:checked + span{background:var(--c-bg);border-color:var(--c);color:var(--c)}
+.chk input:checked + span::before{background:currentColor}
+.chk input:focus-visible + span{outline:2px solid var(--c);outline-offset:2px}
+select{padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card)}
+
+/* quiz */
+.q-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.q-progress{font-weight:700;color:var(--muted);font-size:.9rem}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:16px}
+.bar i{display:block;height:100%;background:var(--ink);transition:width .2s}
+.q-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.tag{background:var(--c-bg);color:var(--c);border:1px solid var(--c-soft);border-radius:999px;padding:2px 10px;font-size:.82rem;font-weight:700}
+.qtype{color:var(--muted);font-size:.82rem;padding:3px 4px}
+.q-title{font-size:1.08rem;margin:0 0 4px;line-height:1.5}
+.inputs{display:grid;gap:8px;margin:14px 0}
+.inp{display:flex;align-items:center;gap:8px}
+.inp .num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--c-bg);color:var(--c);display:grid;place-items:center;font-weight:700;font-size:.85rem}
+.inp input{flex:1;min-width:0;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--field);font-size:1rem}
+.inp input:focus{outline:none;border-color:var(--c)}
+.inp input.ok{border-color:var(--ok);background:var(--ok-bg)}
+.inp input.bad{border-color:var(--bad);background:var(--bad-bg)}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.sentence{margin:14px 0;padding:16px;border-left:4px solid var(--c);background:var(--c-bg);border-radius:0 10px 10px 0;font-size:1.05rem;line-height:1.9}
+.gap{display:inline-block;white-space:nowrap;color:var(--c);font-weight:700}
+.gap-line{display:inline-block;width:4.5em;border-bottom:2px solid var(--c);vertical-align:-.15em;margin-left:2px}
+mark.fill{background:var(--c-soft);color:var(--ink);font-weight:700;padding:0 3px;border-radius:4px}
+.options{display:grid;gap:8px;margin-top:8px}
+.opt{text-align:left;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--field);cursor:pointer;line-height:1.45}
+.opt:hover:not(:disabled){border-color:var(--c)}
+.opt .n{color:var(--muted);margin-right:6px}
+.opt:disabled{cursor:default}
+.opt.ok{border-color:var(--ok);background:var(--ok-bg)}
+.opt.bad{border-color:var(--bad);background:var(--bad-bg)}
+.fb{margin:16px 0;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--soft)}
+.fb-head{font-weight:800;margin:0 0 8px;font-size:1.02rem}
+.fb.good .fb-head{color:var(--ok)}
+.fb.nope .fb-head{color:var(--bad)}
+.fb-group{margin:8px 0;padding:8px 12px;border-radius:8px}
+.fb-group b{font-size:.88rem}
+.fb-group ul,.fb-answer ol{margin:4px 0 0;padding-left:20px}
+.fb-group.ok{background:var(--ok-bg)} .fb-group.ok b{color:var(--ok)}
+.fb-group.warn{background:var(--warn-bg)} .fb-group.warn b{color:var(--warn)}
+.fb-group.bad{background:var(--bad-bg)} .fb-group.bad b{color:var(--bad)}
+.fb-group .sug{color:var(--muted);font-size:.88rem}
+.fb-answer{margin-top:10px;font-size:.95rem}
+
+/* result & history */
+.score{display:flex;align-items:baseline;gap:8px;margin:4px 0 14px}
+.score big{font-size:2.6rem;font-weight:800;line-height:1}
+.score span{color:var(--muted)}
+.res-list{list-style:none;padding:0;margin:0 0 16px;display:grid;gap:6px}
+.res-list li{display:flex;gap:10px;align-items:flex-start;padding:8px 12px;border-radius:8px;background:var(--soft);border:1px solid var(--line);font-size:.92rem}
+.res-list .mk{font-weight:800;flex:none;width:1.2em}
+.res-list .mk.o{color:var(--ok)} .res-list .mk.x{color:var(--bad)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.stat{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
+.stat b{display:block;font-size:1.35rem;line-height:1.2}
+.stat small{color:var(--muted);font-size:.78rem}
+.hist{list-style:none;padding:0;margin:0;font-size:.9rem}
+.hist li{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.hist li:last-child{border-bottom:0}
+.hist .when{color:var(--muted);white-space:nowrap}
+.pill{font-size:.75rem;border:1px solid var(--line);border-radius:999px;padding:0 7px;margin-left:4px;color:var(--muted)}
+
+/* worksheet */
+.sheet-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;align-items:flex-end;margin-bottom:14px}
+.sheet-head h2{margin:0;font-size:1.15rem}
+.namebox{color:var(--muted);font-size:.9rem;white-space:nowrap}
+.ws-area{margin-bottom:22px}
+.ws-area h3{margin:0 0 8px;font-size:1.1rem;color:var(--c);display:flex;align-items:center;gap:8px}
+.ws-area h3::before{content:"";width:12px;height:12px;border-radius:3px;background:var(--c)}
+.ws-ideas{background:var(--c-bg);border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:.93rem}
+.ws-ideas ol{margin:4px 0 0;padding-left:20px}
+.ws-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:.93rem}
+.ws-table th,.ws-table td{border:1px solid var(--c-soft);padding:8px 10px;vertical-align:top;text-align:left}
+.ws-table thead th{background:var(--c-bg);color:var(--c);text-align:center}
+.ws-table tbody th{background:var(--c-bg);color:var(--c);width:5.6em;text-align:center;vertical-align:middle}
+.ws-table ul{margin:0;padding-left:1.1em}
+.ws-table li{margin:3px 0}
+.bl{color:var(--c);font-weight:700;border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.hide-ans .bl{color:transparent;border-bottom:2px solid var(--c);background:var(--c-bg);cursor:pointer;user-select:none}
+.hide-ans .bl.peek{color:var(--c)}
+.empty{color:var(--muted);text-align:center;padding:24px}
+.print-only{display:none}
+
+/* ( ) 채우기 */
+.fill-list{list-style:none;padding:0;margin:14px 0;display:grid;gap:10px}
+.fill-list li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--soft);line-height:2.2}
+.fill-in{white-space:nowrap;color:var(--c);font-weight:700}
+.fill-in input{border:0;border-bottom:2px solid var(--c);background:var(--field);padding:2px 4px;margin:0 2px;text-align:center;font-size:1rem;border-radius:4px 4px 0 0;max-width:60vw}
+.fill-in input:focus{outline:2px solid var(--c-soft)}
+.fill-in input.ok{background:var(--ok-bg);border-color:var(--ok)}
+.fill-in input.bad{background:var(--bad-bg);border-color:var(--bad)}
+.corr{display:inline-block;margin-left:4px;padding:0 6px;border-radius:4px;background:var(--ok-bg);color:var(--ok);font-size:.88rem;font-weight:700;line-height:1.6}
+.inp .num.ini{width:auto;min-width:26px;padding:0 6px;border-radius:8px;font-size:1rem}
+.fb-tip{margin-top:10px;padding:10px 12px;border-radius:8px;background:var(--c-bg);font-size:.92rem}
+.tip-w{color:var(--c);letter-spacing:.06em}
+.ac-idea{margin:0 0 10px;padding:8px 10px;border-radius:8px;background:var(--c-bg);font-size:.9rem}
+.ac-first{color:var(--muted);font-size:.8rem;margin:-4px 0 8px}
+.acro-line{font-size:1.4rem;font-weight:800;color:var(--c);letter-spacing:.08em;margin:8px 0 2px}
+
+/* 앞글자 암기 */
+.ac-grid{display:grid;gap:12px}
+@media (min-width:720px){.ac-grid{grid-template-columns:1fr 1fr}}
+.ac-card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:var(--radius);padding:14px 16px}
+.ac-card h4{margin:0;font-size:.92rem;color:var(--muted)}
+.ac-big{font-size:1.8rem;font-weight:800;color:var(--c);letter-spacing:.12em;margin:2px 0 6px}
+.ac-card ol{margin:0 0 10px;padding-left:20px}
+.ac-card li{padding:2px 0;cursor:default}
+.ini{color:var(--c);font-weight:800;background:var(--c-bg);border-radius:3px;padding:0 1px}
+.amask .rest{cursor:pointer}
+.amask li:not(.peek) .rest{color:transparent;background:var(--c-bg);border-radius:3px;user-select:none}
+.amask li{cursor:pointer}
+.memo{width:100%;padding:8px 10px;border:1.5px dashed var(--c-soft);border-radius:8px;background:var(--field);font-size:.92rem}
+.memo:focus{outline:none;border-style:solid;border-color:var(--c)}
+.ac-sum{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:4px}
+.ac-sum th,.ac-sum td{border:1px solid var(--c-soft);padding:8px;text-align:center}
+.ac-sum thead th,.ac-sum tbody th{background:var(--c-bg);color:var(--c)}
+.ac-sum td{font-weight:800;font-size:1.1rem;color:var(--c);letter-spacing:.06em}
+
+/* tree */
+.tree-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.tree{--line-c:var(--c-soft)}
+.t-root{display:inline-block;background:var(--c);color:var(--on-ink);font-weight:800;font-size:1.15rem;padding:8px 18px;border-radius:12px}
+.tree ul{list-style:none;margin:0;padding-left:22px;position:relative}
+.tree li{position:relative;padding-top:10px}
+.tree ul > li::before{content:"";position:absolute;left:-14px;top:0;bottom:0;border-left:2px solid var(--line-c)}
+.tree ul > li:last-child::before{bottom:auto;height:30px}
+.tree ul > li::after{content:"";position:absolute;left:-14px;top:30px;width:12px;border-top:2px solid var(--line-c)}
+.tree summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;user-select:none}
+.tree summary::-webkit-details-marker{display:none}
+.tree summary::before{content:"+";display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--c);color:var(--on-ink);font-weight:800;font-size:.85rem;line-height:1}
+.tree details[open] > summary::before{content:"−"}
+.t-node{padding:6px 14px;border-radius:10px;font-weight:700;border:1.5px solid var(--c-soft);background:var(--field)}
+.t-node small{color:var(--muted);font-weight:500}
+.t-idea{background:var(--c-bg);border-color:var(--c)}
+.t-cat{background:var(--c-bg);color:var(--c)}
+.t-ideas{margin:8px 0 0 28px;padding:10px 14px;background:var(--c-bg);border-radius:10px;font-size:.93rem}
+.t-ideas ol{margin:0;padding-left:20px}
+.t-ideas li{padding:2px 0}
+.t-ideas li::before,.t-ideas li::after{display:none}
+.t-el{display:inline-block;padding:4px 12px;border-radius:8px;background:var(--field);border:1px dashed var(--c-soft);font-size:.94rem}
+.mask .t-el{cursor:pointer}
+.mask .t-el:not(.peek){color:transparent;background:var(--c-bg);user-select:none}
+@media (min-width:720px){
+  .t-grades{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+}
+
+@media (max-width:560px){
+  .card{padding:16px}
+  .top{position:static}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .ws-table{font-size:.85rem}
+  .ws-table th,.ws-table td{padding:6px}
+  .ws-table tbody th{width:4.4em}
+  .tree ul{padding-left:16px}
+  .tree ul > li::before,.tree ul > li::after{left:-10px}
+  .tree ul > li::after{width:8px}
+}
+
+@media print{
+  @page{size:A4;margin:12mm}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff;color:#000;font-size:10.5pt}
+  .card{background:#fff}
+  .top,.no-print{display:none!important}
+  main{padding:0;max-width:none}
+  .card{border:0;padding:0;margin:0;border-radius:0}
+  .print-only{display:block}
+  .ws-area{break-inside:avoid;page-break-inside:avoid;margin-bottom:7mm}
+  .ws-table th,.ws-table td{border:1px solid #555}
+  .hide-ans .bl,.hide-ans .bl.peek{color:transparent!important;background:none!important;border-bottom:1px solid #000}
+  .tree details:not([open]) > *:not(summary){display:none}
+  .print-foot{margin-top:6mm;font-size:8pt;color:#666}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <h1>초등 미술과 내용체계표 암기장</h1>
+    <p class="sub">2022 개정 교육과정 · 3~4학년, 5~6학년 · 임용시험 대비</p>
+    <p class="notice">내용체계표 원문은 2022 개정 미술과 교육과정(교육부 고시)을 그대로 사용했습니다. · 문의: <a href="mailto:sinkita@naver.com">sinkita@naver.com</a></p>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="quiz">퀴즈</button>
+      <button role="tab" data-tab="sheet">빈칸 학습지</button>
+      <button role="tab" data-tab="acro">앞글자 암기</button>
+      <button role="tab" data-tab="tree">전체 구조 보기</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- ───────── 퀴즈 ───────── -->
+  <section id="tab-quiz">
+    <div id="quiz-setup">
+      <div class="card">
+        <h2>어디까지 풀어 볼까요?</h2>
+        <fieldset><legend>영역</legend><div class="row" data-group="q-area"></div></fieldset>
+        <fieldset><legend>학년군</legend><div class="row" data-group="q-grade"></div></fieldset>
+        <fieldset><legend>범주</legend><div class="row" data-group="q-cat"></div></fieldset>
+        <fieldset><legend>문제 형식</legend>
+          <div class="row">
+            <label class="chk"><input type="checkbox" name="q-type" value="fill" checked><span>내용 요소 ( ) 채우기</span></label>
+            <label class="chk"><input type="checkbox" name="q-type" value="acro" checked><span>앞글자 보고 쓰기</span></label>
+            <label class="chk"><input type="checkbox" name="q-type" value="mc" checked><span>핵심 아이디어 빈칸 고르기</span></label>
+            <label class="chk"><input type="checkbox" name="q-type" value="list"><span>내용 요소 통째로 쓰기 (어려움)</span></label>
+          </div>
+          <p class="hint">추천 순서: ( ) 채우기 → 앞글자 보고 쓰기 → 통째로 쓰기. 쉬운 것부터 단계를 올려 보세요.</p>
+        </fieldset>
+        <div class="row">
+          <label for="q-count"><b>문제 수</b></label>
+          <select id="q-count">
+            <option value="5">5문제</option>
+            <option value="10" selected>10문제</option>
+            <option value="20">20문제</option>
+            <option value="0">나올 수 있는 문제 전부</option>
+          </select>
+        </div>
+        <p class="hint" id="pool-info"></p>
+        <p class="hint">※ 핵심 아이디어 문제는 학년군·범주와 상관없이, 고른 영역에서 나와요. 고른 형식들이 번갈아 나와요.</p>
+        <p class="error" id="setup-err"></p>
+        <button class="btn primary big" id="start">퀴즈 시작하기</button>
+      </div>
+
+      <div class="card" id="history"></div>
+    </div>
+
+    <div class="card" id="quiz-play" hidden>
+      <div class="q-top">
+        <span class="q-progress" id="q-progress"></span>
+        <button class="btn ghost" id="quit">그만하고 결과 보기</button>
+      </div>
+      <div class="bar"><i id="q-bar"></i></div>
+      <div id="q-body"></div>
+    </div>
+
+    <div class="card" id="quiz-result" hidden></div>
+  </section>
+
+  <!-- ───────── 빈칸 학습지 ───────── -->
+  <section id="tab-sheet" hidden>
+    <div class="card no-print">
+      <h2>학습지 만들기</h2>
+      <fieldset><legend>영역</legend><div class="row" data-group="s-area"></div></fieldset>
+      <fieldset><legend>학년군</legend><div class="row" data-group="s-grade"></div></fieldset>
+      <fieldset><legend>빈칸 설정</legend>
+        <div class="row">
+          <select id="s-mode" aria-label="빈칸 개수">
+            <option value="all">내용 요소 전부 빈칸</option>
+            <option value="half">내용 요소 절반만 빈칸 (무작위)</option>
+            <option value="part">내용 요소 속 낱말만 ( ) 빈칸</option>
+            <option value="init">앞글자만 남기고 빈칸</option>
+          </select>
+          <label class="chk"><input type="checkbox" id="s-ideas"><span>핵심 아이디어도 빈칸 뚫기</span></label>
+        </div>
+      </fieldset>
+      <div class="row">
+        <button class="btn primary" id="s-toggle">정답 보이기</button>
+        <button class="btn" id="s-shuffle">빈칸 다시 섞기</button>
+        <button class="btn" id="s-print">인쇄하기</button>
+      </div>
+      <p class="hint">빈칸을 하나씩 눌러도 정답을 볼 수 있어요. 인쇄할 때는 ‘정답 보이기’ 상태와 상관없이 빈칸으로 나와요. (정답지를 뽑고 싶으면 ‘정답지로 인쇄’를 고르세요.)</p>
+      <label class="chk"><input type="checkbox" id="s-print-ans"><span>정답지로 인쇄</span></label>
+    </div>
+    <div class="card" id="sheet-card">
+      <div class="sheet-head">
+        <h2 id="sheet-title">2022 개정 초등 미술과 내용체계표 빈칸 학습지</h2>
+        <span class="namebox">학번 ________ 이름 ____________</span>
+      </div>
+      <div id="sheet"></div>
+      <p class="print-only print-foot">내용체계표 원문은 2022 개정 미술과 교육과정(교육부 고시)을 그대로 사용했습니다.</p>
+    </div>
+  </section>
+
+  <!-- ───────── 앞글자 암기 ───────── -->
+  <section id="tab-acro" hidden>
+    <div class="card no-print">
+      <h2>앞글자 따서 외우기</h2>
+      <div class="tree-tabs" data-group="a-area"></div>
+      <label class="chk"><input type="checkbox" id="a-mask"><span>외우는 글자만 남기고 가리기 (눌러서 확인)</span></label>
+      <p class="hint">칸마다 내용 요소에서 한 글자씩 따서 <b>연상되는 단어</b>로 만들었어요(색칠된 글자). 맨 앞글자가 ‘미·미·미’처럼 겹치거나 뜻이 없으면, 핵심 낱말의 글자를 골랐어요.
+        예) 감상 3~4학년 지식·이해 → <b>특가전</b> (작품의 <b>특</b>징 · 미술<b>가</b> · <b>전</b>시).
+        제안한 말보다 더 잘 외워지는 말이 있으면 카드 아래 칸에 직접 적어 두세요(이 브라우저에 저장돼요).</p>
+    </div>
+    <div id="acro"></div>
+  </section>
+
+  <!-- ───────── 전체 구조 ───────── -->
+  <section id="tab-tree" hidden>
+    <div class="card no-print">
+      <div class="tree-tabs" data-group="t-area"></div>
+      <div class="row">
+        <button class="btn" id="t-open">모두 펼치기</button>
+        <button class="btn" id="t-close">모두 접기</button>
+        <label class="chk"><input type="checkbox" id="t-mask"><span>내용 요소 가리기 (눌러서 확인)</span></label>
+      </div>
+      <p class="hint">＋/− 동그라미를 누르면 펼치고 접을 수 있어요. 넓은 화면에서는 3~4학년과 5~6학년이 나란히 보여서 비교하기 좋아요.</p>
+    </div>
+    <div class="card" id="tree"></div>
+  </section>
+</main>
+
+<script>
+/* ── 내용체계표 원문 (절대 수정 금지) ── */
+const DATA = {
+  "미적 체험": {
+    "핵심아이디어": [
+      "미적 체험은 감각을 깨워 미적 감수성을 풍부하게 하며 미적 가치를 발견하도록 한다.",
+      "대상과 현상을 관찰하고 지각하는 경험은 앎을 확장하고 자신을 성찰하게 한다.",
+      "이미지에 대한 비판적 이해는 시각적 소통과 문화적 참여의 토대가 된다."
+    ],
+    "3~4학년": {
+      "지식이해": ["자신의 감각", "대상의 특징", "생활 속 미술"],
+      "과정기능": ["감각을 활용하여 탐색하기", "대상에 반응하여 느낌과 생각을 나타내기", "미술의 특징과 역할을 발견하기"],
+      "가치태도": ["미적 탐색에 대한 호기심", "미술의 역할에 관한 관심"]
+    },
+    "5~6학년": {
+      "지식이해": ["감각과 매체의 역할", "자신과 환경의 관계", "이미지와 의미"],
+      "과정기능": ["감각과 매체를 활용하여 탐색하기", "대상과 상호 작용하며 의미 발견하기", "이미지를 해석하고 활용하기"],
+      "가치태도": ["주변 환경에 대한 민감성", "비판적으로 이해하는 태도"]
+    }
+  },
+  "표현": {
+    "핵심아이디어": [
+      "표현은 자신의 느낌과 생각을 시각화하는 창의적 사고와 성찰의 순환 과정으로 이루어진다.",
+      "다양한 발상은 아이디어와 주제를 발전시키고 표현의 토대가 된다.",
+      "작품 제작은 표현 재료와 방법, 조형 요소와 원리 등을 선택하고 활용하여 창의적으로 문제를 해결하는 과정을 통해 예술적 성취를 경험하게 한다."
+    ],
+    "3~4학년": {
+      "지식이해": ["표현 주제", "기본적인 표현 재료와 용구", "조형 요소의 특징"],
+      "과정기능": ["관찰과 상상으로 아이디어를 떠올리기", "표현 방법을 익히기", "의도를 가지고 작품을 제작하기", "타 교과와 관련짓기"],
+      "가치태도": ["표현에 대한 흥미", "자기 작품을 소중히 여기는 태도"]
+    },
+    "5~6학년": {
+      "지식이해": ["표현 주제와 발상", "표현 재료와 용구, 디지털 매체", "조형 요소와 원리의 관계"],
+      "과정기능": ["다양한 방법으로 아이디어를 연결하기", "표현 방법을 탐색하여 활용하기", "과정을 돌아보며 작품을 발전시키기", "타 교과와 융합하기"],
+      "가치태도": ["주제 표현의 의지", "자유롭게 시도하는 태도"]
+    }
+  },
+  "감상": {
+    "핵심아이디어": [
+      "감상은 다양한 삶과 문화가 반영된 미술과의 만남으로 자신과 공동체의 문화를 이해하게 한다.",
+      "작품의 내용과 형식에 관한 맥락적 이해와 비평은 미적 판단 능력을 높인다.",
+      "감상은 서로 다른 관점을 이해하여 삶에서 미술 문화의 다원적 가치를 존중하도록 한다."
+    ],
+    "3~4학년": {
+      "지식이해": ["미술 작품과 미술가", "미술 작품의 특징", "미술 전시"],
+      "과정기능": ["자세히 보고 질문하기", "미술 작품에 관한 느낌과 생각을 설명하기", "미술 전시 및 행사에 참여하기"],
+      "가치태도": ["자신의 감상 관점 존중", "미술 문화에 관한 관심"]
+    },
+    "5~6학년": {
+      "지식이해": ["미술 작품의 배경", "미술 작품의 내용과 형식", "공동체의 미술 문화"],
+      "과정기능": ["작품과 배경을 연결하기", "다양한 방법으로 분석하기", "미술 문화 활동을 경험하고 공유하기"],
+      "가치태도": ["서로 다른 관점의 존중", "공동체 문화에 참여"]
+    }
+  }
+};
+
+/* 핵심 아이디어에서 빈칸으로 뚫을 후보 단어 (원문 문장에 그대로 들어 있는 부분만) */
+const KEYWORDS = {
+  "미적 체험": [
+    ["감각", "미적 감수성", "미적 가치"],
+    ["관찰", "지각", "앎", "성찰"],
+    ["비판적 이해", "시각적 소통", "문화적 참여"]
+  ],
+  "표현": [
+    ["시각화", "창의적 사고", "성찰", "순환 과정"],
+    ["발상", "아이디어", "주제"],
+    ["조형 요소와 원리", "문제를 해결", "예술적 성취"]
+  ],
+  "감상": [
+    ["삶과 문화", "공동체의 문화"],
+    ["내용과 형식", "맥락적 이해", "비평", "미적 판단 능력"],
+    ["서로 다른 관점", "다원적 가치"]
+  ]
+};
+
+const AREAS = ["미적 체험", "표현", "감상"];
+const GRADES = ["3~4학년", "5~6학년"];
+const CATS = ["지식이해", "과정기능", "가치태도"];
+const CAT_LABEL = { "지식이해": "지식·이해", "과정기능": "과정·기능", "가치태도": "가치·태도" };
+const AREA_CLS = { "미적 체험": "a-exp", "표현": "a-expr", "감상": "a-app" };
+const ALL_KW = [...new Set(Object.values(KEYWORDS).flat(2))];
+const HIST_KEY = "acc-history-v1";
+
+/* ── 도우미 ── */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const checked = name => $$(`input[name="${name}"]:checked`).map(i => i.value);
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } }
+};
+const norm = s => s.replace(/[\s·.,，、~\-()'"「」]/g, "").toLowerCase();
+function lev(a, b) {
+  const d = Array.from({ length: a.length + 1 }, (_, i) => [i]);
+  for (let j = 1; j <= b.length; j++) d[0][j] = j;
+  for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++)
+    d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+  return d[a.length][b.length];
+}
+const similar = (a, b) => { a = norm(a); b = norm(b); return 1 - lev(a, b) / Math.max(a.length, b.length, 1); };
+
+/* 체크박스 묶음 만들기 */
+function makeChecks(group, values, labelFn, clsFn, type = "checkbox", firstOnly = false) {
+  const box = $(`[data-group="${group}"]`);
+  box.innerHTML = values.map((v, i) => `<label class="chk ${clsFn ? clsFn(v) : ""}"><input type="${type}" name="${group}" value="${esc(v)}" ${!firstOnly || i === 0 ? "checked" : ""}><span>${esc(labelFn ? labelFn(v) : v)}</span></label>`).join("");
+}
+
+/* 문장에서 겹치지 않는 빈칸 n개 고르기 */
+function pickBlanks(s, kws, n) {
+  const picked = [];
+  for (const k of shuffle(kws.filter(k => s.includes(k)))) {
+    const st = s.indexOf(k), en = st + k.length;
+    if (picked.every(p => en <= p.st || st >= p.en)) picked.push({ w: k, st, en });
+    if (picked.length === n) break;
+  }
+  return picked.sort((a, b) => a.st - b.st);
+}
+function blankHTML(s, picked, piece) {
+  let out = "", pos = 0;
+  picked.forEach((p, k) => { out += esc(s.slice(pos, p.st)) + piece(p, k); pos = p.en; });
+  return out + esc(s.slice(pos));
+}
+
+/* 내용 요소 속 낱말 빈칸: 어절에서 조사·'~하기' 꼬리를 떼고 앞부분(낱말)만 빈칸으로.
+   빈칸 + 꼬리 + 나머지를 다시 이으면 원문과 똑같다 (원문은 바꾸지 않음). */
+const TAILS = ["하여", "하며", "하고", "하기", "하는", "으로", "에서", "에게", "에", "을", "를", "의", "와", "과"];
+const STOP = new Set(["및", "속", "타", "대한", "관한", "가지고", "통해", "있는", "다양한", "자세히", "보고"]);
+const WEAK = new Set(["미술", "작품", "표현", "서로", "여기는", "기본적인", "자신", "대상", "미적"]);
+function splitWord(w) {
+  for (const t of TAILS) if (w.endsWith(t) && w.length - t.length >= 2) return [w.slice(0, -t.length), t];
+  return [w, ""];
+}
+function makeFill(el) {
+  const words = el.split(" ");
+  let cands = words.map((w, i) => ({ i, stem: splitWord(w)[0] })).filter(c => c.stem.length >= 2 && !STOP.has(words[c.i]));
+  if (!cands.length) cands = words.map((w, i) => ({ i }));
+  // 어디에나 나오는 낱말(미술·작품 등)은 다른 후보가 없을 때만 빈칸으로
+  const good = shuffle(cands.filter(c => !WEAK.has(c.stem))), weak = shuffle(cands.filter(c => WEAK.has(c.stem)));
+  const pick = new Set([...good, ...weak].slice(0, words.length >= 5 ? 2 : 1).map(c => c.i));
+  const parts = [];
+  words.forEach((w, i) => {
+    if (i) parts.push({ t: " " });
+    if (pick.has(i)) { const [stem, suf] = splitWord(w); parts.push({ b: stem, suf }); if (suf) parts.push({ t: suf }); }
+    else parts.push({ t: w });
+  });
+  return parts;
+}
+/* 앞글자 연상 단어 (학습 보조 자료 — 원문 데이터와 별개).
+   k: [내용 요소 번호, 그 요소 안의 낱말, 낱말 속 글자 위치(기본 0)] — 고른 글자를 이으면 w가 된다.
+   맨 앞글자가 겹치거나(예: 미·미·미) 뜻이 없으면, 핵심 낱말에서 글자를 골라 연상되는 단어로 만들었다. */
+const MNEMO = {
+  "미적 체험|3~4학년|지식이해": { k: [[0, "자신"], [1, "대상"], [2, "생활"]], w: "자대생", idea: "‘자대생(자기 대학 학생)’ — 자기 대학 학생이 처음 미적 체험을 해요: 자신의 감각으로 대상의 특징과 생활 속 미술을 느끼기." },
+  "미적 체험|3~4학년|과정기능": { k: [[0, "탐색"], [1, "나타내기"], [2, "발견"]], w: "탐나발", idea: "‘탐나는 나발(나팔)’ — 탐나는 나팔을 탐색하고, 불어서 느낌을 나타내고, 그 역할을 발견해요. 과정·기능은 끝의 동사(탐색·나타내기·발견)가 핵심!" },
+  "미적 체험|3~4학년|가치태도": { k: [[0, "호기심"], [1, "관심"]], w: "호관", idea: "‘호관(好觀): 좋아서 본다’ — 호기심과 관심이 있으면 좋아서 자꾸 보게 돼요." },
+  "미적 체험|5~6학년|지식이해": { k: [[0, "감각"], [1, "자신"], [2, "이미지"]], w: "감자이", idea: "‘감자 이(2)개’ — 감각과 매체, 자신과 환경, 이미지와 의미. 셋 다 ‘○○과 ○○’ 두 개씩 짝이라서 감자 2개!" },
+  "미적 체험|5~6학년|과정기능": { k: [[1, "발견"], [2, "해석"], [0, "탐색"]], w: "발해탐", idea: "‘발해 탐(험)’ — 의미 발견, 이미지 해석, 감각과 매체로 탐색. 3~4학년 ‘탐나발’과 비교하면 ‘나타내기’ 자리에 ‘해석’이 들어와요." },
+  "미적 체험|5~6학년|가치태도": { k: [[0, "주변"], [1, "비판"]], w: "주비", idea: "‘주(周)변을 비(批)판적으로’ — 앞글자를 이으면 그대로 한 문장: 주변 환경에 민감하고, 비판적으로 이해해요." },
+  "표현|3~4학년|지식이해": { k: [[1, "재료"], [0, "주제"], [2, "조형"]], w: "재주조", idea: "‘재주 좋(조)아!’ — 재료와 용구, 주제, 조형 요소의 특징. 표현은 재주가 좋아야죠." },
+  "표현|3~4학년|과정기능": { k: [[3, "타 교과"], [2, "의도"], [1, "방법"], [0, "관찰"]], w: "타의방관", idea: "‘타의 방관’ — 남(타)이 방관해도 나는 관찰·상상으로 아이디어를 떠올리고, 방법을 익히고, 의도대로 만들고, 타 교과와 관련지어요." },
+  "표현|3~4학년|가치태도": { k: [[0, "흥미"], [1, "소중히"]], w: "흥소", idea: "‘흥! 소중해’ — 표현은 흥미롭고, 내 작품은 소중해!" },
+  "표현|5~6학년|지식이해": { k: [[0, "발상"], [2, "원리"], [1, "디지털"]], w: "발원디", idea: "‘발원지’처럼 읽어요(발·원·디) — 표현의 발원지! 3~4학년 ‘재주조’(재료·주제·조형)에 5~6학년은 발상, 원리, 디지털 매체가 더해져요." },
+  "표현|5~6학년|과정기능": { k: [[2, "과정"], [1, "탐색"], [0, "연결"], [3, "융합"]], w: "과탐연융", idea: "‘과탐(과학탐구)도 연결·융합!’ — 과정을 돌아보며 발전, 탐색하여 활용, 아이디어 연결, 타 교과와 융합. 3~4학년 ‘관련짓기’가 5~6학년엔 ‘융합’으로!" },
+  "표현|5~6학년|가치태도": { k: [[0, "주제"], [1, "자유롭게"]], w: "주자", idea: "‘주자(走者, 달리는 사람)’ — 의지를 품고 자유롭게 달리는 주자: 주제 표현의 의지, 자유롭게 시도하는 태도." },
+  "감상|3~4학년|지식이해": { k: [[1, "특징"], [0, "미술가", 2], [2, "전시"]], w: "특가전", idea: "‘특가전’ — 미술 특가전에 가면 작품의 특징을 보고, 미술가를 만나고, 전시를 즐겨요. (맨 앞글자는 ‘미·미·미’라 헷갈리니 이걸로!)" },
+  "감상|3~4학년|과정기능": { k: [[0, "보고"], [1, "느낌"], [2, "참여"]], w: "보느참", idea: "‘보고, 느끼고, 참여하자’ — 자세히 보고 질문하기, 느낌과 생각을 설명하기, 전시·행사에 참여하기. 감상하는 순서 그대로예요." },
+  "감상|3~4학년|가치태도": { k: [[0, "자신"], [1, "미술 문화"]], w: "자미", idea: "‘자미 = 재미’ (재미의 옛말이 ‘자미’) — 자신의 감상 관점을 존중하면 미술 문화가 재미있어져요." },
+  "감상|5~6학년|지식이해": { k: [[1, "내용"], [2, "공동체"], [0, "배경"]], w: "내공배", idea: "‘내공 배(倍)!’ — 작품의 내용과 형식, 공동체의 미술 문화, 작품의 배경을 알면 감상 내공이 두 배. (맨 앞글자 ‘미·미·공’ 대신)" },
+  "감상|5~6학년|과정기능": { k: [[0, "연결"], [1, "분석"], [2, "공유"]], w: "연분공", idea: "‘연분(緣分)을 공유해요’ — 작품과 배경을 연결하고, 다양한 방법으로 분석하고, 미술 문화 활동을 경험하고 공유해요." },
+  "감상|5~6학년|가치태도": { k: [[0, "관점"], [1, "공동체"], [0, "서로"]], w: "관공서", idea: "‘관공서’ — 관(관점)·공(공동체)·서(서로). 관공서는 서로 다른 관점을 존중하고 공동체에 참여하는 곳!" }
+};
+/* 한 칸의 연상 단어 + 각 내용 요소에서 고른 글자 위치 */
+function mnemo(a, g, c) {
+  const m = MNEMO[`${a}|${g}|${c}`], els = DATA[a][g][c];
+  const keys = m.k.map(([i, an, pos = 0]) => { const st = els[i].indexOf(an) + pos; return { i, st, ch: els[i][st] }; });
+  const order = [...new Set(keys.map(k => k.i))];
+  const sylOf = i => keys.filter(k => k.i === i).map(k => k.ch).join("·");
+  return { ...m, keys, order, sylOf };
+}
+/* 내용 요소를 고른 글자만 강조하고 나머지는 .rest로 감싸기 */
+function markEl(el, sts) {
+  let out = "", buf = "";
+  [...el].forEach((ch, j) => {
+    if (sts.includes(j)) { if (buf) out += `<span class="rest">${esc(buf)}</span>`; buf = ""; out += `<span class="ini">${esc(ch)}</span>`; }
+    else buf += ch;
+  });
+  return out + (buf ? `<span class="rest">${esc(buf)}</span>` : "");
+}
+const fillText = parts => parts.map(p => p.b != null ? p.b : p.t).join("");
+const initials = arr => arr.map(e => e[0]);
+
+/* ═════════ 탭 ═════════ */
+function showTab(t) {
+  $$(".tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === t));
+  $$("main > section").forEach(s => s.hidden = s.id !== "tab-" + t);
+  store.set("acc-tab", t);
+  if (t === "sheet") renderSheet();
+  if (t === "tree") renderTree();
+  if (t === "acro") renderAcro();
+}
+$$(".tabs button").forEach(b => b.addEventListener("click", () => showTab(b.dataset.tab)));
+
+/* ═════════ 퀴즈 ═════════ */
+makeChecks("q-area", AREAS, null, v => AREA_CLS[v]);
+makeChecks("q-grade", GRADES);
+makeChecks("q-cat", CATS, v => CAT_LABEL[v]);
+
+function getPool() {
+  const areas = checked("q-area"), grades = checked("q-grade"), cats = checked("q-cat"), types = checked("q-type");
+  const pools = { fill: [], acro: [], mc: [], list: [] };
+  for (const type of ["fill", "acro", "list"]) if (types.includes(type))
+    for (const a of areas) for (const g of grades) for (const c of cats)
+      pools[type].push({ type, area: a, grade: g, cat: c, answers: DATA[a][g][c] });
+  if (types.includes("mc"))
+    for (const a of areas) DATA[a]["핵심아이디어"].forEach((_, i) => pools.mc.push({ type: "mc", area: a, idx: i }));
+  return { areas, grades, cats, types, pools };
+}
+const TYPE_LABEL = { fill: "( ) 채우기", acro: "앞글자 보고 쓰기", mc: "빈칸 고르기", list: "통째로 쓰기" };
+function updatePoolInfo() {
+  const p = getPool();
+  const parts = Object.keys(TYPE_LABEL).filter(t => p.types.includes(t)).map(t => `${TYPE_LABEL[t]} ${p.pools[t].length}개`);
+  $("#pool-info").textContent = `지금 범위에서 나올 수 있는 문제: ${parts.join(" + ") || "없음"}`;
+  $("#setup-err").textContent = "";
+}
+$("#quiz-setup").addEventListener("change", updatePoolInfo);
+
+function makeCloze(area, idx) {
+  const s = DATA[area]["핵심아이디어"][idx];
+  const kws = KEYWORDS[area][idx];
+  const want = kws.length >= 3 && Math.random() < 0.5 ? 2 : 1;
+  const picked = pickBlanks(s, kws, want);
+  const pool = shuffle(ALL_KW.filter(k => !s.includes(k)));
+  let answer, options;
+  if (picked.length === 1) {
+    answer = picked[0].w;
+    options = [answer, ...pool.slice(0, 3)];
+  } else {
+    const [a, b] = picked.map(p => p.w);
+    const f = (x, y) => `(가) ${x}  /  (나) ${y}`;
+    answer = f(a, b);
+    options = [answer, f(b, a), f(a, pool[0]), f(pool[1], b)];
+  }
+  return { s, picked, answer, options: shuffle(options) };
+}
+
+let S = null; // 진행 중인 세션
+
+function buildQuestions() {
+  const p = getPool();
+  const err = $("#setup-err");
+  if (!p.areas.length) { err.textContent = "영역을 하나 이상 골라 주세요."; return null; }
+  if (!p.types.length) { err.textContent = "문제 형식을 하나 이상 골라 주세요."; return null; }
+  const queues = Object.entries(p.pools).filter(([, arr]) => arr.length)
+    .map(([t, arr]) => shuffle(arr).map(q => t === "mc" ? { ...q, cloze: makeCloze(q.area, q.idx) } : t === "fill" ? { ...q, fills: q.answers.map(makeFill) } : q));
+  if (!queues.length) {
+    err.textContent = (!p.grades.length || !p.cats.length) ? "내용 요소 문제를 풀려면 학년군과 범주를 하나 이상 골라 주세요." : "고른 범위에 문제가 없어요.";
+    return null;
+  }
+  // 고른 형식들을 돌아가며 하나씩 (형식 순서는 무작위)
+  const order = shuffle(queues), out = [];
+  while (order.some(q => q.length)) for (const q of order) if (q.length) out.push(q.shift());
+  const n = +$("#q-count").value;
+  return { qs: n ? out.slice(0, n) : out, scope: p.areas.join("·") };
+}
+
+function startSession(qs, scope, retry) {
+  S = { qs, i: 0, log: [], scope, retry };
+  $("#quiz-setup").hidden = true; $("#quiz-result").hidden = true; $("#quiz-play").hidden = false;
+  renderQ();
+}
+$("#start").addEventListener("click", () => {
+  const b = buildQuestions();
+  if (b) startSession(b.qs, b.scope, false);
+});
+
+function metaHTML(q, typeLabel) {
+  const tags = q.type !== "mc" ? [q.area, q.grade, CAT_LABEL[q.cat]] : [q.area, "핵심 아이디어"];
+  return `<div class="q-meta">${tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}<span class="qtype">${typeLabel}</span></div>`;
+}
+
+function renderQ() {
+  const q = S.qs[S.i];
+  $("#q-progress").textContent = `${S.i + 1} / ${S.qs.length}`;
+  $("#q-bar").style.width = (S.i / S.qs.length * 100) + "%";
+  const body = $("#q-body");
+  body.className = AREA_CLS[q.area];
+  if (q.type === "mc") renderMC(q, body);
+  else if (q.type === "fill") renderFill(q, body);
+  else renderList(q, body);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* (a) 통째로 쓰기 / 앞글자 보고 쓰기 */
+function renderList(q, body) {
+  const n = q.answers.length, acro = q.type === "acro", m = mnemo(q.area, q.grade, q.cat);
+  const ini = m.order.map(m.sylOf);
+  body.innerHTML = `${metaHTML(q, TYPE_LABEL[q.type])}
+    <h3 class="q-title">[${esc(q.area)}] [${esc(q.grade)}] [${CAT_LABEL[q.cat]}]에 해당하는 내용 요소를 ${acro ? "외우는 말을 보고 " : ""}모두 입력하세요.</h3>
+    ${acro ? `<p class="acro-line">${esc(m.w)}</p>` : ""}
+    <p class="hint">모두 ${n}개예요. 칸 하나에 하나씩 쓰세요. ${acro ? "칸 옆 글자가 들어간 내용 요소를 쓰면 돼요." : "순서는 상관없어요."} 띄어쓰기·쉼표가 달라도 맞게 처리해요.</p>
+    <div class="inputs">${q.answers.map((_, k) => acro
+      ? `<label class="inp"><span class="num ini">${esc(ini[k])}</span><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="‘${esc(ini[k])}’이(가) 들어간 내용 요소"></label>`
+      : `<label class="inp"><span class="num">${k + 1}</span><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${k + 1}번째 내용 요소"></label>`).join("")}</div>
+    <p class="error" id="list-err"></p>
+    <div class="actions" id="list-actions">
+      <button class="btn primary" id="submit">제출하기</button>
+      ${acro ? "" : `<button class="btn ghost" id="hint">외우는 말 힌트</button>`}
+      <button class="btn ghost" id="giveup">모르겠어요 (정답 보기)</button>
+    </div>
+    <div id="fb"></div>`;
+  const inputs = $$(".inputs input", body);
+  if (!acro) $("#hint").addEventListener("click", e => {
+    inputs.forEach((inp, k) => { inp.placeholder = `‘${ini[k]}’이(가) 들어간 내용 요소`; $(".num", inp.parentNode).textContent = ini[k]; $(".num", inp.parentNode).classList.add("ini"); });
+    $(".hint", body).insertAdjacentHTML("beforebegin", `<p class="acro-line">${esc(m.w)}</p>`);
+    e.target.remove();
+  });
+  inputs.forEach((inp, k) => inp.addEventListener("keydown", e => {
+    if (e.key !== "Enter" || e.isComposing) return;
+    e.preventDefault();
+    if (k < inputs.length - 1) inputs[k + 1].focus(); else submitList(q, false);
+  }));
+  $("#submit").addEventListener("click", () => submitList(q, false));
+  $("#giveup").addEventListener("click", () => submitList(q, true));
+  setTimeout(() => inputs[0].focus({ preventScroll: true }), 50);
+}
+
+function gradeList(vals, answers) {
+  const rem = answers.map(a => ({ a, n: norm(a), used: false }));
+  const status = [], correct = [], wrong = [];
+  vals.forEach(v => {
+    if (!v.trim()) { status.push("empty"); return; }
+    const r = rem.find(r => !r.used && r.n === norm(v));
+    if (r) { r.used = true; correct.push(r.a); status.push("ok"); }
+    else { wrong.push(v.trim()); status.push("bad"); }
+  });
+  const missed = rem.filter(r => !r.used).map(r => r.a);
+  const wrongInfo = wrong.map(w => {
+    let best = null, sc = 0;
+    for (const m of missed) { const s = similar(w, m); if (s > sc) { sc = s; best = m; } }
+    return { text: w, hint: sc >= 0.5 ? best : null };
+  });
+  return { status, correct, wrong: wrongInfo, missed, perfect: !wrong.length && !missed.length };
+}
+
+function submitList(q, giveup) {
+  if (S.answered) return;
+  const inputs = $$(".inputs input");
+  const vals = inputs.map(i => i.value);
+  if (!giveup && vals.every(v => !v.trim())) {
+    $("#list-err").textContent = "하나라도 써 보세요. 전혀 모르겠으면 ‘모르겠어요’를 누르세요.";
+    return;
+  }
+  S.answered = true;
+  const r = gradeList(giveup ? [] : vals, q.answers);
+  inputs.forEach((inp, k) => { inp.disabled = true; if (r.status[k] && r.status[k] !== "empty") inp.classList.add(r.status[k]); });
+  $("#list-actions").remove(); $("#list-err").remove();
+  const li = arr => arr.map(x => `<li>${esc(x)}</li>`).join("");
+  $("#fb").innerHTML = `<div class="fb ${r.perfect ? "good" : "nope"}">
+      <p class="fb-head">${r.perfect ? "모두 맞았어요! 🎉" : giveup ? "정답을 확인해 보세요" : `${q.answers.length}개 중 ${r.correct.length}개 맞혔어요`}</p>
+      ${r.correct.length ? `<div class="fb-group ok"><b>✔ 맞은 것</b><ul>${li(r.correct)}</ul></div>` : ""}
+      ${r.missed.length ? `<div class="fb-group warn"><b>△ 빠뜨린 것</b><ul>${li(r.missed)}</ul></div>` : ""}
+      ${r.wrong.length ? `<div class="fb-group bad"><b>✘ 틀린 것</b><ul>${r.wrong.map(w => `<li>${esc(w.text)}${w.hint ? ` <span class="sug">→ 혹시 「${esc(w.hint)}」?</span>` : ""}</li>`).join("")}</ul></div>` : ""}
+      ${r.perfect ? "" : `<div class="fb-answer"><b>정답 전체</b><ol>${li(q.answers)}</ol></div>`}
+      ${mnemoTip(q)}
+    </div>`;
+  S.log.push({ q, ok: r.perfect });
+  addNext();
+}
+
+/* (c) 내용 요소 ( ) 채우기 */
+function renderFill(q, body) {
+  let bi = 0;
+  const blanks = q.fills.flat().filter(p => p.b != null);
+  body.innerHTML = `${metaHTML(q, TYPE_LABEL.fill)}
+    <h3 class="q-title">[${esc(q.area)}] [${esc(q.grade)}] [${CAT_LABEL[q.cat]}] 내용 요소의 ( ) 안을 채우세요.</h3>
+    <p class="hint">빈칸 ${blanks.length}개. 괄호 뒤에 붙은 ‘을/를/하기’ 같은 꼬리는 빼고 써도 되고, 붙여 써도 맞게 처리해요.</p>
+    <ol class="fill-list">${q.fills.map(parts => `<li>${parts.map(p => p.b != null
+      ? `<span class="fill-in">(<input type="text" data-b="${bi++}" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="빈칸" style="width:${Math.max(3.5, p.b.length * 1.15 + 1.2)}em">)</span>`
+      : esc(p.t)).join("")}</li>`).join("")}</ol>
+    <p class="error" id="list-err"></p>
+    <div class="actions" id="list-actions">
+      <button class="btn primary" id="submit">제출하기</button>
+      <button class="btn ghost" id="hint">첫 글자 힌트</button>
+      <button class="btn ghost" id="giveup">모르겠어요 (정답 보기)</button>
+    </div>
+    <div id="fb"></div>`;
+  const inputs = $$(".fill-in input", body);
+  inputs.forEach((inp, k) => inp.addEventListener("keydown", e => {
+    if (e.key !== "Enter" || e.isComposing) return;
+    e.preventDefault();
+    if (k < inputs.length - 1) inputs[k + 1].focus(); else submitFill(q, false);
+  }));
+  $("#hint").addEventListener("click", e => { inputs.forEach((inp, k) => inp.placeholder = blanks[k].b[0] + "…"); e.target.remove(); });
+  $("#submit").addEventListener("click", () => submitFill(q, false));
+  $("#giveup").addEventListener("click", () => submitFill(q, true));
+  setTimeout(() => inputs[0].focus({ preventScroll: true }), 50);
+}
+
+function submitFill(q, giveup) {
+  if (S.answered) return;
+  const inputs = $$(".fill-in input");
+  if (!giveup && inputs.every(i => !i.value.trim())) {
+    $("#list-err").textContent = "하나라도 채워 보세요. 전혀 모르겠으면 ‘모르겠어요’를 누르세요.";
+    return;
+  }
+  S.answered = true;
+  const blanks = q.fills.flat().filter(p => p.b != null);
+  let okN = 0;
+  inputs.forEach((inp, k) => {
+    const v = norm(inp.value), p = blanks[k];
+    const ok = !giveup && v && (v === norm(p.b) || (p.suf && v === norm(p.b + p.suf)));
+    if (ok) okN++;
+    inp.disabled = true;
+    inp.classList.add(ok ? "ok" : "bad");
+    if (!ok) inp.parentNode.insertAdjacentHTML("afterend", `<span class="corr">${esc(p.b)}</span>`);
+  });
+  $("#list-actions").remove(); $("#list-err").remove();
+  const perfect = okN === blanks.length;
+  $("#fb").innerHTML = `<div class="fb ${perfect ? "good" : "nope"}">
+      <p class="fb-head">${perfect ? "모두 맞았어요! 🎉" : giveup ? "정답을 확인해 보세요" : `빈칸 ${blanks.length}개 중 ${okN}개 맞혔어요`}</p>
+      <div class="fb-answer"><b>내용 요소 전체</b><ol>${q.fills.map(parts => `<li>${parts.map(p => p.b != null ? `<mark class="fill">${esc(p.b)}</mark>` : esc(p.t)).join("")}</li>`).join("")}</ol></div>
+      ${mnemoTip(q)}
+    </div>`;
+  S.log.push({ q, ok: perfect });
+  addNext();
+}
+
+function mnemoTip(q) {
+  const m = mnemo(q.area, q.grade, q.cat);
+  return `<div class="fb-tip"><b>💡 외우는 말: <span class="tip-w">${esc(m.w)}</span></b><br>${esc(m.idea)}</div>`;
+}
+
+/* (b) 빈칸 고르기 */
+function renderMC(q, body) {
+  const c = q.cloze, two = c.picked.length > 1;
+  body.innerHTML = `${metaHTML(q, "빈칸 고르기")}
+    <h3 class="q-title">빈칸에 들어갈 말로 알맞은 것을 고르세요.</h3>
+    <p class="hint">${esc(q.area)} 영역의 핵심 아이디어 ${q.idx + 1}번 문장이에요.${two ? " 빈칸이 두 개예요." : ""}</p>
+    <div class="sentence">${blankHTML(c.s, c.picked, (p, k) => `<span class="gap">${two ? `(${"가나"[k]})` : ""}<span class="gap-line"></span></span>`)}</div>
+    <div class="options">${c.options.map((o, k) => `<button class="opt" data-k="${k}"><span class="n">${"①②③④"[k]}</span>${esc(o)}</button>`).join("")}</div>
+    <div id="fb"></div>`;
+  $$(".opt", body).forEach(b => b.addEventListener("click", () => {
+    if (S.answered) return;
+    S.answered = true;
+    const pick = c.options[+b.dataset.k], ok = pick === c.answer;
+    $$(".opt", body).forEach(x => { x.disabled = true; if (c.options[+x.dataset.k] === c.answer) x.classList.add("ok"); });
+    if (!ok) b.classList.add("bad");
+    $("#fb").innerHTML = `<div class="fb ${ok ? "good" : "nope"}">
+        <p class="fb-head">${ok ? "정답이에요! 🎉" : "아쉬워요, 정답을 확인해 보세요"}</p>
+        <div class="sentence" style="margin:6px 0 0">${blankHTML(c.s, c.picked, p => `<mark class="fill">${esc(p.w)}</mark>`)}</div>
+      </div>`;
+    S.log.push({ q, ok });
+    addNext();
+  }));
+}
+
+function addNext() {
+  const last = S.i === S.qs.length - 1;
+  const btn = document.createElement("button");
+  btn.className = "btn primary"; btn.textContent = last ? "결과 보기" : "다음 문제 →";
+  btn.addEventListener("click", () => { S.answered = false; if (last) finish(); else { S.i++; renderQ(); } });
+  $("#q-body").appendChild(btn);
+  btn.focus({ preventScroll: true });
+}
+$("#quit").addEventListener("click", () => {
+  if (!S.log.length) { backToSetup(); return; }
+  finish();
+});
+
+function qLabel(q) {
+  return q.type !== "mc" ? `[${q.area}] ${q.grade} ${CAT_LABEL[q.cat]} — ${TYPE_LABEL[q.type]}` : `[${q.area}] 핵심 아이디어 ${q.idx + 1}번 — 빈칸 고르기`;
+}
+
+function finish() {
+  const ok = S.log.filter(l => l.ok).length, ng = S.log.length - ok;
+  const hist = store.get(HIST_KEY, []);
+  hist.push({ t: Date.now(), ok, ng, total: S.log.length, retry: S.retry, scope: S.scope });
+  const saved = store.set(HIST_KEY, hist.slice(-200));
+  const wrongQs = S.log.filter(l => !l.ok).map(l => l.q);
+  $("#quiz-play").hidden = true;
+  const res = $("#quiz-result"); res.hidden = false;
+  res.innerHTML = `<h2>${S.retry ? "복습 결과" : "결과"}</h2>
+    <div class="score"><big>${ok}</big><span>/ ${S.log.length}문제 맞힘 · 틀림 ${ng}</span></div>
+    <ul class="res-list">${S.log.map(l => `<li class="${AREA_CLS[l.q.area]}"><span class="mk ${l.ok ? "o" : "x"}">${l.ok ? "O" : "X"}</span><span>${esc(qLabel(l.q))}</span></li>`).join("")}</ul>
+    ${saved ? "" : `<p class="hint">이 브라우저에서는 기록을 저장할 수 없어요(사생활 보호 모드 등).</p>`}
+    <div class="actions">
+      ${wrongQs.length ? `<button class="btn primary" id="retry">틀린 것만 다시 복습하기 (${wrongQs.length}문제)</button>` : `<span class="fb-head" style="color:var(--ok)">모두 맞혔어요! 완벽해요 👏</span>`}
+      <button class="btn" id="again">같은 범위로 새로 풀기</button>
+      <button class="btn ghost" id="setup">범위 다시 고르기</button>
+    </div>`;
+  if (wrongQs.length) $("#retry").addEventListener("click", () => {
+    const qs = shuffle(wrongQs).map(q => q.type === "mc" ? { ...q, cloze: { ...q.cloze, options: shuffle(q.cloze.options) } } : q);
+    startSession(qs, S.scope, true);
+  });
+  $("#again").addEventListener("click", () => { const b = buildQuestions(); if (b) startSession(b.qs, b.scope, false); else backToSetup(); });
+  $("#setup").addEventListener("click", backToSetup);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function backToSetup() {
+  S = null;
+  $("#quiz-play").hidden = true; $("#quiz-result").hidden = true; $("#quiz-setup").hidden = false;
+  renderHistory();
+}
+
+function renderHistory() {
+  const hist = store.get(HIST_KEY, []);
+  const box = $("#history");
+  if (!hist.length) {
+    box.innerHTML = `<h2>내 기록</h2><p class="hint">아직 기록이 없어요. 퀴즈를 풀면 여기에 차곡차곡 쌓여요. (이 브라우저에만 저장돼요)</p>`;
+    return;
+  }
+  const ok = hist.reduce((s, h) => s + h.ok, 0), ng = hist.reduce((s, h) => s + h.ng, 0);
+  const rate = ok + ng ? Math.round(ok / (ok + ng) * 100) : 0;
+  const fmt = t => { const d = new Date(t); return `${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`; };
+  box.innerHTML = `<h2>내 기록</h2>
+    <div class="stats">
+      <div class="stat"><b>${hist.length}</b><small>푼 횟수</small></div>
+      <div class="stat"><b style="color:var(--ok)">${ok}</b><small>누적 맞힘</small></div>
+      <div class="stat"><b style="color:var(--bad)">${ng}</b><small>누적 틀림</small></div>
+      <div class="stat"><b>${rate}%</b><small>정답률</small></div>
+    </div>
+    <ul class="hist">${hist.slice(-8).reverse().map(h => `<li><span>${h.ok} / ${h.total} 맞힘${h.retry ? `<span class="pill">복습</span>` : ""} <span class="pill">${esc(h.scope || "")}</span></span><span class="when">${fmt(h.t)}</span></li>`).join("")}</ul>
+    <p class="hint">기록은 이 브라우저에만 저장돼요. 최근 8번만 보여 줘요.</p>
+    <button class="btn ghost" id="clear-hist">기록 지우기</button>`;
+  $("#clear-hist").addEventListener("click", () => {
+    if (confirm("지금까지의 퀴즈 기록을 모두 지울까요?")) { store.set(HIST_KEY, []); renderHistory(); }
+  });
+}
+
+/* ═════════ 빈칸 학습지 ═════════ */
+makeChecks("s-area", AREAS, null, v => AREA_CLS[v]);
+makeChecks("s-grade", GRADES);
+let sheetShown = false;
+
+function renderSheet() {
+  const areas = checked("s-area"), grades = checked("s-grade");
+  const mode = $("#s-mode").value, ideasBlank = $("#s-ideas").checked;
+  const sheet = $("#sheet");
+  sheet.className = sheetShown ? "" : "hide-ans";
+  if (!areas.length || !grades.length) { sheet.innerHTML = `<p class="empty">영역과 학년군을 하나 이상 골라 주세요.</p>`; return; }
+  const bl = t => `<span class="bl" tabindex="0">${esc(t)}</span>`;
+  const cell = e =>
+    mode === "part" ? makeFill(e).map(p => p.b != null ? `(${bl(p.b)})` : esc(p.t)).join("")
+    : mode === "init" ? esc(e[0]) + bl(e.slice(1))
+    : mode === "half" && Math.random() < .5 ? esc(e) : bl(e);
+  sheet.innerHTML = areas.map(a => {
+    const d = DATA[a];
+    const ideas = d["핵심아이디어"].map((s, i) => `<li>${ideasBlank ? blankHTML(s, pickBlanks(s, KEYWORDS[a][i], 2), p => bl(p.w)) : esc(s)}</li>`).join("");
+    const rows = CATS.map(c => `<tr><th scope="row">${CAT_LABEL[c]}</th>${grades.map(g =>
+      `<td><ul>${d[g][c].map(e => `<li>${cell(e)}</li>`).join("")}</ul></td>`).join("")}</tr>`).join("");
+    return `<section class="ws-area ${AREA_CLS[a]}">
+        <h3>${esc(a)}</h3>
+        <div class="ws-ideas"><b>핵심 아이디어</b><ol>${ideas}</ol></div>
+        <table class="ws-table"><thead><tr><th style="width:5.6em">범주</th>${grades.map(g => `<th>${g}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table>
+      </section>`;
+  }).join("");
+}
+$("#tab-sheet").addEventListener("change", e => { if (e.target.id !== "s-print-ans") renderSheet(); });
+$("#s-shuffle").addEventListener("click", renderSheet);
+$("#s-toggle").addEventListener("click", () => {
+  sheetShown = !sheetShown;
+  $("#sheet").classList.toggle("hide-ans", !sheetShown);
+  $$("#sheet .bl.peek").forEach(b => b.classList.remove("peek"));
+  $("#s-toggle").textContent = sheetShown ? "정답 숨기기" : "정답 보이기";
+});
+$("#sheet").addEventListener("click", e => { const b = e.target.closest(".bl"); if (b && $("#sheet").classList.contains("hide-ans")) b.classList.toggle("peek"); });
+$("#sheet").addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches(".bl")) { e.preventDefault(); e.target.click(); } });
+$("#s-print").addEventListener("click", () => window.print());
+/* 인쇄 직전에 정답지/빈칸 상태를 맞추고, 끝나면 되돌리기 */
+let beforePrintState = null;
+window.addEventListener("beforeprint", () => {
+  const sheet = $("#sheet"), wantAns = $("#s-print-ans").checked;
+  beforePrintState = sheet.classList.contains("hide-ans");
+  sheet.classList.toggle("hide-ans", !wantAns);
+  $("#sheet-title").textContent = wantAns ? "2022 개정 초등 미술과 내용체계표 (정답지)" : "2022 개정 초등 미술과 내용체계표 빈칸 학습지";
+});
+window.addEventListener("afterprint", () => {
+  if (beforePrintState !== null) $("#sheet").classList.toggle("hide-ans", beforePrintState);
+  $("#sheet-title").textContent = "2022 개정 초등 미술과 내용체계표 빈칸 학습지";
+});
+
+/* ═════════ 전체 구조 ═════════ */
+makeChecks("t-area", AREAS, null, v => AREA_CLS[v], "radio", true);
+$("#tab-tree").addEventListener("change", e => { if (e.target.name === "t-area") renderTree(); if (e.target.id === "t-mask") $(".tree").classList.toggle("mask", e.target.checked); });
+
+function renderTree() {
+  const a = checked("t-area")[0] || AREAS[0], d = DATA[a];
+  const ideas = d["핵심아이디어"].map(s => `<li>${esc(s)}</li>`).join("");
+  const cats = CATS.map(c => `<li><details open><summary><span class="t-node t-cat">${CAT_LABEL[c]}</span></summary>
+      <ul class="t-grades">${GRADES.map(g => `<li><details open><summary><span class="t-node">${g} <small>${d[g][c].length}개 · 외우는 말 ${esc(mnemo(a, g, c).w)}</small></span></summary>
+        <ul>${d[g][c].map(e => `<li><span class="t-el" tabindex="0">${esc(e)}</span></li>`).join("")}</ul></details></li>`).join("")}</ul>
+    </details></li>`).join("");
+  $("#tree").innerHTML = `<div class="tree ${AREA_CLS[a]} ${$("#t-mask").checked ? "mask" : ""}">
+      <div class="t-root">${esc(a)}</div>
+      <ul><li><details open><summary><span class="t-node t-idea">핵심 아이디어 <small>3문장 · 아래로 3범주</small></span></summary>
+        <div class="t-ideas"><ol>${ideas}</ol></div>
+        <ul>${cats}</ul>
+      </details></li></ul>
+    </div>`;
+}
+$("#t-open").addEventListener("click", () => $$("#tree details").forEach(x => x.open = true));
+$("#t-close").addEventListener("click", () => $$("#tree details").forEach((x, i) => x.open = i === 0));
+$("#tree").addEventListener("click", e => { const el = e.target.closest(".t-el"); if (el && $(".tree.mask")) el.classList.toggle("peek"); });
+$("#tree").addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches(".t-el")) { e.preventDefault(); e.target.click(); } });
+
+/* ═════════ 앞글자 암기 ═════════ */
+const MEMO_KEY = "acc-memo-v1";
+makeChecks("a-area", AREAS, null, v => AREA_CLS[v], "radio", true);
+$("#tab-acro").addEventListener("change", e => {
+  if (e.target.name === "a-area") renderAcro();
+  if (e.target.id === "a-mask") { $$("#acro .ac-card").forEach(c => c.classList.toggle("amask", e.target.checked)); $$("#acro li.peek").forEach(l => l.classList.remove("peek")); }
+});
+
+function renderAcro() {
+  const a = checked("a-area")[0] || AREAS[0], d = DATA[a], memos = store.get(MEMO_KEY, {});
+  const mask = $("#a-mask").checked ? "amask" : "";
+  const sum = `<div class="card"><h2>${esc(a)} 앞글자 한눈에</h2>
+    <table class="ac-sum"><thead><tr><th style="width:6em">범주</th>${GRADES.map(g => `<th>${g}</th>`).join("")}</tr></thead>
+    <tbody>${CATS.map(c => `<tr><th>${CAT_LABEL[c]}</th>${GRADES.map(g => `<td>${esc(mnemo(a, g, c).w)}</td>`).join("")}</tr>`).join("")}</tbody></table>
+    <p class="hint">위 표의 외우는 말만 보고 내용 요소를 떠올려 보세요. 막히면 아래 카드에서 확인해요.</p></div>`;
+  const cards = GRADES.map(g => CATS.map(c => {
+    const key = `${a}|${g}|${c}`, m = mnemo(a, g, c), els = d[g][c];
+    return `<div class="ac-card ${mask}">
+      <h4>${g} · ${CAT_LABEL[c]}</h4>
+      <div class="ac-big">${esc([...m.w].join(" · "))}</div>
+      <p class="ac-idea">💡 ${esc(m.idea)}</p>
+      <ol>${m.order.map(i => `<li tabindex="0">${markEl(els[i], m.keys.filter(k => k.i === i).map(k => k.st))}</li>`).join("")}</ol>
+      <p class="ac-first">참고: 맨 앞글자만 따면 ‘${esc(initials(els).join(""))}’</p>
+      <input class="memo" data-key="${esc(key)}" value="${esc(memos[key] || "")}" placeholder="내가 지은 외우는 말 (더 좋은 게 있으면 적어 두세요)" aria-label="나만의 외우는 말">
+    </div>`;
+  }).join("")).join("");
+  $("#acro").innerHTML = `${sum}<div class="ac-grid ${AREA_CLS[a]}">${cards}</div>`;
+  $("#acro").firstElementChild.classList.add(AREA_CLS[a]);
+}
+$("#acro").addEventListener("input", e => {
+  if (!e.target.matches(".memo")) return;
+  const memos = store.get(MEMO_KEY, {});
+  memos[e.target.dataset.key] = e.target.value;
+  store.set(MEMO_KEY, memos);
+});
+$("#acro").addEventListener("click", e => { const li = e.target.closest(".amask li"); if (li) li.classList.toggle("peek"); });
+$("#acro").addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches(".amask li")) { e.preventDefault(); e.target.click(); } });
+
+/* ═════════ 시작 ═════════ */
+// 빈칸 후보 단어가 원문에 실제로 있는지 점검 (원문은 건드리지 않음)
+for (const a of AREAS) KEYWORDS[a].forEach((ks, i) => ks.forEach(k => { if (!DATA[a]["핵심아이디어"][i].includes(k)) console.warn("빈칸 후보가 원문에 없음:", a, i, k); }));
+// 연상 단어 글자가 실제 원문 낱말에서 나왔는지, 모든 내용 요소를 덮는지 점검
+for (const a of AREAS) for (const g of GRADES) for (const c of CATS) {
+  const m = mnemo(a, g, c), n = DATA[a][g][c].length;
+  if (!m.k.every(([i, an]) => DATA[a][g][c][i].includes(an)) || m.keys.map(k => k.ch).join("") !== m.w || m.order.length !== n)
+    console.warn("연상 단어 점검 실패:", a, g, c, m.w, m.keys.map(k => k.ch).join(""));
+}
+updatePoolInfo();
+renderHistory();
+const savedTab = store.get("acc-tab", "quiz");
+showTab(["quiz", "sheet", "acro", "tree"].includes(savedTab) ? savedTab : "quiz");
+</script>
+</body>
+</html>
