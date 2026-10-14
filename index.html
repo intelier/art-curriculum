@@ -616,6 +616,22 @@ function lev(a, b) {
   return d[a.length][b.length];
 }
 const similar = (a, b) => { a = norm(a); b = norm(b); return 1 - lev(a, b) / Math.max(a.length, b.length, 1); };
+/* 너그러운 채점: 핵심 낱말이 들어 있으면 맞는 것으로 본다.
+   정답 끝의 흔한 꼬리말(활동·역량·게임·하기 …)을 떼어 낸 ‘핵심’을 답이 담고 있거나, 오타 수준(85% 이상 비슷)이면 합격. */
+const TAIL_WORDS = ["하기", "활동", "역량", "게임", "운동", "표현", "스포츠", "태도", "교과", "교육", "기술", "방법", "능력", "문화", "요소", "평가", "학습", "수준", "의지", "추구", "인식", "유형", "영역", "관심", "실천", "참여", "방향", "선정", "등", "형", "과"];
+const stripTail = s => { let c = s, again = true; while (again) { again = false; for (const t of TAIL_WORDS) if (c.length > t.length + 1 && c.endsWith(t)) { c = c.slice(0, -t.length); again = true; } } return c; };
+/* 조사(과의·의·을·를 …)를 떼고 붙여 쓴 꼴: ‘팀원 협력’ = ‘팀원과의 협력’ */
+const loose = s => norm(s.split(/\s+/).map(t => t.replace(/(과의|와의|에서|으로|과|와|의|을|를|은|는|이|가|에|로)$/, "")).join(" "));
+function accept(user, answer) {
+  const u = norm(user), a = norm(answer);
+  if (!u) return false;
+  if (u === a) return true;
+  const c = stripTail(a), lu = loose(user), la = loose(answer), lc = stripTail(la);
+  if (u === c || lu === la || lu === lc) return true;
+  if (c.length >= 2 && u.includes(c) && (a.includes(u) || u.length <= a.length + 2)) return true;
+  if (lc.length >= 2 && lu.includes(lc) && (la.includes(lu) || lu.length <= la.length + 2)) return true;
+  return similar(u, a) >= 0.85 || (c.length >= 3 && similar(u, c) >= 0.85);
+}
 
 /* 체크박스 묶음 만들기 */
 function makeChecks(group, values, labelFn, clsFn, type = "checkbox", firstOnly = false) {
@@ -908,11 +924,12 @@ function renderList(q, body) {
 }
 
 function gradeList(vals, answers, alias = {}) {
-  const rem = answers.map(a => ({ a, n: [norm(a), ...(alias[a] || []).map(norm)], used: false }));
+  const rem = answers.map(a => ({ a, n: [a, ...(alias[a] || [])], used: false }));
   const status = [], correct = [], wrong = [];
   vals.forEach(v => {
     if (!v.trim()) { status.push("empty"); return; }
-    const r = rem.find(r => !r.used && r.n.includes(norm(v)));
+    // 정확히 같은 답을 먼저 찾고, 없으면 핵심 낱말이 들어간 답을 찾는다
+    const r = rem.find(r => !r.used && r.n.some(x => norm(x) === norm(v))) || rem.find(r => !r.used && r.n.some(x => accept(v, x)));
     if (r) { r.used = true; correct.push(r.a); status.push("ok"); }
     else { wrong.push(v.trim()); status.push("bad"); }
   });
@@ -990,8 +1007,8 @@ function submitFill(q, giveup) {
   const blanks = q.fills.flat().filter(p => p.b != null);
   let okN = 0;
   inputs.forEach((inp, k) => {
-    const v = norm(inp.value), p = blanks[k];
-    const ok = !giveup && v && (v === norm(p.b) || (p.suf && v === norm(p.b + p.suf)));
+    const v = inp.value, p = blanks[k];
+    const ok = !giveup && (accept(v, p.b) || (p.suf && accept(v, p.b + p.suf)));
     if (ok) okN++;
     inp.disabled = true;
     inp.classList.add(ok ? "ok" : "bad");
@@ -2754,7 +2771,7 @@ function gradeOX(q, pick, fix) {
   if (pick === "X" && fix !== null && !fix.trim()) { $("#ox-in").focus(); return; }
   S.answered = true;
   const judgedRight = (pick === "O") === q.truth;
-  const fixRight = !q.truth && fix !== null && norm(fix) === norm(q.orig);
+  const fixRight = !q.truth && fix !== null && accept(fix, q.orig);
   const ok = q.truth ? judgedRight : (judgedRight && fixRight);
   $("#ox-actions").remove(); $("#ox-fix").remove();
   let head, body;
