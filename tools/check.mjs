@@ -28,7 +28,7 @@ const sandbox = {
   CAT_LABEL: { "지식이해": "지식·이해", "과정기능": "과정·기능", "가치태도": "가치·태도" },
   esc: s => String(s), sentHTML: t => t.s, shuffle: a => a.slice(), tipCard: (t, b) => `<div><h2>${t}</h2>${b}</div>`,
   $: () => null, document: { head: { insertAdjacentHTML() {} } },
-  TABLES: {}, TS: {}, HOT: {}, OX_SWAP: {}, EXAM_NOTE: {}, SUBJECTS: {}, AREA_CLS: {}, SUBJECT_ORDER: [],
+  TABLES: {}, TS: {}, HOT: { art: {} }, OX_SWAP: {}, AREAS: [], GRADES: [], DATA: {}, hotFor: () => null, EXAM_NOTE: {}, SUBJECTS: {}, AREA_CLS: {}, SUBJECT_ORDER: [],
   collectSents: () => [],
   defineSubject: d => { captured = d; }
 };

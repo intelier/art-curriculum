@@ -328,7 +328,6 @@ mark.fill{background:var(--c-soft);color:var(--ink);font-weight:700;padding:0 3p
       <a class="land-card a-chong" href="#chong"><b>총론</b><span>구성의 중점 · 인간상·핵심역량 · 설계와 운영 · 초등학교 편제·시간 배당·편성⋅운영</span></a>
       <a class="land-card a-cha" href="#cha"><b>창의적 체험활동</b><span>성격·목표 · 영역과 활동 · 설계와 운영 · 초등 운영 중점</span></a>
       <a class="land-card a-tong" href="#tong"><b>통합교과 (바른·슬기로운·즐거운 생활)</b><span>성격·목표 · 네 영역과 핵심아이디어 · 내용 요소 · 성취기준 · 교수⋅학습·평가</span></a>
-      <a class="land-card a-exp" href="#art"><b>미술과 내용체계표 (앞글자 암기·구조 보기)</b><span>미적 체험 · 표현 · 감상 (3~4 · 5~6학년) 내용 요소만 집중 암기 — 기출 표시 있음</span></a>
     </div>
     <p class="hint">퀴즈 기록과 내가 적은 외우는 말은 지금 쓰는 기기에만 남아요. 다른 기기에서는 안 보여요.</p>
   </section>
@@ -357,6 +356,8 @@ mark.fill{background:var(--c-soft);color:var(--ink);font-weight:700;padding:0 3p
           <label class="chk"><input type="checkbox" name="c-type" value="ox" checked><span>틀린 곳 찾기</span></label>
           <label class="chk"><input type="checkbox" name="c-type" value="hours" checked><span>시수 고르기</span></label>
           <label class="chk"><input type="checkbox" name="c-type" value="clist" checked><span>목록 쓰기</span></label>
+          <label class="chk"><input type="checkbox" name="c-type" value="efill" checked><span>내용 요소 ( ) 채우기</span></label>
+          <label class="chk"><input type="checkbox" name="c-type" value="eacro" checked><span>내용 요소 앞글자 보고 쓰기</span></label>
         </div>
         <p class="hint">빈칸 고르기(쉬움) → 빈칸 쓰기 → 틀린 곳 찾기(실제 시험 형식: 잘못된 진술 찾아 고치기) → 목록 쓰기(어려움).</p>
       </fieldset>
@@ -737,7 +738,8 @@ const SUBJECTS = {
 let CUR = null; // 지금 고른 과목 (chong | cha | tong | art | subjects/*.js 과목 | null=처음 화면)
 
 function route(k) {
-  const key = k !== undefined ? k : location.hash.slice(1);
+  let key = k !== undefined ? k : location.hash.slice(1);
+  if (key === "art") { key = "misul"; try { history.replaceState(null, "", "#misul"); } catch (e) {} } // 옛 ‘미술과 내용체계표’는 미술과로 합쳤다
   endSession();
   CUR = SUBJECTS[key] ? key : null;
   document.body.classList.toggle("at-landing", !CUR);
@@ -1101,9 +1103,9 @@ function backToSetup() {
 
 function renderHistory() {
   if (!CUR) return;
-  const all = store.get(HIST_KEY, []), mine = h => (h.subj || "art") === CUR;
+  const all = store.get(HIST_KEY, []), mine = h => { const s = h.subj || "art"; return (s === "art" ? "misul" : s) === CUR; };
   const hist = all.filter(mine);
-  const box = CUR === "art" ? $("#history") : $("#c-history");
+  const box = $("#c-history");
   if (!hist.length) {
     box.innerHTML = `<h2>내 기록</h2><p class="hint">아직 기록이 없어요. 퀴즈를 풀면 여기에 차곡차곡 쌓여요. 기록은 지금 쓰는 기기에만 남아요. 다른 기기에서는 안 보여요.</p>`;
     return;
@@ -2026,7 +2028,10 @@ var EXAM_NOTE_TONG = `<div class="card tip-card exam"><h2>기출 경향 — 통�
      note: { 학년군: [[제목, T, ...]] },               // 성취기준 적용 시 고려 사항 (발췌, 선택)
      extra: [{ h, sec, lab, blocks: [...] }],         // 그 밖의 원문 블록 (선택)
      teach: [{ h, lab, items }], eval: [{ h, lab, items }],  // items: [mk, T...] 또는 [mk, [[mk2, T...], ...]] 또는 [mk, T..., [[하위]]]
-     lists: [...], tips: fn, examNote: html, ox: {...}, hot: {...}, tables: { 이름: fn }, doc: [...](직접 지정 시)
+     lists: [...], tips: fn, examNote: html, ox: {...}, hot: {...}, tables: { 이름: fn }, doc: [...](직접 지정 시),
+     extraTabs: [["acro", "앞글자 암기"], ...],   // (선택) 기본 세 탭 뒤에 붙일 탭
+     elQuiz: () => [{ area, grade, cat, answers, hot }],   // (선택) 옛 미술 방식 내용 요소 문제(( ) 채우기·앞글자 보고 쓰기)를 퀴즈에 보탠다
+     listHot: { "목록 질문에 든 글": ["2025"] }   // (선택) 목록 쓰기 문제의 기출 학년도
    } */
 const SUBJECT_ORDER = [];
 function olOf(items) {
@@ -2083,14 +2088,13 @@ function buildDoc(d) {
 }
 function defineSubject(d) {
   const key = d.key, cls = "a-" + key;
-  SUBJECTS[key] = { name: d.name, sub: d.sub, notice: d.notice, cls, tabs: [["cquiz", "퀴즈"], ["ctext", "원문 빈칸 학습"], ["ctips", "외우기 팁"]] };
+  SUBJECTS[key] = { name: d.name, sub: d.sub, notice: d.notice, cls, tabs: [["cquiz", "퀴즈"], ["ctext", "원문 빈칸 학습"], ["ctips", "외우기 팁"], ...(d.extraTabs || [])] };
   AREA_CLS[d.short] = cls;
   if (d.color) {
     const v = ([c, bg, soft]) => `--c:${c};--c-bg:${bg};--c-soft:${soft}`;
     document.head.insertAdjacentHTML("beforeend", `<style>.${cls}{${v(d.color.light)}}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .${cls}{${v(d.color.dark)}}}:root[data-theme="dark"] .${cls}{${v(d.color.dark)}}</style>`);
   }
-  const art = $("#landing a.land-card[href='#art']");
-  if (art) art.insertAdjacentHTML("beforebegin", `<a class="land-card ${cls}" href="#${key}"><b>${esc(d.name)}</b><span>${esc(d.landing || d.sub)}</span></a>\n      `);
+  $("#landing .land-grid").insertAdjacentHTML("beforeend", `\n      <a class="land-card ${cls}" href="#${key}"><b>${esc(d.name)}</b><span>${esc(d.landing || d.sub)}</span></a>`);
   Object.entries(d.tables || {}).forEach(([n, f]) => { TABLES[n] = f; });
   if (d.el) TABLES["el_" + key] = mode => elTable(d, mode);
   const secs = d.secs || Object.assign({},
@@ -2104,6 +2108,8 @@ function defineSubject(d) {
     : { sec: "content", label: `${ar} · ${g} · ${CAT_LABEL[c]}`, q: `[${ar}] ${g} ${CAT_LABEL[c]} 내용 요소를 모두 쓰세요.`, unit: "내용 요소", answers: d.el[ar][g][c] }))) : [];
   TS[key] = { short: d.short, title: d.title, foot: d.foot, secs, doc: d.doc || buildDoc(d), lists: [...(d.lists || []), ...autoLists], hours: d.hours, tips: d.tips || (() => "") };
   TS[key].sents = collectSents(TS[key]);
+  if (d.elQuiz) TS[key].elQuiz = d.elQuiz;
+  if (d.listHot) TS[key].lists.forEach(L => { const m = Object.keys(d.listHot).find(t => L.q.includes(t)); if (m) L.hot = d.listHot[m]; });
   HOT[key] = d.hot || {};
   Object.assign(OX_SWAP, d.ox || {});
   if (d.examNote) EXAM_NOTE[key] = d.examNote;
@@ -2111,7 +2117,7 @@ function defineSubject(d) {
 }
 
 /* ── 문제 만들기 ── */
-const TEXT_TYPE_LABEL = { cmc: "빈칸 고르기", cfill: "빈칸 쓰기", ox: "틀린 곳 찾기", hours: "시수 고르기", clist: "목록 쓰기" };
+const TEXT_TYPE_LABEL = { cmc: "빈칸 고르기", cfill: "빈칸 쓰기", ox: "틀린 곳 찾기", hours: "시수 고르기", clist: "목록 쓰기", efill: "( ) 채우기", eacro: "앞글자 보고 쓰기" };
 /* 숫자 빈칸은 비슷한 모양의 틀린 숫자를 보기로 (학습용 오답 보기) */
 const ALT = {
   "40분": ["45분", "50분", "35분"], "34주": ["32주", "35주", "36주"], "2년간": ["1년간", "3년간", "4년간"],
@@ -2159,12 +2165,15 @@ function textPools(key) {
   const sj = TS[key], secs = checked("c-sec"), types = checked("c-type"), hotOnly = $("#c-hot").checked;
   const keep = x => secs.includes(x.sec) && (!hotOnly || x.hot);
   const sents = sj.sents.filter(keep), hours = (sj.hours || []).filter(keep), lists = (sj.lists || []).filter(keep);
+  const els = sj.elQuiz && secs.includes("content") ? sj.elQuiz().filter(x => !hotOnly || x.hot) : [];
   return { secs, types, hotOnly, pools: {
     cmc: types.includes("cmc") ? sents.map(x => () => makeTextMC(key, x)) : [],
     cfill: types.includes("cfill") ? sents.map(x => () => makeTextFill(key, x)) : [],
     ox: types.includes("ox") ? sents.map(x => () => makeOX(key, x)) : [],
     hours: types.includes("hours") ? hours.map(h => () => makeHours(key, h)) : [],
-    clist: types.includes("clist") ? lists.map(L => () => makeTextList(key, L)) : []
+    clist: types.includes("clist") ? lists.map(L => () => makeTextList(key, L)) : [],
+    efill: types.includes("efill") ? els.map(x => () => ({ ...x, type: "fill", fills: x.answers.map(makeFill) })) : [],
+    eacro: types.includes("eacro") ? els.map(x => () => ({ ...x, type: "acro" })) : []
   } };
 }
 function updateTextPoolInfo() {
@@ -2190,6 +2199,7 @@ function setupText(key) {
   $("#ct-title").textContent = sj.title;
   $("#ct-foot").textContent = sj.foot;
   $('input[name="c-type"][value="hours"]').closest("label").hidden = !(sj.hours && sj.hours.length);
+  ["efill", "eacro"].forEach(v => { $(`input[name="c-type"][value="${v}"]`).closest("label").hidden = !sj.elQuiz; });
   updateTextPoolInfo();
 }
 $("#tab-cquiz").addEventListener("change", updateTextPoolInfo);

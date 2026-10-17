@@ -552,7 +552,8 @@ function MISUL_TIPS() {
 }
 var EXAM_NOTE_MISUL = `<div class="card tip-card exam"><h2>미술과 — 어디를 집중해서 볼까</h2>
     <ul>
-      <li><b>기출 표시는 아직 없어요.</b> 이 과목은 2017~2026학년도 기출 분석을 아직 반영하지 않아서 ‘기출 집중’을 켜면 문제가 나오지 않아요. (내용 요소 이름의 기출 표시는 ‘미술과 내용체계표’ 카드에 있어요.)</li>
+      <li><b>기출 표시는 내용 요소에만 있어요.</b> 내용 요소 이름을 그대로 쓰는 1점 문제가 거의 매년 나왔어요(19·21·23·24·25학년도): 미적 체험 5~6학년 지식⋅이해(19·24), 감상 3~4학년 지식⋅이해(21), 미적 체험 3~4학년 과정⋅기능(23), 미적 체험 3~4학년 가치⋅태도(25). ‘기출 집중’을 켜면 이 칸들만 나와요. 성격·목표·성취기준·교수⋅학습·평가 문장은 기출 분석을 아직 반영하지 않았어요.</li>
+      <li><b>내용 요소 50칸</b>은 퀴즈에서 ‘( ) 채우기 → 앞글자 보고 쓰기 → 목록 쓰기’ 순서로 익히고, ‘앞글자 암기’ 탭에서 칸마다 연상 단어를 확인하세요. ‘구조 보기’ 탭은 3~4학년과 5~6학년을 나란히 비교해요.</li>
       <li><b>구조를 먼저:</b> 5역량(심·창·시·정·공) · 3영역(미·표·감) · 영역별 세 개념(지·성·소 / 발·매·제 / 이·비·생). ‘목록 쓰기’로 먼저 외우세요.</li>
       <li><b>성취기준 26개</b>는 번호 짝(01 탐색/발상/보기 · 02 나타내기/재료/설명 · 03 태도/조형 요소/문화 · 04 생활 속 미술·이미지/태도/관점 · 05 타 교과)으로 3~4와 5~6을 나란히 놓고 ‘빈칸 쓰기’·‘틀린 곳 찾기’로 익히세요.</li>
       <li><b>해설·고려 사항의 열거</b>(조형 요소 5 · 표현 재료 4갈래 · 감각 5 · 질문 3 · 시각 문화 7 · 내용/형식)는 그대로 쓰는 문제가 나오기 좋아요.</li>
@@ -562,9 +563,15 @@ var EXAM_NOTE_MISUL = `<div class="card tip-card exam"><h2>미술과 — 어디�
 defineSubject({
   key: "misul", name: "미술과", short: "미술", sub: "2022 개정 미술과 교육과정 · 초등학교 3~4학년, 5~6학년",
   notice: "원문은 2022 개정 미술과 교육과정(교육부 고시 제2022-33호 [별책 13]) 중 초등학교 관련 부분을 그대로 사용했습니다.",
-  landing: "설계의 개요 · 성격·목표 · 핵심 아이디어 · 내용 요소 · 성취기준(3~4 · 5~6) · 교수⋅학습·평가 (내용체계표 암기는 아래 ‘미술과 내용체계표’ 카드)",
+  landing: "설계의 개요 · 성격·목표 · 핵심 아이디어 · 내용 요소 · 성취기준(3~4 · 5~6) · 교수⋅학습·평가 · 내용 요소 앞글자 암기·구조 보기",
   color: { light: ["#c2410c", "#fff0e8", "#f7c9ad"], dark: ["#ff9b6a", "#3a2015", "#6b3a24"] },
   title: "2022 개정 미술과 교육과정 빈칸 학습지 (초등학교)", foot: "원문: 2022 개정 미술과 교육과정(교육부 고시 제2022-33호 [별책 13]) 중 초등학교 관련 부분.",
   areas: MISUL_AREAS, grades: MISUL_GRADES, overview: MISUL_OVERVIEW, char: MISUL_CHAR, goal: MISUL_GOAL, ideas: MISUL_IDEAS, el: MISUL_EL, sb: MISUL_SB, note: MISUL_NOTE,
-  teach: MISUL_TEACH, eval: MISUL_EVAL, lists: MISUL_LISTS, tips: MISUL_TIPS, examNote: EXAM_NOTE_MISUL, ox: MISUL_OX, hot: {}
+  teach: MISUL_TEACH, eval: MISUL_EVAL, lists: MISUL_LISTS, tips: MISUL_TIPS, examNote: EXAM_NOTE_MISUL, ox: MISUL_OX, hot: {},
+  /* 옛 ‘미술과 내용체계표’에서 옮겨 온 것: 앞글자 암기·구조 보기 탭, 내용 요소 ( ) 채우기·앞글자 보고 쓰기 문제, 내용 요소 기출 표시.
+     DATA·AREAS·GRADES·hotFor는 index.html에 있는 미술 내용체계표 데이터와 기출 표(HOT.art)를 쓴다. */
+  extraTabs: [["acro", "앞글자 암기"], ["tree", "구조 보기"]],
+  elQuiz: () => AREAS.flatMap(a => GRADES.flatMap(g => CATS.map(c => ({ area: a, grade: g, cat: c, answers: DATA[a][g][c], hot: hotFor("art", `${a}|${g}|${c}`) })))),
+  listHot: Object.fromEntries([["미적 체험", "3~4학년", "가치태도"], ["미적 체험", "3~4학년", "과정기능"], ["미적 체험", "5~6학년", "지식이해"], ["감상", "3~4학년", "지식이해"]]
+    .map(([a, g, c]) => [`[${a}] ${g} ${CAT_LABEL[c]} 내용 요소`, HOT.art[`${a}|${g}|${c}`]]))
 });
