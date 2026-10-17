@@ -55,8 +55,8 @@ body.playing .top{display:none}
 .top .sub{margin:1px 0 0;color:var(--muted);font-size:.8rem}
 .notice{margin:4px 0 0;color:var(--muted);font-size:.7rem}
 .top-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.home{font-size:.82rem;color:var(--muted);text-decoration:none}
-.home:hover{color:var(--ink)}
+.home{display:inline-flex;align-items:center;gap:4px;font-size:.85rem;font-weight:600;color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 12px;cursor:pointer;white-space:nowrap;line-height:1.4}
+.home:hover,.home:focus-visible{border-color:var(--ink)}
 body.at-landing .tabs{display:none}
 .land-q{font-size:1.1rem;margin:4px 0 12px}
 .land-grid{display:grid;gap:10px;margin-bottom:12px}
@@ -131,6 +131,8 @@ select{padding:8px 10px;border-radius:8px;border:1px solid var(--line);backgroun
 
 /* quiz */
 .q-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.q-top .q-progress,#quit{white-space:nowrap}
+@media (max-width:480px){#quit{padding:7px 10px;font-size:.85rem}.q-top .home{padding:4px 10px}}
 .q-progress{font-weight:700;color:var(--muted);font-size:.9rem}
 .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:16px}
 .bar i{display:block;height:100%;background:var(--ink);transition:width .2s}
@@ -311,7 +313,7 @@ mark.fill{background:var(--c-soft);color:var(--ink);font-weight:700;padding:0 3p
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <a class="home" href="#" id="home-link" hidden>← 과목 고르기</a>
+      <a class="home" href="#" id="home-link" data-home hidden>⌂ 처음으로</a>
       <h1 id="app-title">초등 교육과정 암기장</h1>
     </div>
     <p class="sub" id="app-sub">2022 개정 교육과정 · 임용시험 대비</p>
@@ -336,6 +338,7 @@ mark.fill{background:var(--c-soft);color:var(--ink);font-weight:700;padding:0 3p
   <!-- 퀴즈 풀이·결과 (총론·미술과 같이 씀) -->
   <div class="card" id="quiz-play" hidden>
     <div class="q-top">
+      <button type="button" class="home" data-home>⌂ 처음으로</button>
       <span class="q-progress" id="q-progress"></span>
       <button class="btn ghost" id="quit">그만하고 결과 보기</button>
     </div>
@@ -782,7 +785,15 @@ function goTo(key) {
   try { history.pushState(null, "", key ? "#" + key : location.pathname + location.search); } catch (e) {}
   route(key || "");
 }
-$("#home-link").addEventListener("click", e => { e.preventDefault(); goTo(""); });
+/* 처음으로: 헤더·퀴즈 풀이·결과 화면 위쪽 버튼 (data-home). 문제를 풀던 중이면 기록이 남지 않으니 한 번 묻는다 */
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-home]");
+  if (!b) return;
+  e.preventDefault();
+  const solving = S && !$("#quiz-play").hidden && S.log.length;
+  if (solving && !confirm("지금까지 푼 문제는 기록에 남지 않아요. 처음 화면으로 갈까요?")) return;
+  goTo("");
+});
 $("#landing").addEventListener("click", e => { const a = e.target.closest("a.land-card"); if (a) { e.preventDefault(); goTo(a.getAttribute("href").slice(1)); } });
 window.addEventListener("hashchange", () => route());
 window.addEventListener("popstate", () => route());
@@ -1079,7 +1090,8 @@ function finish() {
   const wrongQs = S.log.filter(l => !l.ok).map(l => l.q);
   $("#quiz-play").hidden = true;
   const res = $("#quiz-result"); res.hidden = false;
-  res.innerHTML = `<h2>${S.retry ? "복습 결과" : "결과"}</h2>
+  res.innerHTML = `<div class="q-top"><button type="button" class="home" data-home>⌂ 처음으로</button></div>
+    <h2>${S.retry ? "복습 결과" : "결과"}</h2>
     <div class="score"><big>${ok}</big><span>/ ${S.log.length}문제 맞힘 · 틀림 ${ng}</span></div>
     <ul class="res-list">${S.log.map(l => `<li class="${AREA_CLS[l.q.area]}"><span class="mk ${l.ok ? "o" : "x"}">${l.ok ? "O" : "X"}</span><span>${esc(qLabel(l.q))}</span></li>`).join("")}</ul>
     ${saved ? "" : `<p class="hint">이 기기에서는 기록을 남길 수 없어요(사생활 보호 모드 등).</p>`}
