@@ -126,6 +126,16 @@ for (const L of d.lists || []) {
   nList++;
   if (!L.sec || !L.q || !Array.isArray(L.answers) || !L.answers.length) err(`목록 형식 오류: ${JSON.stringify(L).slice(0, 80)}`);
   for (const a of L.answers) if (!pdfNorm.includes(ws(a))) warn(`목록 답이 원문에 그대로는 없음 (${L.label}): ${a}`);
+  // 청킹: 묶음 글자(w)가 있으면 내용과 잇는 이미지 문장(img)과 글자별 풀이(tip)가 같이 있어야 한다
+  if (L.w) {
+    if (!L.img) err(`청킹에 이미지 문장(img)이 없음 (${L.label}): w="${L.w}"`);
+    else if (L.img.length < 12) warn(`이미지 문장이 너무 짧음 (${L.label}): ${L.img}`);
+    if (!L.tip) err(`청킹에 글자별 풀이(tip)가 없음 (${L.label}): w="${L.w}"`);
+    const syl = [...L.w.replace(/[\s·⋅/()]/g, "")].filter(ch => /[가-힣A-Za-z0-9]/.test(ch));
+    const miss = syl.filter(ch => !L.answers.some(a => a.includes(ch)));
+    if (miss.length) warn(`묶음 글자가 답에 없음 (${L.label}): ${miss.join("")} — 답에서 딴 글자여야 함`);
+    if (L.img && !syl.every(ch => L.img.includes(ch))) warn(`이미지 문장에 묶음 글자가 다 안 들어 있음 (${L.label}): w="${L.w}"`);
+  }
 }
 // ── (5) 틀린 곳 찾기 핵심 용어 묶음(core) ──
 let nOx = 0;

@@ -229,6 +229,13 @@ mark.fill{background:var(--c-soft);color:var(--ink);font-weight:700;padding:0 3p
 .inp .num.ini{width:auto;min-width:26px;padding:0 6px;border-radius:8px;font-size:1rem}
 .fb-tip{margin-top:10px;padding:10px 12px;border-radius:8px;background:var(--c-bg);font-size:.92rem}
 .tip-w{color:var(--c);letter-spacing:.06em}
+.tip-img{display:block;margin:4px 0 2px;font-weight:700;line-height:1.5}
+.chunk-list .tip-img{display:inline}
+.tip-how{margin:2px 0 0;color:var(--muted);font-size:.9em}
+.fb-tip p{margin:0}
+.tip-card.guide{border-left:5px solid var(--c)}
+.tip-card.guide ol{margin:6px 0;padding-left:20px}
+.tip-card.guide li{margin:4px 0}
 .ac-idea{margin:0 0 10px;padding:8px 10px;border-radius:8px;background:var(--c-bg);font-size:.9rem}
 .ac-first{color:var(--muted);font-size:.8rem;margin:-4px 0 8px}
 .acro-line{font-size:1.4rem;font-weight:800;color:var(--c);letter-spacing:.08em;margin:8px 0 2px}
@@ -704,7 +711,7 @@ const MNEMO = {
   "감상|5~6학년|과정기능": { k: [[0, "연결"], [1, "분석"], [2, "공유"]], w: "연분공", idea: "‘연분(緣分)을 공유해요’ — 작품과 배경을 연결하고, 다양한 방법으로 분석하고, 미술 문화 활동을 경험하고 공유해요." },
   "감상|5~6학년|가치태도": { k: [[0, "관점"], [1, "공동체"], [0, "서로"]], w: "관공서", idea: "‘관공서’ — 관(관점)·공(공동체)·서(서로). 관공서는 서로 다른 관점을 존중하고 공동체에 참여하는 곳!" }
 };
-/* 한 칸의 연상 단어 + 각 내용 요소에서 고른 글자 위치 */
+/* 한 칸의 연상 단어 + 각 내용 요소에서 고른 글자 위치. MNEMO 항목: k(글자 위치), w(묶음 글자), img(내용과 이어진 이미지 한 문장), idea(글자별 풀이) */
 function mnemo(a, g, c) {
   const m = MNEMO[`${a}|${g}|${c}`], els = DATA[a][g][c];
   const keys = m.k.map(([i, an, pos = 0]) => { const st = els[i].indexOf(an) + pos; return { i, st, ch: els[i][st] }; });
@@ -1033,10 +1040,12 @@ function submitFill(q, giveup) {
   addNext();
 }
 
+/* 청킹(연상법) 한 덩이: 묶음 글자 → 내용과 이어진 이미지 한 문장 → 글자별 풀이. 사용자 요청: 글자 묶음이 외울 내용과 닿아 있어야 한다 */
+const chunkHTML = (w, img, tip) => `<div class="fb-tip"><b>💡 외우는 말${w ? `: <span class="tip-w">${esc(w)}</span>` : ""}</b>${img ? `<p class="tip-img">${esc(img)}</p>` : ""}${tip ? `<p class="tip-how">${esc(tip)}</p>` : ""}</div>`;
 function mnemoTip(q) {
-  if (q.subj) return q.tip ? `<div class="fb-tip"><b>💡 외우는 말${q.tipW ? `: <span class="tip-w">${esc(q.tipW)}</span>` : ""}</b><br>${esc(q.tip)}</div>` : "";
+  if (q.subj) return (q.tip || q.img) ? chunkHTML(q.tipW, q.img, q.tip) : "";
   const m = mnemo(q.area, q.grade, q.cat);
-  return `<div class="fb-tip"><b>💡 외우는 말: <span class="tip-w">${esc(m.w)}</span></b><br>${esc(m.idea)}</div>`;
+  return chunkHTML(m.w, m.img, m.idea);
 }
 
 /* (b) 빈칸 고르기 */
@@ -1237,7 +1246,7 @@ function renderAcro() {
     return `<div class="ac-card ${mask}">
       <h4>${g} · ${CAT_LABEL[c]}</h4>
       <div class="ac-big">${esc([...m.w].join(" · "))}</div>
-      <p class="ac-idea">💡 ${esc(m.idea)}</p>
+      <p class="ac-idea">${m.img ? `<span class="tip-img">${esc(m.img)}</span><br>` : ""}💡 ${esc(m.idea)}</p>
       <ol>${m.order.map(i => `<li tabindex="0">${markEl(els[i], m.keys.filter(k => k.i === i).map(k => k.st))}</li>`).join("")}</ol>
       <p class="ac-first">참고: 맨 앞글자만 따면 ‘${esc(initials(els).join(""))}’</p>
       <input class="memo" data-key="${esc(key)}" value="${esc(memos[key] || "")}" placeholder="내가 지은 외우는 말 (더 좋은 게 있으면 적어 두세요)" aria-label="나만의 외우는 말">
@@ -2168,7 +2177,7 @@ function makeTextFill(key, x) {
   return { ...textBase(key, x.label, "cfill"), type: "fill", hot: x.hot, fills: [parts], title: "빈칸에 알맞은 말을 쓰세요.", hint: x.label };
 }
 function makeTextList(key, L) {
-  return { ...textBase(key, L.label, "clist"), type: "list", hot: L.hot, answers: L.answers, alias: L.alias, title: L.q, unit: L.unit, tip: L.tip, tipW: L.w };
+  return { ...textBase(key, L.label, "clist"), type: "list", hot: L.hot, answers: L.answers, alias: L.alias, title: L.q, unit: L.unit, tip: L.tip, tipW: L.w, img: L.img };
 }
 function makeHours(key, h) {
   return { ...textBase(key, h.label, "hours"), type: "mc", hot: h.hot, title: "시간 배당 기준 수업 시수를 고르세요.", hint: h.label,
@@ -2669,7 +2678,7 @@ $("#ct-print").addEventListener("click", () => window.print());
 
 /* ── 외우기 팁 (학습 보조 자료 — 원문과 별개로 만든 연상법) ── */
 const tipCard = (title, body) => `<div class="card tip-card"><h2>${title}</h2>${body}</div>`;
-const listTipsHTML = sj => `<ul>${sj.lists.filter(L => L.w).map(L => `<li><b class="tip-w">${esc(L.w)}</b> — ${esc(L.tip.replace(/^“[^”]*”\s*—\s*/, ""))}</li>`).join("")}</ul>`;
+const listTipsHTML = sj => `<ul class="chunk-list">${sj.lists.filter(L => L.w).map(L => `<li><b class="tip-w">${esc(L.w)}</b>${L.img ? ` <span class="tip-img">${esc(L.img)}</span>` : ""}${L.tip ? `<br><span class="tip-how">${esc(L.tip.replace(/^“[^”]*”\s*—\s*/, ""))}</span>` : ""}</li>`).join("")}</ul>`;
 TS.chong.tips = () => {
   const C = CHONG_TIME;
   return CHONG_COMMON_TIPS() + tipCard("초등학교 교육 목표", `
@@ -2743,7 +2752,14 @@ const EXAM_NOTE = {
 };
 EXAM_NOTE.tong = EXAM_NOTE_TONG;
 TS.tong.tips = TONG_TIPS;
-function renderTips() { const sj = TS[CUR]; if (sj) $("#ctips").innerHTML = (EXAM_NOTE[CUR] || "") + sj.tips(); }
+const CHUNK_GUIDE = `<div class="card tip-card guide"><h2>청킹(묶어 외우기) 이렇게 써요</h2>
+    <ol>
+      <li><b>묶음 글자</b>: 항목마다 한 글자씩 따서 말이 되는 낱말을 만들어요. 맨 앞글자가 겹치면 핵심 글자를 골라도 돼요. (감상의 세 개념 미술의 <b>이</b>해 · <b>비</b>평 · <b>생</b>활화 → <b>이비생</b>)</li>
+      <li><b>이미지 한 문장</b>: 그 낱말을 <b>외우는 내용과 이어진 장면</b>으로 만들어요. 낱말만 외우면 어디에 쓰는 말인지 잊어버려요. → “미술을 사랑하는 <b>이비</b>인후과 <b>생</b>(샘)이 작품을 <b>감상</b>하고 있다.”</li>
+      <li><b>거꾸로 꺼내기</b>: 장면 → 묶음 글자 → 항목 순서로 떠올려요. 목록 쓰기 문제의 ‘앞글자 힌트’가 이 연습이에요.</li>
+      <li><b>내 것으로</b>: 아래 연상법이 와닿지 않으면 자기 경험이 들어간 장면으로 바꿔 보세요. 자기가 만든 장면이 가장 오래 남아요.</li>
+    </ol></div>`;
+function renderTips() { const sj = TS[CUR]; if (sj) $("#ctips").innerHTML = (EXAM_NOTE[CUR] || "") + CHUNK_GUIDE + sj.tips(); }
 
 </script>
 <!-- 과목 데이터: 과목마다 파일 하나. 처음 화면 순서 = 아래 순서 (미술과 앞에 들어간다) -->
