@@ -2,7 +2,7 @@
 //   (글 파일은 node tools/extract-pdf.mjs <pdf> <out.txt> 로 만든다. pdfjs-dist가 필요: npm i pdfjs-dist@4.10.38)
 // subjects/<key>.js 를 읽어 (1) 문법, (2) 모든 원문 문장·내용 요소가 PDF 글에 실제로 있는지(띄어쓰기 무시),
 // (3) 빈칸 후보가 문장 안에 있는지, (4) 초등 성취기준 코드가 빠짐없이 들어갔고 문장이 PDF와 같은지,
-// (5) 틀린 곳 짝(ox)의 열쇠와 바꿀 말이 실제 문장에 있는지, (6) tips()가 글을 돌려주는지 확인한다.
+// (5) 틀린 곳 찾기 핵심 용어 묶음(core)이 실제 문장에 나오는지, (6) tips()가 글을 돌려주는지 확인한다.
 import fs from 'fs';
 import vm from 'vm';
 const [key, pdfFile] = process.argv.slice(2);
@@ -127,17 +127,17 @@ for (const L of d.lists || []) {
   if (!L.sec || !L.q || !Array.isArray(L.answers) || !L.answers.length) err(`목록 형식 오류: ${JSON.stringify(L).slice(0, 80)}`);
   for (const a of L.answers) if (!pdfNorm.includes(ws(a))) warn(`목록 답이 원문에 그대로는 없음 (${L.label}): ${a}`);
 }
-// ── (5) 틀린 곳 짝 ──
+// ── (5) 틀린 곳 찾기 핵심 용어 묶음(core) ──
 let nOx = 0;
-for (const [k, pairs] of Object.entries(d.ox || {})) {
+if (d.ox) err('ox(손으로 만든 바꿔치기 짝)는 더 쓰지 않는다 — core 핵심 용어 묶음으로 바꿀 것');
+for (const g of d.core || []) {
   nOx++;
-  const hit = sents.filter(t => t.s.includes(k));
-  if (!hit.length) { err(`ox 열쇠가 어느 문장에도 없음: "${k}"`); continue; }
-  for (const [orig, fake] of pairs) {
-    if (!hit.some(t => t.s.includes(orig))) err(`ox "${k}": 바꿀 원문 말 "${orig}"이 그 문장에 없음`);
-    if (typeof fake !== 'string' || !fake) err(`ox "${k}": 바꿀 말이 비어 있음`);
-  }
+  const members = Array.isArray(g) ? g : g && g.listed;
+  if (!Array.isArray(members) || members.length < 2) { err(`core 묶음 형식 오류: ${JSON.stringify(g).slice(0, 60)}`); continue; }
+  const used = members.filter(a => sents.some(t => t.s.includes(a)));
+  if (!used.length) warn(`core 묶음이 어느 문장에도 안 나옴(쓸모없음): ${members.join(' / ')}`);
 }
+if (!(d.core || []).length) warn('core(틀린 곳 찾기 핵심 용어 묶음)가 없음 — 틀린 곳 찾기는 목록 쓰기 답의 나열에서만 나옴');
 // ── (6) tips ──
 try { const h = d.tips ? d.tips() : ''; if (typeof h !== 'string' || h.length < 100) warn('tips()가 너무 짧거나 문자열이 아님'); } catch (e) { err('tips() 실행 오류: ' + e.message); }
 if (!d.examNote) warn('examNote 없음');
